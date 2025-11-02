@@ -30,6 +30,7 @@ bld/
 [Ll]ogs/
 
 # ===== ASP.NET MVC Frontend (125CNX_ECommerce) =====
+125CNX_ECommerce/.vs
 125CNX_ECommerce/bin/
 125CNX_ECommerce/obj/
 125CNX_ECommerce/*.user
