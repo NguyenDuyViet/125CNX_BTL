@@ -1,0 +1,227 @@
+﻿@{
+    ViewData["Title"] = "Liên Hệ";
+    Layout = "_Layout";
+
+}
+
+<div class="container my-5">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Liên hệ</li>
+        </ol>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="fw-bold mb-3">Liên Hệ Với Chúng Tôi</h1>
+            <p class="text-muted">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold mb-4">Gửi Tin Nhắn</h4>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" placeholder="Cao Thị Hân" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" placeholder="example@email.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" placeholder="0123456789" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Chủ đề</label>
+                                <select class="form-select">
+                                    <option selected>Chọn chủ đề</option>
+                                    <option value="1">Hỗ trợ kỹ thuật</option>
+                                    <option value="2">Thông tin sản phẩm</option>
+                                    <option value="3">Đổi trả hàng</option>
+                                    <option value="4">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Nội dung <span class="text-danger">*</span></label>
+                                <textarea class="form-control" rows="6" placeholder="Nhập nội dung tin nhắn..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agreePolicy">
+                                    <label class="form-check-label" for="agreePolicy">
+                                        Tôi đồng ý với <a href="/Privacy">chính sách bảo mật</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">
+                                    <i class="bi bi-send me-2"></i>Gửi Tin Nhắn
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5">
+            <!-- Contact Cards -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-4">Thông Tin Liên Hệ</h5>
+
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary bg-opacity-10 rounded p-3">
+                                <i class="bi bi-geo-alt text-primary" style="font-size: 1.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="fw-bold mb-1">Địa chỉ</h6>
+                            <p class="text-muted mb-0">48 Cao Thắng, Quận Hải Châu<br>TP. Đà Nẵng, Việt Nam</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-success bg-opacity-10 rounded p-3">
+                                <i class="bi bi-telephone text-success" style="font-size: 1.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="fw-bold mb-1">Hotline</h6>
+                            <p class="text-muted mb-0">
+                                <a href="tel:1900xxxx" class="text-decoration-none">1900 xxxx</a><br>
+                                <a href="tel:0901234567" class="text-decoration-none">090 123 4567</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-danger bg-opacity-10 rounded p-3">
+                                <i class="bi bi-envelope text-danger" style="font-size: 1.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="fw-bold mb-1">Email</h6>
+                            <p class="text-muted mb-0">
+                                <a href="mailto:support@shoeshop.vn" class="text-decoration-none">support@shoeshop.vn</a><br>
+                                <a href="mailto:info@shoeshop.vn" class="text-decoration-none">info@shoeshop.vn</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <div class="bg-warning bg-opacity-10 rounded p-3">
+                                <i class="bi bi-clock text-warning" style="font-size: 1.5rem;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="fw-bold mb-1">Giờ làm việc</h6>
+                            <p class="text-muted mb-0">
+                                Thứ 2 - Thứ 6: 8:00 - 21:00<br>
+                                Thứ 7 - CN: 9:00 - 20:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">Kết Nối Với Chúng Tôi</h5>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-primary btn-lg flex-fill">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-lg flex-fill">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-info btn-lg flex-fill">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-success btn-lg flex-fill">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.495187101827!2d106.70279931533418!3d10.774958892319968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4b3330bcc9%3A0xb1d7d6e9c47db3e3!2zMTIzIE5ndXnhu4VuIEh14buHLCBCw6puIE5nascgLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1635000000000!5m2!1svi!2s"
+                            width="100%"
+                            height="450"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="fw-bold mb-4 text-center">Câu Hỏi Thường Gặp</h3>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item border-0 shadow-sm mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Thời gian giao hàng là bao lâu?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Thời gian giao hàng tiêu chuẩn là 2-3 ngày làm việc đối với nội thành và 3-5 ngày với các tỉnh thành khác. Đơn hàng giao nhanh sẽ được giao trong vòng 24h.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 shadow-sm mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Chính sách đổi trả như thế nào?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Quý khách có thể đổi trả trong vòng 30 ngày kể từ ngày nhận hàng. Sản phẩm phải còn nguyên tem mác, chưa qua sử dụng và có đầy đủ hóa đơn.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item border-0 shadow-sm mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Làm sao để kiểm tra tình trạng đơn hàng?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Bạn có thể kiểm tra tình trạng đơn hàng bằng cách đăng nhập vào tài khoản và vào mục "Đơn hàng của tôi" hoặc liên hệ hotline để được hỗ trợ.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
