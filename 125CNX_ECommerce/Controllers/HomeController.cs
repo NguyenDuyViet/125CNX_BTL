@@ -15,6 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewData["Shoeshop"] = "Official Store";
         return View();
     }
 
@@ -22,10 +23,31 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Compare()
+    {
+        return View();
+    }
 
+    public IActionResult Contact()
+    {
+        return View();
+    }
+
+    public IActionResult Wishlist()
+    {
+        return View();
+    }
+
+    public IActionResult NotFound()
+    {
+        return View();
+    }
+
+   
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+  
 }
