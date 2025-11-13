@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/_125CNX_ECommerce.styles.css" asp-append-version="true" />
 
     <!-- Favicon -->
@@ -58,7 +59,7 @@
 
     <!-- Main Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container">
+        <div class="container-fluid px-3 px-lg-4">
             <!-- Logo -->
             <a class="navbar-brand fw-bold" href="/" style="font-size: 1.5rem; color: #667eea;">
                 <i class="bi bi-shop me-2"></i>ShoeShop
@@ -71,17 +72,20 @@
 
             <div class="collapse navbar-collapse" id="navbarMain">
                 <!-- Main Menu -->
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link fw-500" asp-controller="Home" asp-action="Index">
-                            <i class="bi bi-house-door me-1"></i>Trang chủ
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
+                    <li class="nav-item mx-3">
+                        <a class="nav-link d-flex flex-column align-items-center" asp-controller="Home" asp-action="Index">
+                            <i class="bi bi-house-door fs-4 mb-1"></i>
+                            <small>Trang chủ</small>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-500" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-grid me-1"></i>Sản phẩm
+
+                    <li class="nav-item dropdown mx-3">
+                        <a class="nav-link dropdown-toggle d-flex flex-column align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-grid fs-4 mb-1"></i>
+                            <small>Sản phẩm</small>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu text-start">
                             <li><a class="dropdown-item" href="/Product">Tất cả sản phẩm</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/Product?category=sport">Giày Thể Thao</a></li>
@@ -90,23 +94,28 @@
                             <li><a class="dropdown-item" href="/Product?category=premium">Giày Cao Cấp</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-500" asp-controller="Home" asp-action="Compare">
-                            <i class="bi bi-arrow-left-right me-1"></i>So sánh
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link d-flex flex-column align-items-center" asp-controller="Home" asp-action="Compare">
+                            <i class="bi bi-arrow-left-right fs-4 mb-1"></i>
+                            <small>So sánh</small>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-500" asp-controller="Home" asp-action="Contact">
-                            <i class="bi bi-chat-dots me-1"></i>Liên hệ
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link d-flex flex-column align-items-center" asp-controller="Home" asp-action="Contact">
+                            <i class="bi bi-chat-dots fs-4 mb-1"></i>
+                            <small>Liên hệ</small>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-500 text-danger" href="#">
-                            <i class="bi bi-lightning-fill me-1"></i>Flash Sale
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link d-flex flex-column align-items-center text-danger" href="#">
+                            <i class="bi bi-lightning-fill fs-4 mb-1"></i>
+                            <small>Flash Sale</small>
                         </a>
                     </li>
                 </ul>
-
                 <!-- Right Icons -->
                 <div class="d-flex align-items-center gap-3">
                     <!-- Search -->
@@ -142,16 +151,63 @@
                         <a href="#" class="text-dark dropdown-toggle text-decoration-none" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle fs-5"></i>
                         </a>
+
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/Account/Login"><i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập</a></li>
-                            <li><a class="dropdown-item" href="/Account/Register"><i class="bi bi-person-plus me-2"></i>Đăng ký</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/Account/Profile"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
-                            <li><a class="dropdown-item" href="/Order"><i class="bi bi-bag-check me-2"></i>Đơn hàng</a></li>
-                            <li><a class="dropdown-item" href="/Account/Logout"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
+                            @if (Context.Session.GetString("Username") == null)
+                            {
+                                <!-- Nếu chưa đăng nhập -->
+                                <li>
+                                    <a class="dropdown-item" href="/Account/Login">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/Account/Register">
+                                        <i class="bi bi-person-plus me-2"></i>Đăng ký
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <!-- Nếu đã đăng nhập -->
+                                <li>
+                                    <a class="dropdown-item" href="/Account/Profile">
+                                        <i class="bi bi-person me-2"></i>Tài khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/Order">
+                                        <i class="bi bi-bag-check me-2"></i>Đơn hàng
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" href="/Account/Logout">
+                                        <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
+
                 </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Search Bar -->
+    <div class="mobile-search d-lg-none bg-light py-2">
+        <div class="container">
+            <form action="/Product/Search" method="get">
+                <div class="input-group input-group-sm">
+                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
             </div>
         </div>
     </nav>
@@ -443,6 +499,87 @@
                 padding: 0.5rem 0 !important;
             }
         }
+
+        .navbar .nav-link {
+            color: #555;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+            .navbar .nav-link i {
+                font-size: 1.4rem;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+            .navbar .nav-link:hover i {
+                transform: scale(1.2);
+                color: #007bff;
+            }
+
+            .navbar .nav-link:hover small {
+                color: #007bff;
+            }
+
+            .navbar .nav-link.active i,
+            .navbar .nav-link.active small {
+                color: #007bff;
+            }
+        /* === ICON MENU STYLE (đã tinh chỉnh chữ nhỏ hơn, 1 hàng) === */
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            font-size: 0.8rem; /* giảm nhẹ cỡ chữ link */
+            transition: all 0.3s ease;
+            white-space: nowrap; /* không cho chữ xuống dòng */
+        }
+
+            .navbar-nav .nav-link i {
+                font-size: 1.5rem !important; /* giữ nguyên icon */
+                color: #667eea;
+                transition: transform 0.3s ease, color 0.3s ease;
+                line-height: 1;
+            }
+
+            .navbar-nav .nav-link small {
+                display: block;
+                font-size: 0.7rem; /* nhỏ hơn trước */
+                color: #555;
+                margin-top: 1px;
+                line-height: 1.1;
+                white-space: nowrap; /* tránh chữ xuống dòng */
+            }
+
+            .navbar-nav .nav-link:hover i {
+                transform: scale(1.2);
+                color: #667eea;
+            }
+
+            .navbar-nav .nav-link:hover small {
+                color: #667eea;
+            }
+
+            .navbar-nav .nav-link.active i,
+            .navbar-nav .nav-link.active small {
+                color: #667eea;
+                font-weight: 600;
+            }
+
+        .d-flex.align-items-center.gap-3 {
+            margin-left: auto;
+            margin-right: 0.5rem; /* thêm nhẹ để sát phải hơn */
+        }
+
+        .d-flex.align-items-center.gap-3 {
+            margin-left: auto;
+            justify-content: flex-end;
+            padding-right: 0; /* ép sát lề phải */
+        }
+
+
+            .d-flex.align-items-center.gap-3 i {
+                line-height: 1;
+            }
+
     </style>
 </body>
 </html>
