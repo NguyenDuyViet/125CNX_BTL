@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<ProductModel>;
+
+@{
     ViewData["Title"] = "Trang chủ - Cửa hàng giày";
     Layout = "_Layout";
 }
@@ -913,4 +915,7 @@
 
         document.querySelectorAll('img').forEach(img => imageObserver.observe(img));
     }
+    //debug list products
+    var lists = @Html.Raw(Json.Serialize(Model));
+    console.log(lists);
 </script>
