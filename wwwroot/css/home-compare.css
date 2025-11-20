@@ -1,0 +1,13 @@
+/* Compare Page Styles */
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.table img {
+    transition: transform 0.3s;
+}
+
+.table img:hover {
+    transform: scale(1.05);
+}

@@ -1,0 +1,22 @@
+/* Wishlist Page Styles */
+
+.wishlist-item {
+    transition: transform 0.3s;
+}
+
+.wishlist-item:hover {
+    transform: translateX(5px);
+}
+
+.product-card {
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
