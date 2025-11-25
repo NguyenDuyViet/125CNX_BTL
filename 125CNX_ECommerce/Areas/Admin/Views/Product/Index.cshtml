@@ -1,0 +1,229 @@
+@model IEnumerable<_125CNX_ECommerce.Models.ProductModel>
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Quản lý sản phẩm</h2>
+        <p class="text-muted mb-0">Danh sách tất cả sản phẩm</p>
+    </div>
+    <a href="/Admin/Product/Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>Thêm sản phẩm mới
+    </a>
+</div>
+
+<!-- Success Message -->
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<!-- Filters -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="categoryFilter">
+                    <option value="">Tất cả danh mục</option>
+                    <option value="Sneaker">Sneaker</option>
+                    <option value="Sandal">Sandal</option>
+                    <option value="Cao gót">Cao gót</option>
+                    <option value="Dép">Dép</option>
+                    <option value="Boot">Boot</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="statusFilter">
+                    <option value="">Tất cả trạng thái</option>
+                    <option value="instock">Còn hàng</option>
+                    <option value="lowstock">Sắp hết</option>
+                    <option value="outstock">Hết hàng</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-outline-secondary w-100" onclick="resetFilters()">
+                    <i class="bi bi-arrow-clockwise me-1"></i>Reset
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Products Table -->
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0" id="productsTable">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 80px;">Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Màu sắc</th>
+                        <th>Size</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Trạng thái</th>
+                        <th style="width: 150px;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@product.Images" alt="@product.TenSP" 
+                                     class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
+                            </td>
+                            <td>
+                                <strong>@product.TenSP</strong><br>
+                                <small class="text-muted">Mã: SP@product.MaSP.ToString("D6")</small>
+                            </td>
+                            <td><span class="badge bg-primary">@product.Category.C_Name</span></td>
+                            <td>@product.MauSac</td>
+                            <td>@product.KichCo</td>
+                            <td><strong class="text-primary">@product.Gia.ToString("N0")đ</strong></td>
+                            <td>
+                                <strong class="@(product.SoLuong < 10 ? "text-danger" : "text-success")">
+                                    @product.SoLuong
+                                </strong>
+                            </td>
+                            <td>
+                                @if (product.SoLuong == 0)
+                                {
+                                    <span class="badge bg-danger">Hết hàng</span>
+                                }
+                                else if (product.SoLuong < 10)
+                                {
+                                    <span class="badge bg-warning">Sắp hết</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">Còn hàng</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="/Admin/Product/Edit/@product.MaSP" class="btn btn-sm btn-outline-primary" title="Sửa">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" 
+                                            onclick="confirmDelete(@product.MaSP, '@product.TenSP')" title="Xóa">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Xác nhận xóa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm <strong id="productName"></strong>?</p>
+                <p class="text-danger mb-0"><i class="bi bi-exclamation-triangle me-2"></i>Hành động này không thể hoàn tác!</p>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <form id="deleteForm" method="post" style="display: inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmDelete(id, name) {
+            document.getElementById('productName').textContent = name;
+            document.getElementById('deleteForm').action = '/Admin/Product/Delete/' + id;
+            new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+            filterTable();
+        }
+
+        // Search and filter functionality
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+        document.getElementById('categoryFilter').addEventListener('change', filterTable);
+        document.getElementById('statusFilter').addEventListener('change', filterTable);
+
+        function filterTable() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const categoryValue = document.getElementById('categoryFilter').value.toLowerCase();
+            const statusValue = document.getElementById('statusFilter').value;
+            const table = document.getElementById('productsTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const productName = row.cells[1].textContent.toLowerCase();
+                const category = row.cells[2].textContent.toLowerCase();
+                const quantity = parseInt(row.cells[6].textContent.trim());
+                
+                let showRow = true;
+
+                // Search filter
+                if (searchValue && !productName.includes(searchValue)) {
+                    showRow = false;
+                }
+
+                // Category filter
+                if (categoryValue && !category.includes(categoryValue)) {
+                    showRow = false;
+                }
+
+                // Status filter
+                if (statusValue) {
+                    if (statusValue === 'outstock' && quantity > 0) showRow = false;
+                    if (statusValue === 'lowstock' && (quantity === 0 || quantity >= 10)) showRow = false;
+                    if (statusValue === 'instock' && quantity < 10) showRow = false;
+                }
+
+                row.style.display = showRow ? '' : 'none';
+            }
+        }
+    </script>
+}
+
+<style>
+    .table th {
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .btn-group .btn {
+        padding: 0.25rem 0.5rem;
+    }
+</style>
