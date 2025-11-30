@@ -334,9 +334,14 @@
                                     </div>
                                     <small class="text-muted">Còn @product.SoLuong</small>
                                 </div>
-                                <a href="/Product/Details/@product.MaSP" class="btn btn-primary w-100">
-                                    <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ
-                                </a>
+                                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline w-100">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="productId" value="@product.MaSP" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn btn-primary w-100" @(product.SoLuong == 0 ? "disabled" : "")>
+                                        <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

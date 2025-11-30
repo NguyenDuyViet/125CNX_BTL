@@ -121,9 +121,14 @@
 
                     <!-- Action Buttons -->
                     <div class="action-buttons mb-4">
-                        <button class="btn btn-primary btn-lg w-100 mb-2" @(Model.SoLuong == 0 ? "disabled" : "")>
-                            <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ hàng
-                        </button>
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="productId" value="@Model.MaSP" />
+                            <input type="hidden" name="quantity" id="quantityValue" value="1" />
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-2" @(Model.SoLuong == 0 ? "disabled" : "")>
+                                <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ hàng
+                            </button>
+                        </form>
                         <div class="row g-2">
                             <div class="col-6">
                                 <button class="btn btn-outline-danger w-100">
@@ -236,6 +241,7 @@
             const current = parseInt(input.value);
             if (current < max) {
                 input.value = current + 1;
+                document.getElementById('quantityValue').value = current + 1;
             }
         });
 
@@ -245,7 +251,13 @@
             const current = parseInt(input.value);
             if (current > min) {
                 input.value = current - 1;
+                document.getElementById('quantityValue').value = current - 1;
             }
+        });
+
+        // Sync quantity when input changes
+        document.getElementById('quantity').addEventListener('change', function() {
+            document.getElementById('quantityValue').value = this.value;
         });
     </script>
 }
