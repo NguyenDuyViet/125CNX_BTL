@@ -4,11 +4,8 @@
 // using _125CNX_ECommerce.Services.Vnpay;
 using _125CNX_ECommerce.Models;
 using _125CNX_ECommerce.Repository;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 
 
@@ -66,7 +63,6 @@ internal class Program
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}")
             .WithStaticAssets();
-
 
         app.Run();
     }
