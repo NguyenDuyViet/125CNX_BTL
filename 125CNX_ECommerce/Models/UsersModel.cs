@@ -12,7 +12,7 @@ namespace _125CNX_ECommerce.Models
 		public string SDT { get; set; }
 		public string Email { get; set; }
 
-		public int RoleID { get; set; }
+		public int RoleID { get; set; } = 3; // Mặc định là khách hàng
 		[ForeignKey("RoleID")]
 		public RolesModel Role { get; set; }
 
