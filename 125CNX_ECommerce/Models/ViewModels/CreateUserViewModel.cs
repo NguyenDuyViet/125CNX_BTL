@@ -1,6 +1,6 @@
-﻿namespace _125CNX_ECommerce.Models
+﻿namespace _125CNX_ECommerce.Models.ViewModels
 {
-    public class UserRegisterModel
+    public class CreateUserViewModel
     {
         public string TenDangNhap { get; set; }
         public string Email { get; set; }

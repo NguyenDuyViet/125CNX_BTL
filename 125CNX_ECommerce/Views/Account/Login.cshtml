@@ -1,4 +1,6 @@
-@model _125CNX_ECommerce.Models.UserLoginModel
+
+﻿@model _125CNX_ECommerce.Models.ViewModels.LoginViewModel
+>>>>>>> origin/feature/admin
 @{
     ViewData["Title"] = "Đăng nhập";
 }
@@ -18,16 +20,8 @@
                             <p class="text-muted small">Chào mừng bạn quay trở lại!</p>
                         </div>
 
-                        <!-- Error Message -->
-                        @if (ViewBag.Error != null)
-                        {
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                @ViewBag.Error
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div>
-                        }
 
+>>>>>>> origin/feature/admin
                         <!-- Success Message -->
                         @if (TempData["Success"] != null)
                         {
@@ -38,37 +32,54 @@
                             </div>
                         }
 
+
+                        <!-- Error Message -->
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                @ViewBag.Error
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        }
+
+                        <!-- ValidationSummary để hiển thị ModelState lỗi -->
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
                         <!-- Login Form -->
                         <form asp-action="Login" method="post">
                             <div class="mb-3">
-                                <label asp-for="TenDangNhap" class="form-label fw-semibold">
+                                <label asp-for="Username" class="form-label fw-semibold">
                                     <i class="bi bi-person me-1"></i>Tên đăng nhập
                                 </label>
-                                <input asp-for="TenDangNhap" 
-                                       class="form-control form-control-lg" 
+                                <input asp-for="Username"
+                                       class="form-control form-control-lg"
                                        placeholder="Nhập tên đăng nhập"
                                        required />
-                                <span asp-validation-for="TenDangNhap" class="text-danger small"></span>
+                                <span asp-validation-for="Username" class="text-danger small"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label asp-for="MatKhau" class="form-label fw-semibold">
+                                <label asp-for="Password" class="form-label fw-semibold">
                                     <i class="bi bi-lock me-1"></i>Mật khẩu
                                 </label>
                                 <div class="input-group">
-                                    <input asp-for="MatKhau" 
-                                           type="password" 
-                                           class="form-control form-control-lg" 
+                                    <input asp-for="Password"
+                                           type="password"
+                                           class="form-control form-control-lg"
                                            id="passwordInput"
                                            placeholder="Nhập mật khẩu"
                                            required />
-                                    <button class="btn btn-outline-secondary" 
-                                            type="button" 
+                                    <button class="btn btn-outline-secondary"
+                                            type="button"
+>>>>>>> origin/feature/admin
                                             id="togglePassword">
                                         <i class="bi bi-eye" id="toggleIcon"></i>
                                     </button>
                                 </div>
-                                <span asp-validation-for="MatKhau" class="text-danger small"></span>
+
+                                <span asp-validation-for="Password" class="text-danger small"></span>
+>>>>>>> origin/feature/admin
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -129,13 +140,17 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    
+
+
+>>>>>>> origin/feature/admin
     <script>
         // Toggle Password Visibility
         document.getElementById('togglePassword').addEventListener('click', function() {
             const passwordInput = document.getElementById('passwordInput');
             const toggleIcon = document.getElementById('toggleIcon');
-            
+
+
+>>>>>>> origin/feature/admin
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 toggleIcon.classList.remove('bi-eye');
@@ -182,25 +197,29 @@
         transition: transform 0.2s ease;
     }
 
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+>>>>>>> origin/feature/admin
 
     .divider {
         position: relative;
         text-align: center;
     }
 
-    .divider::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: #dee2e6;
-    }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #dee2e6;
+        }
+>>>>>>> origin/feature/admin
 
     .divider-text {
         position: relative;
