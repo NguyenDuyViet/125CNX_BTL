@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfGioHangModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <GioHangModel>
+    <GioHangID>1</GioHangID>
+    <U_ID>1</U_ID>
+    <User>
+      <U_ID>1</U_ID>
+      <HoTen>Nguyễn Văn An</HoTen>
+      <DiaChi>12 Lê Lợi, Hà Nội</DiaChi>
+      <SDT>0901234567</SDT>
+      <Email>an@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>an123</TenDangNhap>
+      <MatKhau>123456</MatKhau>
+    </User>
+    <MaSP>2</MaSP>
+    <Product>
+      <MaSP>2</MaSP>
+      <TenSP>Giày Sneaker Nike Air 43 đen</TenSP>
+      <C_ID>1</C_ID>
+      <Category>
+        <C_ID>1</C_ID>
+        <C_Name>Sneaker</C_Name>
+      </Category>
+      <KichCo>43</KichCo>
+      <MauSac>Đen</MauSac>
+      <Gia>1550000.00</Gia>
+      <SoLuong>25</SoLuong>
+      <Images>https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2023/12/giay-the-thao-nike-air-dunk-low-jumbo-shoes-fb8894-001-mau-den-657cfce0668f1-16122023082656.jpg</Images>
+    </Product>
+    <SoLuong>2</SoLuong>
+    <NgayThem>2025-11-30T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
+    <GioHangID>2</GioHangID>
+    <U_ID>1</U_ID>
+    <User>
+      <U_ID>1</U_ID>
+      <HoTen>Nguyễn Văn An</HoTen>
+      <DiaChi>12 Lê Lợi, Hà Nội</DiaChi>
+      <SDT>0901234567</SDT>
+      <Email>an@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>an123</TenDangNhap>
+      <MatKhau>123456</MatKhau>
+    </User>
+    <MaSP>6</MaSP>
+    <Product>
+      <MaSP>6</MaSP>
+      <TenSP>Dép lê nam Adidas xanh</TenSP>
+      <C_ID>4</C_ID>
+      <Category>
+        <C_ID>4</C_ID>
+        <C_Name>Dép</C_Name>
+      </Category>
+      <KichCo>42</KichCo>
+      <MauSac>Xanh</MauSac>
+      <Gia>320000.00</Gia>
+      <SoLuong>50</SoLuong>
+      <Images>https://cf.shopee.vn/file/ec0143080467e2fa07a7278e2db8dc5c</Images>
+    </Product>
+    <SoLuong>1</SoLuong>
+    <NgayThem>2025-11-30T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
     <GioHangID>3</GioHangID>
     <U_ID>2</U_ID>
     <User>
@@ -33,7 +103,7 @@
       <Images>https://down-vn.img.susercontent.com/file/vn-11134208-7r98o-lswew24wo5954b</Images>
     </Product>
     <SoLuong>1</SoLuong>
-    <NgayThem>2025-11-24T00:00:00</NgayThem>
+    <NgayThem>2025-11-30T00:00:00</NgayThem>
   </GioHangModel>
   <GioHangModel>
     <GioHangID>4</GioHangID>
@@ -68,7 +138,7 @@
       <Images>https://file.hstatic.net/1000284478/file/thuong-hieu-giay-sneaker-viet-nam-9_8fc866f5cec44a33bb668c86054b72eb.jpg</Images>
     </Product>
     <SoLuong>1</SoLuong>
-    <NgayThem>2025-11-24T00:00:00</NgayThem>
+    <NgayThem>2025-11-30T00:00:00</NgayThem>
   </GioHangModel>
   <GioHangModel>
     <GioHangID>5</GioHangID>
@@ -103,7 +173,7 @@
       <Images>https://product.hstatic.net/200000142885/product/z3428622876387_661478f9d3b684f83d1ed2294adc56b7-1_91015f216ad646829bbaaa1877399681_master.jpg</Images>
     </Product>
     <SoLuong>1</SoLuong>
-    <NgayThem>2025-11-24T00:00:00</NgayThem>
+    <NgayThem>2025-11-30T00:00:00</NgayThem>
   </GioHangModel>
   <GioHangModel>
     <GioHangID>6</GioHangID>
@@ -138,6 +208,6 @@
       <Images>https://lh7-us.googleusercontent.com/hAMXznKYgHgdDsCNx9NfvDKVR-GxUtpo9fD2n1NExp3QJ8D4MjXTYzjwGQ5_miBF-YLXRlbR9kbsV8fgaGyKXkWJij1dwpbusG9K0uSaUpBvzkiaeIcZPOTVXjybLIyXQjDf_yBtMWjCo8w9Jv5_Hg</Images>
     </Product>
     <SoLuong>2</SoLuong>
-    <NgayThem>2025-11-24T00:00:00</NgayThem>
+    <NgayThem>2025-11-30T00:00:00</NgayThem>
   </GioHangModel>
 </ArrayOfGioHangModel>
