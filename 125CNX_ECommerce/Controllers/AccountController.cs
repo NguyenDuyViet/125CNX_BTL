@@ -99,10 +99,93 @@ public class AccountController : Controller
 		return RedirectToAction("UpdateAccount", "Account");
 	}
 
+	// ------------------- LOGIN FROM MODAL -------------------
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public IActionResult LoginModal(string TenDangNhap, string MatKhau)
+	{
+		// Tìm user trong bảng Users (custom table)
+		var user = _dataContext.Users
+			.FirstOrDefault(u => u.TenDangNhap == TenDangNhap && u.MatKhau == MatKhau);
+		
+		if (user != null)
+		{
+			// Lưu vào session
+			HttpContext.Session.SetInt32("U_ID", user.U_ID);
+			HttpContext.Session.SetString("Username", user.TenDangNhap);
+			HttpContext.Session.SetString("HoTen", user.HoTen ?? user.TenDangNhap);
+			HttpContext.Session.SetString("Role", user.RoleID.ToString());
+			
+			TempData["Success"] = $"Xin chào, {user.HoTen ?? user.TenDangNhap}!";
+			return RedirectToAction("Index", "Home");
+		}
+		
+		TempData["Error"] = "Tên đăng nhập hoặc mật khẩu không đúng!";
+		return RedirectToAction("Index", "Home");
+	}
+
+	// ------------------- PROFILE -------------------
+	[HttpGet]
+	public IActionResult Profile()
+	{
+		var userId = HttpContext.Session.GetInt32("U_ID");
+		if (userId == null)
+		{
+			return RedirectToAction("Index", "Home");
+		}
+
+		var user = _dataContext.Users.Find(userId);
+		if (user == null)
+		{
+			return NotFound();
+		}
+
+		return View(user);
+	}
+
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public IActionResult UpdateProfile(UsersModel model)
+	{
+		var userId = HttpContext.Session.GetInt32("U_ID");
+		if (userId == null)
+		{
+			return RedirectToAction("Index", "Home");
+		}
+
+		var user = _dataContext.Users.Find(userId);
+		if (user == null)
+		{
+			return NotFound();
+		}
+
+		// Cập nhật thông tin
+		user.HoTen = model.HoTen;
+		user.Email = model.Email;
+		user.SDT = model.SDT;
+		user.DiaChi = model.DiaChi;
+
+		// Nếu có đổi mật khẩu
+		if (!string.IsNullOrEmpty(model.MatKhau))
+		{
+			user.MatKhau = model.MatKhau;
+		}
+
+		_dataContext.Users.Update(user);
+		_dataContext.SaveChanges();
+
+		// Cập nhật session
+		HttpContext.Session.SetString("HoTen", user.HoTen ?? user.TenDangNhap);
+
+		TempData["Success"] = "Cập nhật thông tin thành công!";
+		return RedirectToAction("Profile");
+	}
+
 	public IActionResult Logout()
     {
         HttpContext.Session.Clear();
-        return RedirectToAction("Login");
+		_signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
     }
 
 	// ------------------- Create account -------------------

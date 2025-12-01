@@ -2,7 +2,7 @@
 <ArrayOfProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProductModel>
     <MaSP>1</MaSP>
-    <TenSP>Giày Sneaker Nike Air 42 trắng</TenSP>
+    <TenSP>Giày Sneaker Nike Air</TenSP>
     <C_ID>1</C_ID>
     <Category>
       <C_ID>1</C_ID>
