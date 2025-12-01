@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCategoriesModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CategoriesModel>
+    <C_ID>1</C_ID>
+    <C_Name>Sneaker</C_Name>
+  </CategoriesModel>
+  <CategoriesModel>
+    <C_ID>2</C_ID>
+    <C_Name>Sandal</C_Name>
+  </CategoriesModel>
+  <CategoriesModel>
+    <C_ID>3</C_ID>
+    <C_Name>Cao gót</C_Name>
+  </CategoriesModel>
+  <CategoriesModel>
+    <C_ID>4</C_ID>
+    <C_Name>Dép</C_Name>
+  </CategoriesModel>
+  <CategoriesModel>
+    <C_ID>5</C_ID>
+    <C_Name>Boot</C_Name>
+  </CategoriesModel>
+</ArrayOfCategoriesModel>

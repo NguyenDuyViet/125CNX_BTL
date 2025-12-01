@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfThanhToanModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ThanhToanModel>
+    <MaTT>1</MaTT>
+    <MaHD>2</MaHD>
+    <HoaDon>
+      <MaHD>2</MaHD>
+      <MaDH>2</MaDH>
+      <DonHang>
+        <MaDH>2</MaDH>
+        <MaKH>2</MaKH>
+        <KhachHang>
+          <U_ID>2</U_ID>
+          <HoTen>Lê Thị B</HoTen>
+          <DiaChi>22 Nguyễn Huệ, Huế</DiaChi>
+          <SDT>0911987687</SDT>
+          <Email>btle@gmail.com</Email>
+          <RoleID>3</RoleID>
+          <Role>
+            <RoleID>3</RoleID>
+            <RoleName>Khách hàng</RoleName>
+          </Role>
+          <TenDangNhap>letb</TenDangNhap>
+          <MatKhau>654321</MatKhau>
+        </KhachHang>
+        <NgayDat>2025-10-12T00:00:00</NgayDat>
+        <TongTien>450000.00</TongTien>
+        <TrangThai>Đã giao</TrangThai>
+      </DonHang>
+      <NgayLap>2025-10-12T00:00:00</NgayLap>
+      <TongTien>450000.00</TongTien>
+      <TrangThai>Đã thanh toán</TrangThai>
+    </HoaDon>
+    <PhuongThuc>Tiền mặt</PhuongThuc>
+    <SoTien>450000.00</SoTien>
+    <NgayTT>2025-10-12T00:00:00</NgayTT>
+    <TrangThai>Hoàn tất</TrangThai>
+  </ThanhToanModel>
+  <ThanhToanModel>
+    <MaTT>2</MaTT>
+    <MaHD>3</MaHD>
+    <HoaDon>
+      <MaHD>3</MaHD>
+      <MaDH>3</MaDH>
+      <DonHang>
+        <MaDH>3</MaDH>
+        <MaKH>6</MaKH>
+        <KhachHang>
+          <U_ID>6</U_ID>
+          <HoTen>Trần Mai</HoTen>
+          <DiaChi>24 Hai Bà Trưng, Hà Nội</DiaChi>
+          <SDT>0966112211</SDT>
+          <Email>maitr@gmail.com</Email>
+          <RoleID>3</RoleID>
+          <Role>
+            <RoleID>3</RoleID>
+            <RoleName>Khách hàng</RoleName>
+          </Role>
+          <TenDangNhap>traimai</TenDangNhap>
+          <MatKhau>123abc</MatKhau>
+        </KhachHang>
+        <NgayDat>2025-10-15T00:00:00</NgayDat>
+        <TongTien>320000.00</TongTien>
+        <TrangThai>Đã giao</TrangThai>
+      </DonHang>
+      <NgayLap>2025-10-15T00:00:00</NgayLap>
+      <TongTien>320000.00</TongTien>
+      <TrangThai>Chưa thanh toán</TrangThai>
+    </HoaDon>
+    <PhuongThuc>Chuyển khoản</PhuongThuc>
+    <SoTien>320000.00</SoTien>
+    <NgayTT>2025-10-15T00:00:00</NgayTT>
+    <TrangThai>Hoàn tất</TrangThai>
+  </ThanhToanModel>
+</ArrayOfThanhToanModel>

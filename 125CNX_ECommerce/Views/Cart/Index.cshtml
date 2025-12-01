@@ -1,8 +1,8 @@
 @model IEnumerable<_125CNX_ECommerce.Models.GioHangModel>
 @{
     ViewData["Title"] = "Giỏ hàng";
-    var totalAmount = Model.Sum(x => x.Product.Gia * x.SoLuong);
-    var totalItems = Model.Sum(x => x.SoLuong);
+    var totalAmount = Model?.Sum(x => x.Product.Gia * x.SoLuong) ?? 0;
+    var totalItems = Model?.Sum(x => x.SoLuong) ?? 0;
 }
 
 <!-- Breadcrumb -->
@@ -33,7 +33,7 @@
                     </div>
                 }
 
-                @if (!Model.Any())
+                @if (Model == null || !Model.Any())
                 {
                     <!-- Empty Cart -->
                     <div class="text-center py-5">

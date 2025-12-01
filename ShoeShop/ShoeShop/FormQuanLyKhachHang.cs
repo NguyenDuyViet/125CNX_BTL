@@ -34,7 +34,7 @@ namespace ShoeShop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối database: " + ex.Message, "Lỗi", 
+                MessageBox.Show("Lỗi kết nối database: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -113,7 +113,7 @@ namespace ShoeShop
                         cmd.Parameters.AddWithValue("@TenDangNhap", txtTenDangNhap.Text.Trim());
                         cmd.Parameters.AddWithValue("@MatKhau", txtMatKhau.Text);
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Thêm khách hàng thành công!", "Thành công", 
+                        MessageBox.Show("Thêm khách hàng thành công!", "Thành công",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadData();
                         ClearInputs();
@@ -130,7 +130,7 @@ namespace ShoeShop
         {
             if (string.IsNullOrEmpty(txtMaKH.Text))
             {
-                MessageBox.Show("Vui lòng chọn khách hàng cần sửa!", "Cảnh báo", 
+                MessageBox.Show("Vui lòng chọn khách hàng cần sửa!", "Cảnh báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -153,7 +153,7 @@ namespace ShoeShop
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
                         cmd.Parameters.AddWithValue("@TenDangNhap", txtTenDangNhap.Text.Trim());
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Cập nhật thành công!", "Thành công", 
+                        MessageBox.Show("Cập nhật thành công!", "Thành công",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadData();
                         ClearInputs();
@@ -170,15 +170,15 @@ namespace ShoeShop
         {
             if (string.IsNullOrEmpty(txtMaKH.Text))
             {
-                MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Cảnh báo", 
+                MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Cảnh báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             DialogResult result = MessageBox.Show(
-                $"Bạn có chắc muốn xóa khách hàng '{txtHoTen.Text}'?", 
+                $"Bạn có chắc muốn xóa khách hàng '{txtHoTen.Text}'?",
                 "Xác nhận xóa",
-                MessageBoxButtons.YesNo, 
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -193,7 +193,7 @@ namespace ShoeShop
                         {
                             cmd.Parameters.AddWithValue("@U_ID", int.Parse(txtMaKH.Text));
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("Xóa thành công!", "Thành công", 
+                            MessageBox.Show("Xóa thành công!", "Thành công",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadData();
                             ClearInputs();
@@ -262,6 +262,11 @@ namespace ShoeShop
             txtEmail.Clear();
             txtTenDangNhap.Clear();
             txtMatKhau.Clear();
+        }
+
+        private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

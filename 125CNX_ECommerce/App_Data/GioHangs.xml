@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfGioHangModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GioHangModel>
+    <GioHangID>1</GioHangID>
+    <U_ID>1</U_ID>
+    <User>
+      <U_ID>1</U_ID>
+      <HoTen>Nguyễn Văn An</HoTen>
+      <DiaChi>12 Lê Lợi, Hà Nội</DiaChi>
+      <SDT>0901234567</SDT>
+      <Email>an@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>an123</TenDangNhap>
+      <MatKhau>123456</MatKhau>
+    </User>
+    <MaSP>2</MaSP>
+    <Product>
+      <MaSP>2</MaSP>
+      <TenSP>Giày Sneaker Nike Air 43 đen</TenSP>
+      <C_ID>1</C_ID>
+      <Category>
+        <C_ID>1</C_ID>
+        <C_Name>Sneaker</C_Name>
+      </Category>
+      <KichCo>43</KichCo>
+      <MauSac>Đen</MauSac>
+      <Gia>1550000.00</Gia>
+      <SoLuong>25</SoLuong>
+      <Images>https://i.pinimg.com/474x/1f/80/b8/1f80b82585f81b4d75f14cab8ef42d32.jpg</Images>
+    </Product>
+    <SoLuong>2</SoLuong>
+    <NgayThem>2025-12-01T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
+    <GioHangID>2</GioHangID>
+    <U_ID>1</U_ID>
+    <User>
+      <U_ID>1</U_ID>
+      <HoTen>Nguyễn Văn An</HoTen>
+      <DiaChi>12 Lê Lợi, Hà Nội</DiaChi>
+      <SDT>0901234567</SDT>
+      <Email>an@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>an123</TenDangNhap>
+      <MatKhau>123456</MatKhau>
+    </User>
+    <MaSP>6</MaSP>
+    <Product>
+      <MaSP>6</MaSP>
+      <TenSP>Dép lê nam Adidas xanh</TenSP>
+      <C_ID>4</C_ID>
+      <Category>
+        <C_ID>4</C_ID>
+        <C_Name>Dép</C_Name>
+      </Category>
+      <KichCo>42</KichCo>
+      <MauSac>Xanh</MauSac>
+      <Gia>320000.00</Gia>
+      <SoLuong>50</SoLuong>
+      <Images>https://www.sportzon.rs/files/thumbs/files/images/slike_proizvoda/thumbs_600/F35541_600_900px.jpg</Images>
+    </Product>
+    <SoLuong>1</SoLuong>
+    <NgayThem>2025-12-01T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
+    <GioHangID>3</GioHangID>
+    <U_ID>2</U_ID>
+    <User>
+      <U_ID>2</U_ID>
+      <HoTen>Lê Thị B</HoTen>
+      <DiaChi>22 Nguyễn Huệ, Huế</DiaChi>
+      <SDT>0911987687</SDT>
+      <Email>btle@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>letb</TenDangNhap>
+      <MatKhau>654321</MatKhau>
+    </User>
+    <MaSP>3</MaSP>
+    <Product>
+      <MaSP>3</MaSP>
+      <TenSP>Sandal Nữ quai ngang đen</TenSP>
+      <C_ID>2</C_ID>
+      <Category>
+        <C_ID>2</C_ID>
+        <C_Name>Sandal</C_Name>
+      </Category>
+      <KichCo>38</KichCo>
+      <MauSac>Đen</MauSac>
+      <Gia>460000.00</Gia>
+      <SoLuong>40</SoLuong>
+      <Images>https://shop.r10s.jp/ferrisota/cabinet/3123/168690406-1.jpg</Images>
+    </Product>
+    <SoLuong>1</SoLuong>
+    <NgayThem>2025-12-01T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
+    <GioHangID>4</GioHangID>
+    <U_ID>2</U_ID>
+    <User>
+      <U_ID>2</U_ID>
+      <HoTen>Lê Thị B</HoTen>
+      <DiaChi>22 Nguyễn Huệ, Huế</DiaChi>
+      <SDT>0911987687</SDT>
+      <Email>btle@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>letb</TenDangNhap>
+      <MatKhau>654321</MatKhau>
+    </User>
+    <MaSP>4</MaSP>
+    <Product>
+      <MaSP>4</MaSP>
+      <TenSP>Sandal Nữ quai ngang hồng</TenSP>
+      <C_ID>2</C_ID>
+      <Category>
+        <C_ID>2</C_ID>
+        <C_Name>Sandal</C_Name>
+      </Category>
+      <KichCo>37</KichCo>
+      <MauSac>Hồng</MauSac>
+      <Gia>450000.00</Gia>
+      <SoLuong>30</SoLuong>
+      <Images>https://image.rakuten.co.jp/windyshop/cabinet/sandals/sandals-20a005_1.jpg</Images>
+    </Product>
+    <SoLuong>1</SoLuong>
+    <NgayThem>2025-12-01T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
+    <GioHangID>5</GioHangID>
+    <U_ID>6</U_ID>
+    <User>
+      <U_ID>6</U_ID>
+      <HoTen>Trần Mai</HoTen>
+      <DiaChi>24 Hai Bà Trưng, Hà Nội</DiaChi>
+      <SDT>0966112211</SDT>
+      <Email>maitr@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>traimai</TenDangNhap>
+      <MatKhau>123abc</MatKhau>
+    </User>
+    <MaSP>1</MaSP>
+    <Product>
+      <MaSP>1</MaSP>
+      <TenSP>Giày Sneaker Nike Air 42 trắng</TenSP>
+      <C_ID>1</C_ID>
+      <Category>
+        <C_ID>1</C_ID>
+        <C_Name>Sneaker</C_Name>
+      </Category>
+      <KichCo>42</KichCo>
+      <MauSac>Trắng</MauSac>
+      <Gia>1500000.00</Gia>
+      <SoLuong>20</SoLuong>
+      <Images>https://sneakerdouble.net/wp-content/uploads/2023/07/image-4-compressed.jpg</Images>
+    </Product>
+    <SoLuong>1</SoLuong>
+    <NgayThem>2025-12-01T00:00:00</NgayThem>
+  </GioHangModel>
+  <GioHangModel>
+    <GioHangID>6</GioHangID>
+    <U_ID>6</U_ID>
+    <User>
+      <U_ID>6</U_ID>
+      <HoTen>Trần Mai</HoTen>
+      <DiaChi>24 Hai Bà Trưng, Hà Nội</DiaChi>
+      <SDT>0966112211</SDT>
+      <Email>maitr@gmail.com</Email>
+      <RoleID>3</RoleID>
+      <Role>
+        <RoleID>3</RoleID>
+        <RoleName>Khách hàng</RoleName>
+      </Role>
+      <TenDangNhap>traimai</TenDangNhap>
+      <MatKhau>123abc</MatKhau>
+    </User>
+    <MaSP>5</MaSP>
+    <Product>
+      <MaSP>5</MaSP>
+      <TenSP>Giày cao gót 9cm đỏ</TenSP>
+      <C_ID>3</C_ID>
+      <Category>
+        <C_ID>3</C_ID>
+        <C_Name>Cao gót</C_Name>
+      </Category>
+      <KichCo>38</KichCo>
+      <MauSac>Đỏ</MauSac>
+      <Gia>700000.00</Gia>
+      <SoLuong>15</SoLuong>
+      <Images>https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-md0mnyyw5zfgd2</Images>
+    </Product>
+    <SoLuong>2</SoLuong>
+    <NgayThem>2025-12-01T00:00:00</NgayThem>
+  </GioHangModel>
+</ArrayOfGioHangModel>

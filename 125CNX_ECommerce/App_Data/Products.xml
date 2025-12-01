@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProductModel>
+    <MaSP>1</MaSP>
+    <TenSP>Giày Sneaker Nike Air 42 trắng</TenSP>
+    <C_ID>1</C_ID>
+    <Category>
+      <C_ID>1</C_ID>
+      <C_Name>Sneaker</C_Name>
+    </Category>
+    <KichCo>42</KichCo>
+    <MauSac>Trắng</MauSac>
+    <Gia>1500000.00</Gia>
+    <SoLuong>20</SoLuong>
+    <Images>https://sneakerdouble.net/wp-content/uploads/2023/07/image-4-compressed.jpg</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>2</MaSP>
+    <TenSP>Giày Sneaker Nike Air 43 đen</TenSP>
+    <C_ID>1</C_ID>
+    <Category>
+      <C_ID>1</C_ID>
+      <C_Name>Sneaker</C_Name>
+    </Category>
+    <KichCo>43</KichCo>
+    <MauSac>Đen</MauSac>
+    <Gia>1550000.00</Gia>
+    <SoLuong>25</SoLuong>
+    <Images>https://i.pinimg.com/474x/1f/80/b8/1f80b82585f81b4d75f14cab8ef42d32.jpg</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>3</MaSP>
+    <TenSP>Sandal Nữ quai ngang đen</TenSP>
+    <C_ID>2</C_ID>
+    <Category>
+      <C_ID>2</C_ID>
+      <C_Name>Sandal</C_Name>
+    </Category>
+    <KichCo>38</KichCo>
+    <MauSac>Đen</MauSac>
+    <Gia>460000.00</Gia>
+    <SoLuong>40</SoLuong>
+    <Images>https://shop.r10s.jp/ferrisota/cabinet/3123/168690406-1.jpg</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>4</MaSP>
+    <TenSP>Sandal Nữ quai ngang hồng</TenSP>
+    <C_ID>2</C_ID>
+    <Category>
+      <C_ID>2</C_ID>
+      <C_Name>Sandal</C_Name>
+    </Category>
+    <KichCo>37</KichCo>
+    <MauSac>Hồng</MauSac>
+    <Gia>450000.00</Gia>
+    <SoLuong>30</SoLuong>
+    <Images>https://image.rakuten.co.jp/windyshop/cabinet/sandals/sandals-20a005_1.jpg</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>5</MaSP>
+    <TenSP>Giày cao gót 9cm đỏ</TenSP>
+    <C_ID>3</C_ID>
+    <Category>
+      <C_ID>3</C_ID>
+      <C_Name>Cao gót</C_Name>
+    </Category>
+    <KichCo>38</KichCo>
+    <MauSac>Đỏ</MauSac>
+    <Gia>700000.00</Gia>
+    <SoLuong>15</SoLuong>
+    <Images>https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-md0mnyyw5zfgd2</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>6</MaSP>
+    <TenSP>Dép lê nam Adidas xanh</TenSP>
+    <C_ID>4</C_ID>
+    <Category>
+      <C_ID>4</C_ID>
+      <C_Name>Dép</C_Name>
+    </Category>
+    <KichCo>42</KichCo>
+    <MauSac>Xanh</MauSac>
+    <Gia>320000.00</Gia>
+    <SoLuong>50</SoLuong>
+    <Images>https://www.sportzon.rs/files/thumbs/files/images/slike_proizvoda/thumbs_600/F35541_600_900px.jpg</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>7</MaSP>
+    <TenSP>Boot nữ da lộn nâu</TenSP>
+    <C_ID>5</C_ID>
+    <Category>
+      <C_ID>5</C_ID>
+      <C_Name>Boot</C_Name>
+    </Category>
+    <KichCo>36</KichCo>
+    <MauSac>Nâu</MauSac>
+    <Gia>1200000.00</Gia>
+    <SoLuong>8</SoLuong>
+    <Images>https://di2ponv0v5otw.cloudfront.net/posts/2023/01/04/63b5aff1f8c5da45a337b56e/m_63b5afff8d7a3c6cc9f9c92b.jpg</Images>
+  </ProductModel>
+  <ProductModel>
+    <MaSP>8</MaSP>
+    <TenSP>Giày Sneaker Adidas Ultraboost</TenSP>
+    <C_ID>1</C_ID>
+    <Category>
+      <C_ID>1</C_ID>
+      <C_Name>Sneaker</C_Name>
+    </Category>
+    <KichCo>40</KichCo>
+    <MauSac>Đen</MauSac>
+    <Gia>1800000.00</Gia>
+    <SoLuong>18</SoLuong>
+    <Images>https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2022/10/giay-the-thao-adidas-pharrell-williams-ultraboost-dna-shoes-h01893-mau-den-size-40-63438da211836-10102022101234.jpg</Images>
+  </ProductModel>
+</ArrayOfProductModel>
