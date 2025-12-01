@@ -23,33 +23,39 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-		var appDataPath = Path.Combine(Directory.GetCurrentDirectory(), "App_Data");
-
-		var convertService = new ConvertSQLtoXML(_dataContext);
-		convertService.ExportAllTablesAsXml(appDataPath);
-
-		string pathFile = Path.Combine(appDataPath, "Products.xml");
+		string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True;Trust Server Certificate=True";
 		var products = new List<ProductModel>();
 
-		XDocument doc = XDocument.Load(pathFile);
-		products = doc.Descendants("ProductModel")
-			.Select(x => new ProductModel
-			{
-				MaSP = (int)x.Element("MaSP"),
-				TenSP = (string)x.Element("TenSP"),
-				C_ID = (int)x.Element("C_ID"),
-				KichCo = (string)x.Element("KichCo"),
-				MauSac = (string)x.Element("MauSac"),
-				Gia = (decimal)x.Element("Gia"),
-				SoLuong = (int)x.Element("SoLuong"),
-				Images = (string)x.Element("Images"),
+		using (var conn = new Microsoft.Data.SqlClient.SqlConnection(connectionString))
+		{
+			string query = @"SELECT p.*, c.C_Name 
+							FROM Products p 
+							INNER JOIN Categories c ON p.C_ID = c.C_ID";
+			
+			var cmd = new Microsoft.Data.SqlClient.SqlCommand(query, conn);
+			conn.Open();
+			var reader = cmd.ExecuteReader();
 
-				Category = new CategoriesModel
+			while (reader.Read())
+			{
+				products.Add(new ProductModel
 				{
-					C_ID = (int)x.Element("Category").Element("C_ID"),
-					C_Name = (string)x.Element("Category").Element("C_Name")
-				}
-			}).ToList();
+					MaSP = Convert.ToInt32(reader["MaSP"]),
+					TenSP = reader["TenSP"].ToString(),
+					C_ID = Convert.ToInt32(reader["C_ID"]),
+					KichCo = reader["KichCo"].ToString(),
+					MauSac = reader["MauSac"].ToString(),
+					Gia = Convert.ToDecimal(reader["Gia"]),
+					SoLuong = Convert.ToInt32(reader["SoLuong"]),
+					Images = reader["Images"].ToString(),
+					Category = new CategoriesModel
+					{
+						C_ID = Convert.ToInt32(reader["C_ID"]),
+						C_Name = reader["C_Name"].ToString()
+					}
+				});
+			}
+		}
 
 		ViewData["Shoeshop"] = "Official Store";
         return View(products);

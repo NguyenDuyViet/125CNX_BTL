@@ -104,24 +104,35 @@ public class AccountController : Controller
 	[ValidateAntiForgeryToken]
 	public IActionResult LoginModal(string TenDangNhap, string MatKhau)
 	{
-		// Tìm user trong bảng Users (custom table)
-		var user = _dataContext.Users
-			.FirstOrDefault(u => u.TenDangNhap == TenDangNhap && u.MatKhau == MatKhau);
+		string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True;Trust Server Certificate=True";
 		
-		if (user != null)
+		using (SqlConnection conn = new SqlConnection(connectionString))
 		{
-			// Lưu vào session
-			HttpContext.Session.SetInt32("U_ID", user.U_ID);
-			HttpContext.Session.SetString("Username", user.TenDangNhap);
-			HttpContext.Session.SetString("HoTen", user.HoTen ?? user.TenDangNhap);
-			HttpContext.Session.SetString("Role", user.RoleID.ToString());
-			
-			TempData["Success"] = $"Xin chào, {user.HoTen ?? user.TenDangNhap}!";
-			return RedirectToAction("Index", "Home");
+			string query = "SELECT * FROM Users WHERE TenDangNhap = @TenDangNhap AND MatKhau = @MatKhau";
+			SqlCommand cmd = new SqlCommand(query, conn);
+			cmd.Parameters.AddWithValue("@TenDangNhap", TenDangNhap);
+			cmd.Parameters.AddWithValue("@MatKhau", MatKhau);
+
+			conn.Open();
+			SqlDataReader reader = cmd.ExecuteReader();
+
+			if (reader.Read())
+			{
+				// Lưu vào session
+				HttpContext.Session.SetInt32("U_ID", Convert.ToInt32(reader["U_ID"]));
+				HttpContext.Session.SetString("Username", reader["TenDangNhap"].ToString());
+				HttpContext.Session.SetString("HoTen", reader["HoTen"]?.ToString() ?? reader["TenDangNhap"].ToString());
+				HttpContext.Session.SetString("Role", reader["RoleID"].ToString());
+
+				TempData["Success"] = $"Xin chào, {reader["HoTen"]}!";
+				return RedirectToAction("Index", "Home");
+			}
+			else
+			{
+				TempData["Error"] = "Tên đăng nhập hoặc mật khẩu không đúng!";
+				return RedirectToAction("Index", "Home");
+			}
 		}
-		
-		TempData["Error"] = "Tên đăng nhập hoặc mật khẩu không đúng!";
-		return RedirectToAction("Index", "Home");
 	}
 
 	// ------------------- PROFILE -------------------
@@ -134,7 +145,33 @@ public class AccountController : Controller
 			return RedirectToAction("Index", "Home");
 		}
 
-		var user = _dataContext.Users.Find(userId);
+		string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True;Trust Server Certificate=True";
+		UsersModel user = null;
+
+		using (SqlConnection conn = new SqlConnection(connectionString))
+		{
+			string query = "SELECT * FROM Users WHERE U_ID = @U_ID";
+			SqlCommand cmd = new SqlCommand(query, conn);
+			cmd.Parameters.AddWithValue("@U_ID", userId);
+
+			conn.Open();
+			SqlDataReader reader = cmd.ExecuteReader();
+
+			if (reader.Read())
+			{
+				user = new UsersModel
+				{
+					U_ID = Convert.ToInt32(reader["U_ID"]),
+					TenDangNhap = reader["TenDangNhap"].ToString(),
+					HoTen = reader["HoTen"]?.ToString(),
+					Email = reader["Email"]?.ToString(),
+					SDT = reader["SDT"]?.ToString(),
+					DiaChi = reader["DiaChi"]?.ToString(),
+					RoleID = Convert.ToInt32(reader["RoleID"])
+				};
+			}
+		}
+
 		if (user == null)
 		{
 			return NotFound();
@@ -153,29 +190,38 @@ public class AccountController : Controller
 			return RedirectToAction("Index", "Home");
 		}
 
-		var user = _dataContext.Users.Find(userId);
-		if (user == null)
+		string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True;Trust Server Certificate=True";
+
+		using (SqlConnection conn = new SqlConnection(connectionString))
 		{
-			return NotFound();
+			string query = "UPDATE Users SET HoTen = @HoTen, Email = @Email, SDT = @SDT, DiaChi = @DiaChi";
+			
+			// Nếu có đổi mật khẩu
+			if (!string.IsNullOrEmpty(model.MatKhau))
+			{
+				query += ", MatKhau = @MatKhau";
+			}
+			
+			query += " WHERE U_ID = @U_ID";
+
+			SqlCommand cmd = new SqlCommand(query, conn);
+			cmd.Parameters.AddWithValue("@HoTen", model.HoTen ?? (object)DBNull.Value);
+			cmd.Parameters.AddWithValue("@Email", model.Email ?? (object)DBNull.Value);
+			cmd.Parameters.AddWithValue("@SDT", model.SDT ?? (object)DBNull.Value);
+			cmd.Parameters.AddWithValue("@DiaChi", model.DiaChi ?? (object)DBNull.Value);
+			cmd.Parameters.AddWithValue("@U_ID", userId);
+
+			if (!string.IsNullOrEmpty(model.MatKhau))
+			{
+				cmd.Parameters.AddWithValue("@MatKhau", model.MatKhau);
+			}
+
+			conn.Open();
+			cmd.ExecuteNonQuery();
 		}
-
-		// Cập nhật thông tin
-		user.HoTen = model.HoTen;
-		user.Email = model.Email;
-		user.SDT = model.SDT;
-		user.DiaChi = model.DiaChi;
-
-		// Nếu có đổi mật khẩu
-		if (!string.IsNullOrEmpty(model.MatKhau))
-		{
-			user.MatKhau = model.MatKhau;
-		}
-
-		_dataContext.Users.Update(user);
-		_dataContext.SaveChanges();
 
 		// Cập nhật session
-		HttpContext.Session.SetString("HoTen", user.HoTen ?? user.TenDangNhap);
+		HttpContext.Session.SetString("HoTen", model.HoTen ?? model.TenDangNhap);
 
 		TempData["Success"] = "Cập nhật thông tin thành công!";
 		return RedirectToAction("Profile");
