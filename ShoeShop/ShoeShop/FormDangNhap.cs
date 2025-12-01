@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShoeShop.DAO;
+using ShoeShop.Service;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,37 +11,24 @@ namespace ShoeShop
 {
     public partial class FormDangNhap : Form
     {
-       
-        private string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True";
-
         public FormDangNhap()
         {
             InitializeComponent();
-            connectionString = ConfigurationManager
-           .ConnectionStrings["ShopBanGiay"]
-           .ConnectionString;
 
             txtPassword.KeyPress += TxtPassword_KeyPress;
             txtUsername.KeyPress += TxtUsername_KeyPress;
         }
-        public static class Session
-        {
-            public static int UserID;
-            public static string HoTen;
-            public static int RoleID;
-            public static string ChucVu;
-        }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            DangNhap();
+            DangNhapAsync();
         }
 
         private void TxtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                DangNhap();
+                DangNhapAsync();
                 e.Handled = true;
             }
         }
@@ -53,9 +42,9 @@ namespace ShoeShop
             }
         }
 
-        private void DangNhap()
+        private async void DangNhapAsync()
         {
-            
+            //Kiểm tra thông tin các trường có trống không
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên đăng nhập!", "Cảnh báo",
@@ -72,7 +61,11 @@ namespace ShoeShop
                 return;
             }
 
-            if (KiemTraDangNhap(txtUsername.Text, txtPassword.Text))
+            //Kiểm tra đăng nhập
+            UserService userService = new UserService();
+
+            var result = await userService.CheckLogin(txtUsername.Text, txtPassword.Text);
+            if (result != null && result.RoleID == 1)
             {
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,7 +73,13 @@ namespace ShoeShop
                 TrangChu formMain = new TrangChu();
                 formMain.Show();
                 this.Hide();
-            }
+            }else if (result.RoleID != 1)
+            {
+				MessageBox.Show("Bạn không có quyền vào trang này!!!", "Thông báo",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+				txtPassword.Clear();
+				txtUsername.Focus();
+			}
             else
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi",
@@ -90,66 +89,10 @@ namespace ShoeShop
             }
         }
 
-        private bool KiemTraDangNhap(string username, string password)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    string query = @"
-                SELECT U_ID, HoTen, RoleID, ChucVu 
-                FROM Users 
-                WHERE TenDangNhap = @username AND MatKhau = @password";
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                int userId = reader.GetInt32(0);
-                                string hoTen = reader.GetString(1);
-                                int role = reader.GetInt32(2);
-                                string chucVu = reader.IsDBNull(3) ? "" : reader.GetString(3);
-
-                                
-                                Session.UserID = userId;
-                                Session.HoTen = hoTen;
-                                Session.RoleID = role;
-                                Session.ChucVu = chucVu;
-
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi kết nối SQL: " + ex.Message);
-                return false;
-            }
-        }
-
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
+		protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
             Application.Exit(); 
-        }
-
-        private void FormDangNhap_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

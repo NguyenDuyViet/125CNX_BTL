@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoeShop.DAO;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -8,7 +9,6 @@ namespace ShoeShop
 {
     public partial class FormQuanLySanPham : Form
     {
-        private string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True";
         private string selectedImagePath = "";
 
         public FormQuanLySanPham()
@@ -23,24 +23,23 @@ namespace ShoeShop
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"SELECT p.MaSP as 'Mã SP', p.TenSP as 'Tên sản phẩm', c.C_Name as 'Loại SP', 
-                                    p.KichCo as 'Kích cỡ', p.MauSac as 'Màu sắc', 
-                                    p.Gia as 'Giá', p.SoLuong as 'Số lượng', p.Images 
-                                    FROM Products p 
-                                    LEFT JOIN Categories c ON p.C_ID = c.C_ID
-                                    ORDER BY p.MaSP DESC";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dgvSanPham.DataSource = dt;
+				CSDBConnection db = new CSDBConnection();
+				SqlConnection conn = db.Connection();
+				conn.Open();
+                string query = @"SELECT p.MaSP as 'Mã SP', p.TenSP as 'Tên sản phẩm', c.C_Name as 'Loại SP', 
+                                p.KichCo as 'Kích cỡ', p.MauSac as 'Màu sắc', 
+                                p.Gia as 'Giá', p.SoLuong as 'Số lượng', p.Images 
+                                FROM Products p 
+                                LEFT JOIN Categories c ON p.C_ID = c.C_ID
+                                ORDER BY p.MaSP DESC";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dgvSanPham.DataSource = dt;
 
-                    if (dgvSanPham.Columns["Images"] != null)
-                    {
-                        dgvSanPham.Columns["Images"].Visible = false;
-                    }
+                if (dgvSanPham.Columns["Images"] != null)
+                {
+                    dgvSanPham.Columns["Images"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -72,17 +71,16 @@ namespace ShoeShop
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = "SELECT C_ID, C_Name FROM Categories";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    cboLoaiSP.DataSource = dt;
-                    cboLoaiSP.DisplayMember = "C_Name";
-                    cboLoaiSP.ValueMember = "C_ID";
-                }
+				CSDBConnection db = new CSDBConnection();
+				SqlConnection conn = db.Connection();
+				conn.Open();
+                string query = "SELECT C_ID, C_Name FROM Categories";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                cboLoaiSP.DataSource = dt;
+                cboLoaiSP.DisplayMember = "C_Name";
+                cboLoaiSP.ValueMember = "C_ID";
             }
             catch (Exception ex)
             {
@@ -149,26 +147,25 @@ namespace ShoeShop
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+				CSDBConnection db = new CSDBConnection();
+				SqlConnection conn = db.Connection();
+				conn.Open();
+                string query = @"INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images) 
+                                VALUES (@TenSP, @C_ID, @KichCo, @MauSac, @Gia, @SoLuong, @Images)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    conn.Open();
-                    string query = @"INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images) 
-                                   VALUES (@TenSP, @C_ID, @KichCo, @MauSac, @Gia, @SoLuong, @Images)";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text.Trim());
-                        cmd.Parameters.AddWithValue("@C_ID", cboLoaiSP.SelectedValue);
-                        cmd.Parameters.AddWithValue("@KichCo", txtKichCo.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MauSac", txtMauSac.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Gia", decimal.Parse(txtGia.Text));
-                        cmd.Parameters.AddWithValue("@SoLuong", int.Parse(txtSoLuong.Text));
-                        cmd.Parameters.AddWithValue("@Images", txtImages.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Thêm sản phẩm thành công!", "Thành công",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                        ClearInputs();
-                    }
+                    cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@C_ID", cboLoaiSP.SelectedValue);
+                    cmd.Parameters.AddWithValue("@KichCo", txtKichCo.Text.Trim());
+                    cmd.Parameters.AddWithValue("@MauSac", txtMauSac.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Gia", decimal.Parse(txtGia.Text));
+                    cmd.Parameters.AddWithValue("@SoLuong", int.Parse(txtSoLuong.Text));
+                    cmd.Parameters.AddWithValue("@Images", txtImages.Text);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Thêm sản phẩm thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearInputs();
                 }
             }
             catch (Exception ex)
@@ -190,28 +187,27 @@ namespace ShoeShop
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+				CSDBConnection db = new CSDBConnection();
+				SqlConnection conn = db.Connection();
+				conn.Open();
+                string query = @"UPDATE Products SET TenSP=@TenSP, C_ID=@C_ID, KichCo=@KichCo, 
+                                MauSac=@MauSac, Gia=@Gia, SoLuong=@SoLuong, Images=@Images 
+                                WHERE MaSP=@MaSP";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    conn.Open();
-                    string query = @"UPDATE Products SET TenSP=@TenSP, C_ID=@C_ID, KichCo=@KichCo, 
-                                   MauSac=@MauSac, Gia=@Gia, SoLuong=@SoLuong, Images=@Images 
-                                   WHERE MaSP=@MaSP";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaSP", int.Parse(txtMaSP.Text));
-                        cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text.Trim());
-                        cmd.Parameters.AddWithValue("@C_ID", cboLoaiSP.SelectedValue);
-                        cmd.Parameters.AddWithValue("@KichCo", txtKichCo.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MauSac", txtMauSac.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Gia", decimal.Parse(txtGia.Text));
-                        cmd.Parameters.AddWithValue("@SoLuong", int.Parse(txtSoLuong.Text));
-                        cmd.Parameters.AddWithValue("@Images", txtImages.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Cập nhật thành công!", "Thành công",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                        ClearInputs();
-                    }
+                    cmd.Parameters.AddWithValue("@MaSP", int.Parse(txtMaSP.Text));
+                    cmd.Parameters.AddWithValue("@TenSP", txtTenSP.Text.Trim());
+                    cmd.Parameters.AddWithValue("@C_ID", cboLoaiSP.SelectedValue);
+                    cmd.Parameters.AddWithValue("@KichCo", txtKichCo.Text.Trim());
+                    cmd.Parameters.AddWithValue("@MauSac", txtMauSac.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Gia", decimal.Parse(txtGia.Text));
+                    cmd.Parameters.AddWithValue("@SoLuong", int.Parse(txtSoLuong.Text));
+                    cmd.Parameters.AddWithValue("@Images", txtImages.Text);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Cập nhật thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearInputs();
                 }
             }
             catch (Exception ex)
@@ -239,19 +235,18 @@ namespace ShoeShop
             {
                 try
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
+					CSDBConnection db = new CSDBConnection();
+					SqlConnection conn = db.Connection();
+					conn.Open();
+                    string query = "DELETE FROM Products WHERE MaSP=@MaSP";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        conn.Open();
-                        string query = "DELETE FROM Products WHERE MaSP=@MaSP";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@MaSP", int.Parse(txtMaSP.Text));
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Xóa thành công!", "Thành công",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadData();
-                            ClearInputs();
-                        }
+                        cmd.Parameters.AddWithValue("@MaSP", int.Parse(txtMaSP.Text));
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Xóa thành công!", "Thành công",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                        ClearInputs();
                     }
                 }
                 catch (Exception ex)
@@ -265,25 +260,24 @@ namespace ShoeShop
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"SELECT p.MaSP as 'Mã SP', p.TenSP as 'Tên sản phẩm', c.C_Name as 'Loại SP', 
-                                    p.KichCo as 'Kích cỡ', p.MauSac as 'Màu sắc', 
-                                    p.Gia as 'Giá', p.SoLuong as 'Số lượng', p.Images 
-                                    FROM Products p 
-                                    LEFT JOIN Categories c ON p.C_ID = c.C_ID
-                                    WHERE p.TenSP LIKE @Search OR p.MauSac LIKE @Search OR c.C_Name LIKE @Search";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@Search", "%" + txtTimKiem.Text + "%");
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dgvSanPham.DataSource = dt;
+				CSDBConnection db = new CSDBConnection();
+				SqlConnection conn = db.Connection();
+				conn.Open();
+                string query = @"SELECT p.MaSP as 'Mã SP', p.TenSP as 'Tên sản phẩm', c.C_Name as 'Loại SP', 
+                                p.KichCo as 'Kích cỡ', p.MauSac as 'Màu sắc', 
+                                p.Gia as 'Giá', p.SoLuong as 'Số lượng', p.Images 
+                                FROM Products p 
+                                LEFT JOIN Categories c ON p.C_ID = c.C_ID
+                                WHERE p.TenSP LIKE @Search OR p.MauSac LIKE @Search OR c.C_Name LIKE @Search";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@Search", "%" + txtTimKiem.Text + "%");
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                dgvSanPham.DataSource = dt;
 
-                    if (dgvSanPham.Columns["Images"] != null)
-                    {
-                        dgvSanPham.Columns["Images"].Visible = false;
-                    }
+                if (dgvSanPham.Columns["Images"] != null)
+                {
+                    dgvSanPham.Columns["Images"].Visible = false;
                 }
             }
             catch (Exception ex)

@@ -113,9 +113,49 @@ namespace ShoeShop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refresh_2546743 {
+            get {
+                object obj = ResourceManager.GetObject("refresh_2546743", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_2805355 {
+            get {
+                object obj = ResourceManager.GetObject("refresh_2805355", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh_28053551 {
+            get {
+                object obj = ResourceManager.GetObject("refresh_28053551", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tinh_hinh_phat_trien_nganh_giay_da {
             get {
                 object obj = ResourceManager.GetObject("tinh-hinh-phat-trien-nganh-giay-da", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap view_13066076 {
+            get {
+                object obj = ResourceManager.GetObject("view_13066076", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
