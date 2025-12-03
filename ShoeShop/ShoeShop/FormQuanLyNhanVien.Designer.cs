@@ -13,396 +13,427 @@
             base.Dispose(disposing);
         }
 
-		private void InitializeComponent()
-		{
-			panelTop = new Panel();
-			lblTitle = new Label();
-			panelSearch = new Panel();
-			btnLamMoi = new Button();
-			btnTimKiem = new Button();
-			txtTimKiem = new TextBox();
-			lblTimKiem = new Label();
-			panelInput = new Panel();
-			txtMatKhau = new TextBox();
-			label8 = new Label();
-			txtTenDangNhap = new TextBox();
-			label7 = new Label();
-			cboChucVu = new ComboBox();
-			label6 = new Label();
-			txtEmail = new TextBox();
-			label5 = new Label();
-			txtSDT = new TextBox();
-			label4 = new Label();
-			txtDiaChi = new TextBox();
-			label3 = new Label();
-			txtHoTen = new TextBox();
-			label2 = new Label();
-			txtMaNV = new TextBox();
-			label1 = new Label();
-			panelButtons = new Panel();
-			btnXoa = new Button();
-			btnSua = new Button();
-			btnThem = new Button();
-			dgvNhanVien = new DataGridView();
-			panelTop.SuspendLayout();
-			panelSearch.SuspendLayout();
-			panelInput.SuspendLayout();
-			panelButtons.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
-			SuspendLayout();
-			// 
-			// panelTop
-			// 
-			panelTop.BackColor = Color.FromArgb(230, 126, 34);
-			panelTop.Controls.Add(lblTitle);
-			panelTop.Dock = DockStyle.Top;
-			panelTop.Location = new Point(0, 0);
-			panelTop.Name = "panelTop";
-			panelTop.Size = new Size(1202, 60);
-			panelTop.TabIndex = 0;
-			// 
-			// lblTitle
-			// 
-			lblTitle.AutoSize = true;
-			lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-			lblTitle.ForeColor = Color.White;
-			lblTitle.Location = new Point(20, 15);
-			lblTitle.Name = "lblTitle";
-			lblTitle.Size = new Size(261, 32);
-			lblTitle.TabIndex = 0;
-			lblTitle.Text = "QUẢN LÝ NHÂN VIÊN";
-			// 
-			// panelSearch
-			// 
-			panelSearch.BackColor = Color.White;
-			panelSearch.Controls.Add(btnLamMoi);
-			panelSearch.Controls.Add(btnTimKiem);
-			panelSearch.Controls.Add(txtTimKiem);
-			panelSearch.Controls.Add(lblTimKiem);
-			panelSearch.Location = new Point(20, 80);
-			panelSearch.Name = "panelSearch";
-			panelSearch.Size = new Size(1160, 60);
-			panelSearch.TabIndex = 1;
-			// 
-			// btnLamMoi
-			// 
-			btnLamMoi.BackColor = Color.FromArgb(149, 165, 166);
-			btnLamMoi.Cursor = Cursors.Hand;
-			btnLamMoi.FlatStyle = FlatStyle.Flat;
-			btnLamMoi.Font = new Font("Segoe UI", 10F);
-			btnLamMoi.ForeColor = Color.White;
-			btnLamMoi.Location = new Point(640, 15);
-			btnLamMoi.Name = "btnLamMoi";
-			btnLamMoi.Size = new Size(100, 30);
-			btnLamMoi.TabIndex = 3;
-			btnLamMoi.Text = "🔄 Làm mới";
-			btnLamMoi.UseVisualStyleBackColor = false;
-			btnLamMoi.Click += btnLamMoi_Click;
-			// 
-			// btnTimKiem
-			// 
-			btnTimKiem.BackColor = Color.FromArgb(230, 126, 34);
-			btnTimKiem.Cursor = Cursors.Hand;
-			btnTimKiem.FlatStyle = FlatStyle.Flat;
-			btnTimKiem.Font = new Font("Segoe UI", 10F);
-			btnTimKiem.ForeColor = Color.White;
-			btnTimKiem.Location = new Point(520, 15);
-			btnTimKiem.Name = "btnTimKiem";
-			btnTimKiem.Size = new Size(100, 30);
-			btnTimKiem.TabIndex = 2;
-			btnTimKiem.Text = "🔍 Tìm";
-			btnTimKiem.UseVisualStyleBackColor = false;
-			btnTimKiem.Click += btnTimKiem_Click;
-			// 
-			// txtTimKiem
-			// 
-			txtTimKiem.Font = new Font("Segoe UI", 10F);
-			txtTimKiem.Location = new Point(100, 17);
-			txtTimKiem.Name = "txtTimKiem";
-			txtTimKiem.PlaceholderText = "Nhập tên, SĐT, email hoặc chức vụ...";
-			txtTimKiem.Size = new Size(400, 25);
-			txtTimKiem.TabIndex = 1;
-			// 
-			// lblTimKiem
-			// 
-			lblTimKiem.AutoSize = true;
-			lblTimKiem.Font = new Font("Segoe UI", 10F);
-			lblTimKiem.Location = new Point(20, 20);
-			lblTimKiem.Name = "lblTimKiem";
-			lblTimKiem.Size = new Size(67, 19);
-			lblTimKiem.TabIndex = 0;
-			lblTimKiem.Text = "Tìm kiếm:";
-			// 
-			// panelInput
-			// 
-			panelInput.BackColor = Color.White;
-			panelInput.Controls.Add(txtMatKhau);
-			panelInput.Controls.Add(label8);
-			panelInput.Controls.Add(txtTenDangNhap);
-			panelInput.Controls.Add(label7);
-			panelInput.Controls.Add(cboChucVu);
-			panelInput.Controls.Add(label6);
-			panelInput.Controls.Add(txtEmail);
-			panelInput.Controls.Add(label5);
-			panelInput.Controls.Add(txtSDT);
-			panelInput.Controls.Add(label4);
-			panelInput.Controls.Add(txtDiaChi);
-			panelInput.Controls.Add(label3);
-			panelInput.Controls.Add(txtHoTen);
-			panelInput.Controls.Add(label2);
-			panelInput.Controls.Add(txtMaNV);
-			panelInput.Controls.Add(label1);
-			panelInput.Location = new Point(20, 160);
-			panelInput.Name = "panelInput";
-			panelInput.Size = new Size(1160, 140);
-			panelInput.TabIndex = 2;
-			// 
-			// txtMatKhau
-			// 
-			txtMatKhau.Font = new Font("Segoe UI", 10F);
-			txtMatKhau.Location = new Point(930, 52);
-			txtMatKhau.Name = "txtMatKhau";
-			txtMatKhau.PasswordChar = '●';
-			txtMatKhau.Size = new Size(200, 25);
-			txtMatKhau.TabIndex = 15;
-			// 
-			// label8
-			// 
-			label8.AutoSize = true;
-			label8.Font = new Font("Segoe UI", 10F);
-			label8.Location = new Point(820, 55);
-			label8.Name = "label8";
-			label8.Size = new Size(71, 19);
-			label8.TabIndex = 14;
-			label8.Text = "Mật khẩu:";
-			// 
-			// txtTenDangNhap
-			// 
-			txtTenDangNhap.Font = new Font("Segoe UI", 10F);
-			txtTenDangNhap.Location = new Point(930, 17);
-			txtTenDangNhap.Name = "txtTenDangNhap";
-			txtTenDangNhap.Size = new Size(200, 25);
-			txtTenDangNhap.TabIndex = 13;
-			// 
-			// label7
-			// 
-			label7.AutoSize = true;
-			label7.Font = new Font("Segoe UI", 10F);
-			label7.Location = new Point(820, 20);
-			label7.Name = "label7";
-			label7.Size = new Size(103, 19);
-			label7.TabIndex = 12;
-			label7.Text = "Tên đăng nhập:";
-			// 
-			// cboChucVu
-			// 
-			cboChucVu.DropDownStyle = ComboBoxStyle.DropDownList;
-			cboChucVu.Font = new Font("Segoe UI", 10F);
-			cboChucVu.FormattingEnabled = true;
-			cboChucVu.Items.AddRange(new object[] { "Bán hàng", "Kho", "Quản lý" });
-			cboChucVu.Location = new Point(530, 87);
-			cboChucVu.Name = "cboChucVu";
-			cboChucVu.Size = new Size(200, 25);
-			cboChucVu.TabIndex = 11;
-			// 
-			// label6
-			// 
-			label6.AutoSize = true;
-			label6.Font = new Font("Segoe UI", 10F);
-			label6.Location = new Point(420, 90);
-			label6.Name = "label6";
-			label6.Size = new Size(62, 19);
-			label6.TabIndex = 10;
-			label6.Text = "Chức vụ:";
-			// 
-			// txtEmail
-			// 
-			txtEmail.Font = new Font("Segoe UI", 10F);
-			txtEmail.Location = new Point(530, 52);
-			txtEmail.Name = "txtEmail";
-			txtEmail.Size = new Size(250, 25);
-			txtEmail.TabIndex = 9;
-			// 
-			// label5
-			// 
-			label5.AutoSize = true;
-			label5.Font = new Font("Segoe UI", 10F);
-			label5.Location = new Point(420, 55);
-			label5.Name = "label5";
-			label5.Size = new Size(44, 19);
-			label5.TabIndex = 8;
-			label5.Text = "Email:";
-			// 
-			// txtSDT
-			// 
-			txtSDT.Font = new Font("Segoe UI", 10F);
-			txtSDT.Location = new Point(530, 17);
-			txtSDT.Name = "txtSDT";
-			txtSDT.Size = new Size(200, 25);
-			txtSDT.TabIndex = 7;
-			// 
-			// label4
-			// 
-			label4.AutoSize = true;
-			label4.Font = new Font("Segoe UI", 10F);
-			label4.Location = new Point(420, 20);
-			label4.Name = "label4";
-			label4.Size = new Size(92, 19);
-			label4.TabIndex = 6;
-			label4.Text = "Số điện thoại:";
-			// 
-			// txtDiaChi
-			// 
-			txtDiaChi.Font = new Font("Segoe UI", 10F);
-			txtDiaChi.Location = new Point(120, 87);
-			txtDiaChi.Name = "txtDiaChi";
-			txtDiaChi.Size = new Size(250, 25);
-			txtDiaChi.TabIndex = 5;
-			// 
-			// label3
-			// 
-			label3.AutoSize = true;
-			label3.Font = new Font("Segoe UI", 10F);
-			label3.Location = new Point(20, 90);
-			label3.Name = "label3";
-			label3.Size = new Size(53, 19);
-			label3.TabIndex = 4;
-			label3.Text = "Địa chỉ:";
-			// 
-			// txtHoTen
-			// 
-			txtHoTen.Font = new Font("Segoe UI", 10F);
-			txtHoTen.Location = new Point(120, 52);
-			txtHoTen.Name = "txtHoTen";
-			txtHoTen.Size = new Size(250, 25);
-			txtHoTen.TabIndex = 3;
-			// 
-			// label2
-			// 
-			label2.AutoSize = true;
-			label2.Font = new Font("Segoe UI", 10F);
-			label2.Location = new Point(20, 55);
-			label2.Name = "label2";
-			label2.Size = new Size(54, 19);
-			label2.TabIndex = 2;
-			label2.Text = "Họ tên:";
-			// 
-			// txtMaNV
-			// 
-			txtMaNV.BackColor = Color.FromArgb(236, 240, 241);
-			txtMaNV.Font = new Font("Segoe UI", 10F);
-			txtMaNV.Location = new Point(120, 17);
-			txtMaNV.Name = "txtMaNV";
-			txtMaNV.ReadOnly = true;
-			txtMaNV.Size = new Size(150, 25);
-			txtMaNV.TabIndex = 1;
-			// 
-			// label1
-			// 
-			label1.AutoSize = true;
-			label1.Font = new Font("Segoe UI", 10F);
-			label1.Location = new Point(20, 20);
-			label1.Name = "label1";
-			label1.Size = new Size(55, 19);
-			label1.TabIndex = 0;
-			label1.Text = "Mã NV:";
-			// 
-			// panelButtons
-			// 
-			panelButtons.BackColor = Color.White;
-			panelButtons.Controls.Add(btnXoa);
-			panelButtons.Controls.Add(btnSua);
-			panelButtons.Controls.Add(btnThem);
-			panelButtons.Location = new Point(20, 320);
-			panelButtons.Name = "panelButtons";
-			panelButtons.Size = new Size(1160, 60);
-			panelButtons.TabIndex = 3;
-			// 
-			// btnXoa
-			// 
-			btnXoa.BackColor = Color.FromArgb(231, 76, 60);
-			btnXoa.Cursor = Cursors.Hand;
-			btnXoa.FlatStyle = FlatStyle.Flat;
-			btnXoa.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-			btnXoa.ForeColor = Color.White;
-			btnXoa.Location = new Point(630, 10);
-			btnXoa.Name = "btnXoa";
-			btnXoa.Size = new Size(120, 40);
-			btnXoa.TabIndex = 2;
-			btnXoa.Text = "🗑️ Xóa";
-			btnXoa.UseVisualStyleBackColor = false;
-			btnXoa.Click += btnXoa_Click;
-			// 
-			// btnSua
-			// 
-			btnSua.BackColor = Color.FromArgb(52, 152, 219);
-			btnSua.Cursor = Cursors.Hand;
-			btnSua.FlatStyle = FlatStyle.Flat;
-			btnSua.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-			btnSua.ForeColor = Color.White;
-			btnSua.Location = new Point(490, 10);
-			btnSua.Name = "btnSua";
-			btnSua.Size = new Size(120, 40);
-			btnSua.TabIndex = 1;
-			btnSua.Text = "✏️ Sửa";
-			btnSua.UseVisualStyleBackColor = false;
-			btnSua.Click += btnSua_Click;
-			// 
-			// btnThem
-			// 
-			btnThem.BackColor = Color.FromArgb(46, 204, 113);
-			btnThem.Cursor = Cursors.Hand;
-			btnThem.FlatStyle = FlatStyle.Flat;
-			btnThem.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-			btnThem.ForeColor = Color.White;
-			btnThem.Location = new Point(350, 10);
-			btnThem.Name = "btnThem";
-			btnThem.Size = new Size(120, 40);
-			btnThem.TabIndex = 0;
-			btnThem.Text = "➕ Thêm";
-			btnThem.UseVisualStyleBackColor = false;
-			btnThem.Click += btnThem_Click;
-			// 
-			// dgvNhanVien
-			// 
-			dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvNhanVien.Location = new Point(20, 400);
-			dgvNhanVien.Name = "dgvNhanVien";
-			dgvNhanVien.RowHeadersWidth = 62;
-			dgvNhanVien.RowTemplate.Height = 30;
-			dgvNhanVien.Size = new Size(1160, 280);
-			dgvNhanVien.TabIndex = 4;
-			dgvNhanVien.CellClick += dgvNhanVien_CellClick;
-			// 
-			// FormQuanLyNhanVien
-			// 
-			AutoScaleDimensions = new SizeF(7F, 15F);
-			AutoScaleMode = AutoScaleMode.Font;
-			BackColor = Color.FromArgb(236, 240, 241);
-			ClientSize = new Size(1202, 702);
-			Controls.Add(dgvNhanVien);
-			Controls.Add(panelButtons);
-			Controls.Add(panelInput);
-			Controls.Add(panelSearch);
-			Controls.Add(panelTop);
-			Name = "FormQuanLyNhanVien";
-			StartPosition = FormStartPosition.CenterScreen;
-			Text = "Quản lý Nhân viên";
-			Load += FormQuanLyNhanVien_Load;
-			panelTop.ResumeLayout(false);
-			panelTop.PerformLayout();
-			panelSearch.ResumeLayout(false);
-			panelSearch.PerformLayout();
-			panelInput.ResumeLayout(false);
-			panelInput.PerformLayout();
-			panelButtons.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)dgvNhanVien).EndInit();
-			ResumeLayout(false);
-		}
+        private void InitializeComponent()
+        {
+            panelTop = new Panel();
+            lblTitle = new Label();
+            panelSearch = new Panel();
+            btnExportXML = new Button();
+            btnLamMoi = new Button();
+            btnTimKiem = new Button();
+            txtTimKiem = new TextBox();
+            lblTimKiem = new Label();
+            panelInput = new Panel();
+            txtMatKhau = new TextBox();
+            label8 = new Label();
+            txtTenDangNhap = new TextBox();
+            label7 = new Label();
+            cboChucVu = new ComboBox();
+            label6 = new Label();
+            txtEmail = new TextBox();
+            label5 = new Label();
+            txtSDT = new TextBox();
+            label4 = new Label();
+            txtDiaChi = new TextBox();
+            label3 = new Label();
+            txtHoTen = new TextBox();
+            label2 = new Label();
+            txtMaNV = new TextBox();
+            label1 = new Label();
+            panelButtons = new Panel();
+            btnXoa = new Button();
+            btnSua = new Button();
+            btnThem = new Button();
+            dgvNhanVien = new DataGridView();
+            panelTop.SuspendLayout();
+            panelSearch.SuspendLayout();
+            panelInput.SuspendLayout();
+            panelButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvNhanVien).BeginInit();
+            SuspendLayout();
+            // 
+            // panelTop
+            // 
+            panelTop.BackColor = Color.FromArgb(230, 126, 34);
+            panelTop.Controls.Add(lblTitle);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(1220, 70);
+            panelTop.TabIndex = 0;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 20);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(340, 31);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "QUẢN LÝ NHÂN VIÊN";
+            // 
+            // panelSearch
+            // 
+            panelSearch.BackColor = Color.White;
+            panelSearch.BorderStyle = BorderStyle.FixedSingle;
+            panelSearch.Controls.Add(btnExportXML);
+            panelSearch.Controls.Add(btnLamMoi);
+            panelSearch.Controls.Add(btnTimKiem);
+            panelSearch.Controls.Add(txtTimKiem);
+            panelSearch.Controls.Add(lblTimKiem);
+            panelSearch.Location = new Point(15, 85);
+            panelSearch.Name = "panelSearch";
+            panelSearch.Size = new Size(1190, 65);
+            panelSearch.TabIndex = 1;
+            // 
+            // btnExportXML
+            // 
+            btnExportXML.BackColor = Color.FromArgb(41, 128, 185);
+            btnExportXML.Cursor = Cursors.Hand;
+            btnExportXML.FlatStyle = FlatStyle.Flat;
+            btnExportXML.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            btnExportXML.ForeColor = Color.White;
+            btnExportXML.Location = new Point(880, 15);
+            btnExportXML.Name = "btnExportXML";
+            btnExportXML.Size = new Size(140, 35);
+            btnExportXML.TabIndex = 4;
+            btnExportXML.Text = "📄 Export XML";
+            btnExportXML.UseVisualStyleBackColor = false;
+            btnExportXML.Click += btnExportXML_Click;
+            // 
+            // btnLamMoi
+            // 
+            btnLamMoi.BackColor = Color.FromArgb(149, 165, 166);
+            btnLamMoi.Cursor = Cursors.Hand;
+            btnLamMoi.FlatStyle = FlatStyle.Flat;
+            btnLamMoi.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            btnLamMoi.ForeColor = Color.White;
+            btnLamMoi.Location = new Point(720, 15);
+            btnLamMoi.Name = "btnLamMoi";
+            btnLamMoi.Size = new Size(140, 35);
+            btnLamMoi.TabIndex = 3;
+            btnLamMoi.Text = "🔄 Làm mới";
+            btnLamMoi.UseVisualStyleBackColor = false;
+            btnLamMoi.Click += btnLamMoi_Click;
+            // 
+            // btnTimKiem
+            // 
+            btnTimKiem.BackColor = Color.FromArgb(230, 126, 34);
+            btnTimKiem.Cursor = Cursors.Hand;
+            btnTimKiem.FlatStyle = FlatStyle.Flat;
+            btnTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            btnTimKiem.ForeColor = Color.White;
+            btnTimKiem.Location = new Point(560, 15);
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(140, 35);
+            btnTimKiem.TabIndex = 2;
+            btnTimKiem.Text = "🔍 Tìm kiếm";
+            btnTimKiem.UseVisualStyleBackColor = false;
+            btnTimKiem.Click += btnTimKiem_Click;
+            // 
+            // txtTimKiem
+            // 
+            txtTimKiem.Font = new Font("Times New Roman", 11.25F);
+            txtTimKiem.Location = new Point(120, 19);
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.PlaceholderText = "Nhập tên, SĐT, email hoặc chức vụ để tìm kiếm...";
+            txtTimKiem.Size = new Size(420, 29);
+            txtTimKiem.TabIndex = 1;
+            // 
+            // lblTimKiem
+            // 
+            lblTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            lblTimKiem.Location = new Point(20, 19);
+            lblTimKiem.Name = "lblTimKiem";
+            lblTimKiem.Size = new Size(90, 25);
+            lblTimKiem.TabIndex = 0;
+            lblTimKiem.Text = "Tìm kiếm:";
+            lblTimKiem.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panelInput
+            // 
+            panelInput.BackColor = Color.White;
+            panelInput.BorderStyle = BorderStyle.FixedSingle;
+            panelInput.Controls.Add(txtMatKhau);
+            panelInput.Controls.Add(label8);
+            panelInput.Controls.Add(txtTenDangNhap);
+            panelInput.Controls.Add(label7);
+            panelInput.Controls.Add(cboChucVu);
+            panelInput.Controls.Add(label6);
+            panelInput.Controls.Add(txtEmail);
+            panelInput.Controls.Add(label5);
+            panelInput.Controls.Add(txtSDT);
+            panelInput.Controls.Add(label4);
+            panelInput.Controls.Add(txtDiaChi);
+            panelInput.Controls.Add(label3);
+            panelInput.Controls.Add(txtHoTen);
+            panelInput.Controls.Add(label2);
+            panelInput.Controls.Add(txtMaNV);
+            panelInput.Controls.Add(label1);
+            panelInput.Location = new Point(15, 165);
+            panelInput.Name = "panelInput";
+            panelInput.Size = new Size(1190, 150);
+            panelInput.TabIndex = 2;
+            // 
+            // txtMatKhau
+            // 
+            txtMatKhau.Font = new Font("Times New Roman", 11.25F);
+            txtMatKhau.Location = new Point(940, 61);
+            txtMatKhau.Name = "txtMatKhau";
+            txtMatKhau.PasswordChar = '●';
+            txtMatKhau.Size = new Size(200, 29);
+            txtMatKhau.TabIndex = 15;
+            // 
+            // label8
+            // 
+            label8.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label8.Location = new Point(820, 61);
+            label8.Name = "label8";
+            label8.Size = new Size(110, 25);
+            label8.TabIndex = 14;
+            label8.Text = "Mật khẩu:";
+            label8.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtTenDangNhap
+            // 
+            txtTenDangNhap.Font = new Font("Times New Roman", 11.25F);
+            txtTenDangNhap.Location = new Point(940, 19);
+            txtTenDangNhap.Name = "txtTenDangNhap";
+            txtTenDangNhap.Size = new Size(200, 29);
+            txtTenDangNhap.TabIndex = 13;
+            // 
+            // label7
+            // 
+            label7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label7.Location = new Point(820, 19);
+            label7.Name = "label7";
+            label7.Size = new Size(110, 25);
+            label7.TabIndex = 12;
+            label7.Text = "Tên đăng nhập:";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // cboChucVu
+            // 
+            cboChucVu.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboChucVu.Font = new Font("Times New Roman", 11.25F);
+            cboChucVu.FormattingEnabled = true;
+            cboChucVu.Items.AddRange(new object[] { "Bán hàng", "Kho", "Quản lý" });
+            cboChucVu.Location = new Point(550, 103);
+            cboChucVu.Name = "cboChucVu";
+            cboChucVu.Size = new Size(220, 29);
+            cboChucVu.TabIndex = 11;
+            // 
+            // label6
+            // 
+            label6.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label6.Location = new Point(420, 103);
+            label6.Name = "label6";
+            label6.Size = new Size(120, 25);
+            label6.TabIndex = 10;
+            label6.Text = "Chức vụ:";
+            label6.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Font = new Font("Times New Roman", 11.25F);
+            txtEmail.Location = new Point(550, 61);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(220, 29);
+            txtEmail.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label5.Location = new Point(420, 61);
+            label5.Name = "label5";
+            label5.Size = new Size(120, 25);
+            label5.TabIndex = 8;
+            label5.Text = "Email:";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtSDT
+            // 
+            txtSDT.Font = new Font("Times New Roman", 11.25F);
+            txtSDT.Location = new Point(550, 19);
+            txtSDT.Name = "txtSDT";
+            txtSDT.Size = new Size(220, 29);
+            txtSDT.TabIndex = 7;
+            // 
+            // label4
+            // 
+            label4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label4.Location = new Point(420, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(120, 25);
+            label4.TabIndex = 6;
+            label4.Text = "Số điện thoại:";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtDiaChi
+            // 
+            txtDiaChi.Font = new Font("Times New Roman", 11.25F);
+            txtDiaChi.Location = new Point(120, 103);
+            txtDiaChi.Name = "txtDiaChi";
+            txtDiaChi.Size = new Size(260, 29);
+            txtDiaChi.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label3.Location = new Point(20, 103);
+            label3.Name = "label3";
+            label3.Size = new Size(90, 25);
+            label3.TabIndex = 4;
+            label3.Text = "Địa chỉ:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtHoTen
+            // 
+            txtHoTen.Font = new Font("Times New Roman", 11.25F);
+            txtHoTen.Location = new Point(120, 61);
+            txtHoTen.Name = "txtHoTen";
+            txtHoTen.Size = new Size(260, 29);
+            txtHoTen.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label2.Location = new Point(20, 61);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 25);
+            label2.TabIndex = 2;
+            label2.Text = "Họ tên:";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtMaNV
+            // 
+            txtMaNV.BackColor = Color.FromArgb(236, 240, 241);
+            txtMaNV.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            txtMaNV.ForeColor = Color.FromArgb(52, 73, 94);
+            txtMaNV.Location = new Point(120, 19);
+            txtMaNV.Name = "txtMaNV";
+            txtMaNV.ReadOnly = true;
+            txtMaNV.Size = new Size(150, 29);
+            txtMaNV.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            label1.Location = new Point(20, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 25);
+            label1.TabIndex = 0;
+            label1.Text = "Mã NV:";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panelButtons
+            // 
+            panelButtons.BackColor = Color.White;
+            panelButtons.BorderStyle = BorderStyle.FixedSingle;
+            panelButtons.Controls.Add(btnXoa);
+            panelButtons.Controls.Add(btnSua);
+            panelButtons.Controls.Add(btnThem);
+            panelButtons.Location = new Point(15, 330);
+            panelButtons.Name = "panelButtons";
+            panelButtons.Size = new Size(1190, 65);
+            panelButtons.TabIndex = 3;
+            // 
+            // btnXoa
+            // 
+            btnXoa.BackColor = Color.FromArgb(231, 76, 60);
+            btnXoa.Cursor = Cursors.Hand;
+            btnXoa.FlatStyle = FlatStyle.Flat;
+            btnXoa.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            btnXoa.ForeColor = Color.White;
+            btnXoa.Location = new Point(660, 12);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(140, 40);
+            btnXoa.TabIndex = 2;
+            btnXoa.Text = "🗑️ Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.FromArgb(230, 126, 34);
+            btnSua.Cursor = Cursors.Hand;
+            btnSua.FlatStyle = FlatStyle.Flat;
+            btnSua.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            btnSua.ForeColor = Color.White;
+            btnSua.Location = new Point(500, 12);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(140, 40);
+            btnSua.TabIndex = 1;
+            btnSua.Text = "✏️ Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnThem
+            // 
+            btnThem.BackColor = Color.FromArgb(39, 174, 96);
+            btnThem.Cursor = Cursors.Hand;
+            btnThem.FlatStyle = FlatStyle.Flat;
+            btnThem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            btnThem.ForeColor = Color.White;
+            btnThem.Location = new Point(340, 12);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(140, 40);
+            btnThem.TabIndex = 0;
+            btnThem.Text = "➕ Thêm";
+            btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
+            // 
+            // dgvNhanVien
+            // 
+            dgvNhanVien.AllowUserToAddRows = false;
+            dgvNhanVien.AllowUserToDeleteRows = false;
+            dgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvNhanVien.BackgroundColor = Color.White;
+            dgvNhanVien.BorderStyle = BorderStyle.FixedSingle;
+            dgvNhanVien.ColumnHeadersHeight = 40;
+            dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvNhanVien.Location = new Point(15, 410);
+            dgvNhanVien.MultiSelect = false;
+            dgvNhanVien.Name = "dgvNhanVien";
+            dgvNhanVien.ReadOnly = true;
+            dgvNhanVien.RowHeadersWidth = 50;
+            dgvNhanVien.RowTemplate.Height = 35;
+            dgvNhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvNhanVien.Size = new Size(1190, 320);
+            dgvNhanVien.TabIndex = 4;
+            dgvNhanVien.CellClick += dgvNhanVien_CellClick;
+            // 
+            // FormQuanLyNhanVien
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(236, 240, 241);
+            ClientSize = new Size(1220, 750);
+            Controls.Add(dgvNhanVien);
+            Controls.Add(panelButtons);
+            Controls.Add(panelInput);
+            Controls.Add(panelSearch);
+            Controls.Add(panelTop);
+            Name = "FormQuanLyNhanVien";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Quản lý Nhân viên";
+            Load += FormQuanLyNhanVien_Load;
+            panelTop.ResumeLayout(false);
+            panelTop.PerformLayout();
+            panelSearch.ResumeLayout(false);
+            panelSearch.PerformLayout();
+            panelInput.ResumeLayout(false);
+            panelInput.PerformLayout();
+            panelButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvNhanVien).EndInit();
+            ResumeLayout(false);
+        }
 
-		private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelSearch;
+        private System.Windows.Forms.Button btnExportXML;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.TextBox txtTimKiem;
