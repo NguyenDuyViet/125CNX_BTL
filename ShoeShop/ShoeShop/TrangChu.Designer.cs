@@ -29,6 +29,8 @@
 		private void InitializeComponent()
 		{
 			sidebarPanel = new Panel();
+			button1 = new Button();
+			btnThongKe = new Button();
 			btnDangXuat = new Button();
 			btnQuanLyNhanVien = new Button();
 			btnQuanLyDonHang = new Button();
@@ -53,8 +55,6 @@
 			lblStats1Title = new Label();
 			lblStats1Value = new Label();
 			lblWelcome = new Label();
-			btnThongKe = new Button();
-			button1 = new Button();
 			sidebarPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
 			headerPanel.SuspendLayout();
@@ -80,8 +80,42 @@
 			sidebarPanel.Dock = DockStyle.Left;
 			sidebarPanel.Location = new Point(0, 0);
 			sidebarPanel.Name = "sidebarPanel";
-			sidebarPanel.Size = new Size(280, 602);
+			sidebarPanel.Size = new Size(280, 599);
 			sidebarPanel.TabIndex = 0;
+			// 
+			// button1
+			// 
+			button1.BackColor = Color.FromArgb(52, 73, 94);
+			button1.Cursor = Cursors.Hand;
+			button1.FlatAppearance.BorderSize = 0;
+			button1.FlatStyle = FlatStyle.Flat;
+			button1.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+			button1.ForeColor = Color.White;
+			button1.Location = new Point(10, 404);
+			button1.Name = "button1";
+			button1.Size = new Size(260, 50);
+			button1.TabIndex = 7;
+			button1.Text = "   \U0001f9fe  Quản lý hoá đơn";
+			button1.TextAlign = ContentAlignment.MiddleLeft;
+			button1.UseVisualStyleBackColor = false;
+			button1.Click += button1_Click;
+			// 
+			// btnThongKe
+			// 
+			btnThongKe.BackColor = Color.FromArgb(52, 73, 94);
+			btnThongKe.Cursor = Cursors.Hand;
+			btnThongKe.FlatAppearance.BorderSize = 0;
+			btnThongKe.FlatStyle = FlatStyle.Flat;
+			btnThongKe.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+			btnThongKe.ForeColor = Color.White;
+			btnThongKe.Location = new Point(10, 460);
+			btnThongKe.Name = "btnThongKe";
+			btnThongKe.Size = new Size(260, 50);
+			btnThongKe.TabIndex = 6;
+			btnThongKe.Text = "   📈  Thống kê";
+			btnThongKe.TextAlign = ContentAlignment.MiddleLeft;
+			btnThongKe.UseVisualStyleBackColor = false;
+			btnThongKe.Click += btnThongKe_Click;
 			// 
 			// btnDangXuat
 			// 
@@ -187,7 +221,7 @@
 			headerPanel.Dock = DockStyle.Top;
 			headerPanel.Location = new Point(280, 0);
 			headerPanel.Name = "headerPanel";
-			headerPanel.Size = new Size(679, 80);
+			headerPanel.Size = new Size(664, 80);
 			headerPanel.TabIndex = 1;
 			// 
 			// lblUserInfo
@@ -219,7 +253,7 @@
 			contentPanel.Dock = DockStyle.Fill;
 			contentPanel.Location = new Point(280, 80);
 			contentPanel.Name = "contentPanel";
-			contentPanel.Size = new Size(679, 522);
+			contentPanel.Size = new Size(664, 519);
 			contentPanel.TabIndex = 2;
 			// 
 			// picHeroShoe
@@ -228,9 +262,9 @@
 			picHeroShoe.Dock = DockStyle.Fill;
 			picHeroShoe.Image = Properties.Resources.tinh_hinh_phat_trien_nganh_giay_da;
 			picHeroShoe.Location = new Point(0, 0);
-			picHeroShoe.Margin = new Padding(2);
+			picHeroShoe.Margin = new Padding(2, 2, 2, 2);
 			picHeroShoe.Name = "picHeroShoe";
-			picHeroShoe.Size = new Size(679, 522);
+			picHeroShoe.Size = new Size(664, 519);
 			picHeroShoe.SizeMode = PictureBoxSizeMode.Zoom;
 			picHeroShoe.TabIndex = 0;
 			picHeroShoe.TabStop = false;
@@ -387,44 +421,12 @@
 			lblWelcome.TabIndex = 0;
 			lblWelcome.Text = "Chào mừng đến với hệ thống quản lý Shop Giày";
 			// 
-			// btnThongKe
-			// 
-			btnThongKe.BackColor = Color.FromArgb(52, 73, 94);
-			btnThongKe.Cursor = Cursors.Hand;
-			btnThongKe.FlatAppearance.BorderSize = 0;
-			btnThongKe.FlatStyle = FlatStyle.Flat;
-			btnThongKe.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-			btnThongKe.ForeColor = Color.White;
-			btnThongKe.Location = new Point(10, 460);
-			btnThongKe.Name = "btnThongKe";
-			btnThongKe.Size = new Size(260, 50);
-			btnThongKe.TabIndex = 6;
-			btnThongKe.Text = "   📈  Thống kê";
-			btnThongKe.TextAlign = ContentAlignment.MiddleLeft;
-			btnThongKe.UseVisualStyleBackColor = false;
-			// 
-			// button1
-			// 
-			button1.BackColor = Color.FromArgb(52, 73, 94);
-			button1.Cursor = Cursors.Hand;
-			button1.FlatAppearance.BorderSize = 0;
-			button1.FlatStyle = FlatStyle.Flat;
-			button1.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-			button1.ForeColor = Color.White;
-			button1.Location = new Point(10, 404);
-			button1.Name = "button1";
-			button1.Size = new Size(260, 50);
-			button1.TabIndex = 7;
-			button1.Text = "   \U0001f9fe  Quản lý hoá đơn";
-			button1.TextAlign = ContentAlignment.MiddleLeft;
-			button1.UseVisualStyleBackColor = false;
-			// 
 			// TrangChu
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.White;
-			ClientSize = new Size(959, 602);
+			ClientSize = new Size(944, 599);
 			Controls.Add(contentPanel);
 			Controls.Add(headerPanel);
 			Controls.Add(sidebarPanel);

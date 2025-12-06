@@ -125,7 +125,8 @@ INSERT INTO Users (HoTen, DiaChi, SDT, Email, RoleID, TenDangNhap, MatKhau, Chuc
 (N'Nguyễn Hồng Quân', N'15 Pasteur, TP.HCM', '0978661234', 'quanhnv@gmail.com', 2, 'quanhnv', 'nv9876', N'Bán hàng'),
 (N'Phạm Thị Hoa', N'Kho hàng', '0988008877', 'hoapt@gmail.com', 2, 'hoapt', 'nv2345', N'Kho'),
 (N'Hoàng Minh', N'KT, Hà Nội', '0933445566', 'minhhm@gmail.com', 4, 'minhhm', '123123', N'Quản lý'),
-(N'Trần Mai', N'24 Hai Bà Trưng, Hà Nội', '0966112211', 'maitr@gmail.com', 3, 'traimai', '123abc', NULL);
+(N'Trần Mai', N'24 Hai Bà Trưng, Hà Nội', '0966112211', 'maitr@gmail.com', 3, 'traimai', '123abc', NULL),
+(N'Quản trị viên', N'Hệ thống', '', '', 1, 'admin', 'admin123', N'Admin');
 
 -- Sản phẩm
 INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images) VALUES
