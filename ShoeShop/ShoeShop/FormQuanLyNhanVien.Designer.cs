@@ -418,7 +418,6 @@
             Name = "FormQuanLyNhanVien";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý Nhân viên";
-            Load += FormQuanLyNhanVien_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             panelSearch.ResumeLayout(false);

@@ -62,22 +62,22 @@
 			// lblSubtitle
 			// 
 			lblSubtitle.AutoSize = true;
-			lblSubtitle.Font = new Font("Segoe UI", 12F);
+			lblSubtitle.Font = new Font("Times New Roman", 14.25F);
 			lblSubtitle.ForeColor = Color.White;
 			lblSubtitle.Location = new Point(65, 240);
 			lblSubtitle.Name = "lblSubtitle";
-			lblSubtitle.Size = new Size(235, 21);
+			lblSubtitle.Size = new Size(265, 21);
 			lblSubtitle.TabIndex = 1;
 			lblSubtitle.Text = "Hệ Thống Quản Lý Bán Giày Dép";
 			// 
 			// lblWelcome
 			// 
 			lblWelcome.AutoSize = true;
-			lblWelcome.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
+			lblWelcome.Font = new Font("Times New Roman", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
 			lblWelcome.ForeColor = Color.White;
 			lblWelcome.Location = new Point(60, 180);
 			lblWelcome.Name = "lblWelcome";
-			lblWelcome.Size = new Size(233, 51);
+			lblWelcome.Size = new Size(233, 42);
 			lblWelcome.TabIndex = 0;
 			lblWelcome.Text = "SHOE SHOP";
 			// 
@@ -110,11 +110,11 @@
 			// 
 			lblForgot.AutoSize = true;
 			lblForgot.Cursor = Cursors.Hand;
-			lblForgot.Font = new Font("Segoe UI", 9F);
+			lblForgot.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			lblForgot.ForeColor = Color.FromArgb(59, 130, 246);
 			lblForgot.Location = new Point(140, 370);
 			lblForgot.Name = "lblForgot";
-			lblForgot.Size = new Size(94, 15);
+			lblForgot.Size = new Size(93, 15);
 			lblForgot.TabIndex = 7;
 			lblForgot.Text = "Quên mật khẩu?";
 			// 
@@ -123,7 +123,7 @@
 			btnLogin.BackColor = Color.FromArgb(59, 130, 246);
 			btnLogin.FlatAppearance.BorderSize = 0;
 			btnLogin.FlatStyle = FlatStyle.Flat;
-			btnLogin.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+			btnLogin.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
 			btnLogin.ForeColor = Color.White;
 			btnLogin.Location = new Point(30, 310);
 			btnLogin.Name = "btnLogin";
@@ -136,7 +136,7 @@
 			// chkRemember
 			// 
 			chkRemember.AutoSize = true;
-			chkRemember.Font = new Font("Segoe UI", 9F);
+			chkRemember.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			chkRemember.ForeColor = Color.FromArgb(107, 114, 128);
 			chkRemember.Location = new Point(30, 270);
 			chkRemember.Name = "chkRemember";
@@ -147,7 +147,7 @@
 			// 
 			// txtPassword
 			// 
-			txtPassword.Font = new Font("Segoe UI", 12F);
+			txtPassword.Font = new Font("Times New Roman", 14.25F);
 			txtPassword.Location = new Point(30, 220);
 			txtPassword.Name = "txtPassword";
 			txtPassword.PasswordChar = '●';
@@ -157,17 +157,17 @@
 			// lblPassword
 			// 
 			lblPassword.AutoSize = true;
-			lblPassword.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+			lblPassword.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
 			lblPassword.ForeColor = Color.FromArgb(55, 65, 81);
 			lblPassword.Location = new Point(30, 190);
 			lblPassword.Name = "lblPassword";
-			lblPassword.Size = new Size(72, 19);
+			lblPassword.Size = new Size(78, 19);
 			lblPassword.TabIndex = 3;
 			lblPassword.Text = "Mật Khẩu";
 			// 
 			// txtUsername
 			// 
-			txtUsername.Font = new Font("Segoe UI", 12F);
+			txtUsername.Font = new Font("Times New Roman", 14.25F);
 			txtUsername.Location = new Point(30, 140);
 			txtUsername.Name = "txtUsername";
 			txtUsername.Size = new Size(340, 29);
@@ -176,22 +176,22 @@
 			// lblUsername
 			// 
 			lblUsername.AutoSize = true;
-			lblUsername.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+			lblUsername.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
 			lblUsername.ForeColor = Color.FromArgb(55, 65, 81);
 			lblUsername.Location = new Point(30, 110);
 			lblUsername.Name = "lblUsername";
-			lblUsername.Size = new Size(111, 19);
+			lblUsername.Size = new Size(115, 19);
 			lblUsername.TabIndex = 1;
 			lblUsername.Text = "Tên Đăng Nhập";
 			// 
 			// lblTitle
 			// 
 			lblTitle.AutoSize = true;
-			lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+			lblTitle.Font = new Font("Times New Roman", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
 			lblTitle.ForeColor = Color.FromArgb(31, 41, 55);
 			lblTitle.Location = new Point(80, 30);
 			lblTitle.Name = "lblTitle";
-			lblTitle.Size = new Size(217, 45);
+			lblTitle.Size = new Size(207, 36);
 			lblTitle.TabIndex = 0;
 			lblTitle.Text = "ĐĂNG NHẬP";
 			// 
@@ -202,6 +202,7 @@
 			ClientSize = new Size(900, 533);
 			Controls.Add(panelRight);
 			Controls.Add(panelLeft);
+			Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			MaximizeBox = false;
 			Name = "FormDangNhap";

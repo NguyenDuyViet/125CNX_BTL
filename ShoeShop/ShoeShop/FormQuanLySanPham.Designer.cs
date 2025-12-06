@@ -13,472 +13,470 @@
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
-        {
-            panelTop = new Panel();
-            lblTitle = new Label();
-            panelSearch = new Panel();
-            btnExportXML = new Button();
-            btnLamMoi = new Button();
-            btnTimKiem = new Button();
-            txtTimKiem = new TextBox();
-            lblTimKiem = new Label();
-            panelInput = new Panel();
-            panelImage = new Panel();
-            picPreview = new PictureBox();
-            btnChonAnh = new Button();
-            txtImages = new TextBox();
-            label8 = new Label();
-            txtSoLuong = new TextBox();
-            label7 = new Label();
-            txtGia = new TextBox();
-            label6 = new Label();
-            txtMauSac = new TextBox();
-            label5 = new Label();
-            txtKichCo = new TextBox();
-            label4 = new Label();
-            cboLoaiSP = new ComboBox();
-            label3 = new Label();
-            txtTenSP = new TextBox();
-            label2 = new Label();
-            txtMaSP = new TextBox();
-            label1 = new Label();
-            panelButtons = new Panel();
-            btnXoa = new Button();
-            btnSua = new Button();
-            btnThem = new Button();
-            dgvSanPham = new DataGridView();
-            panelTop.SuspendLayout();
-            panelSearch.SuspendLayout();
-            panelInput.SuspendLayout();
-            panelImage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picPreview).BeginInit();
-            panelButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSanPham).BeginInit();
-            SuspendLayout();
-            // 
-            // panelTop
-            // 
-            panelTop.BackColor = Color.FromArgb(39, 174, 96);
-            panelTop.Controls.Add(lblTitle);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
-            panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1320, 70);
-            panelTop.TabIndex = 0;
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(330, 31);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "QUẢN LÝ SẢN PHẨM";
-            // 
-            // panelSearch
-            // 
-            panelSearch.BackColor = Color.White;
-            panelSearch.BorderStyle = BorderStyle.FixedSingle;
-            panelSearch.Controls.Add(btnExportXML);
-            panelSearch.Controls.Add(btnLamMoi);
-            panelSearch.Controls.Add(btnTimKiem);
-            panelSearch.Controls.Add(txtTimKiem);
-            panelSearch.Controls.Add(lblTimKiem);
-            panelSearch.Location = new Point(15, 85);
-            panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(1290, 65);
-            panelSearch.TabIndex = 1;
-            // 
-            // btnExportXML
-            // 
-            btnExportXML.BackColor = Color.FromArgb(41, 128, 185);
-            btnExportXML.Cursor = Cursors.Hand;
-            btnExportXML.FlatStyle = FlatStyle.Flat;
-            btnExportXML.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            btnExportXML.ForeColor = Color.White;
-            btnExportXML.Location = new Point(950, 15);
-            btnExportXML.Name = "btnExportXML";
-            btnExportXML.Size = new Size(140, 35);
-            btnExportXML.TabIndex = 4;
-            btnExportXML.Text = "📄 Export XML";
-            btnExportXML.UseVisualStyleBackColor = false;
-            btnExportXML.Click += btnExportXML_Click;
-            // 
-            // btnLamMoi
-            // 
-            btnLamMoi.BackColor = Color.FromArgb(149, 165, 166);
-            btnLamMoi.Cursor = Cursors.Hand;
-            btnLamMoi.FlatStyle = FlatStyle.Flat;
-            btnLamMoi.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            btnLamMoi.ForeColor = Color.White;
-            btnLamMoi.Location = new Point(790, 15);
-            btnLamMoi.Name = "btnLamMoi";
-            btnLamMoi.Size = new Size(140, 35);
-            btnLamMoi.TabIndex = 3;
-            btnLamMoi.Text = "🔄 Làm mới";
-            btnLamMoi.UseVisualStyleBackColor = false;
-            btnLamMoi.Click += btnLamMoi_Click;
-            // 
-            // btnTimKiem
-            // 
-            btnTimKiem.BackColor = Color.FromArgb(39, 174, 96);
-            btnTimKiem.Cursor = Cursors.Hand;
-            btnTimKiem.FlatStyle = FlatStyle.Flat;
-            btnTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            btnTimKiem.ForeColor = Color.White;
-            btnTimKiem.Location = new Point(630, 15);
-            btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(140, 35);
-            btnTimKiem.TabIndex = 2;
-            btnTimKiem.Text = "🔍 Tìm kiếm";
-            btnTimKiem.UseVisualStyleBackColor = false;
-            btnTimKiem.Click += btnTimKiem_Click;
-            // 
-            // txtTimKiem
-            // 
-            txtTimKiem.Font = new Font("Times New Roman", 11.25F);
-            txtTimKiem.Location = new Point(120, 19);
-            txtTimKiem.Name = "txtTimKiem";
-            txtTimKiem.PlaceholderText = "Nhập tên, màu sắc hoặc loại sản phẩm để tìm kiếm...";
-            txtTimKiem.Size = new Size(490, 29);
-            txtTimKiem.TabIndex = 1;
-            // 
-            // lblTimKiem
-            // 
-            lblTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            lblTimKiem.Location = new Point(20, 19);
-            lblTimKiem.Name = "lblTimKiem";
-            lblTimKiem.Size = new Size(90, 25);
-            lblTimKiem.TabIndex = 0;
-            lblTimKiem.Text = "Tìm kiếm:";
-            lblTimKiem.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // panelInput
-            // 
-            panelInput.BackColor = Color.White;
-            panelInput.BorderStyle = BorderStyle.FixedSingle;
-            panelInput.Controls.Add(panelImage);
-            panelInput.Controls.Add(txtSoLuong);
-            panelInput.Controls.Add(label7);
-            panelInput.Controls.Add(txtGia);
-            panelInput.Controls.Add(label6);
-            panelInput.Controls.Add(txtMauSac);
-            panelInput.Controls.Add(label5);
-            panelInput.Controls.Add(txtKichCo);
-            panelInput.Controls.Add(label4);
-            panelInput.Controls.Add(cboLoaiSP);
-            panelInput.Controls.Add(label3);
-            panelInput.Controls.Add(txtTenSP);
-            panelInput.Controls.Add(label2);
-            panelInput.Controls.Add(txtMaSP);
-            panelInput.Controls.Add(label1);
-            panelInput.Location = new Point(15, 165);
-            panelInput.Name = "panelInput";
-            panelInput.Size = new Size(1290, 190);
-            panelInput.TabIndex = 2;
-            // 
-            // panelImage
-            // 
-            panelImage.BackColor = Color.FromArgb(236, 240, 241);
-            panelImage.BorderStyle = BorderStyle.FixedSingle;
-            panelImage.Controls.Add(picPreview);
-            panelImage.Controls.Add(btnChonAnh);
-            panelImage.Controls.Add(txtImages);
-            panelImage.Controls.Add(label8);
-            panelImage.Location = new Point(760, 15);
-            panelImage.Name = "panelImage";
-            panelImage.Size = new Size(510, 160);
-            panelImage.TabIndex = 14;
-            // 
-            // picPreview
-            // 
-            picPreview.BackColor = Color.White;
-            picPreview.BorderStyle = BorderStyle.FixedSingle;
-            picPreview.Location = new Point(15, 75);
-            picPreview.Name = "picPreview";
-            picPreview.Size = new Size(480, 75);
-            picPreview.SizeMode = PictureBoxSizeMode.Zoom;
-            picPreview.TabIndex = 3;
-            picPreview.TabStop = false;
-            // 
-            // btnChonAnh
-            // 
-            btnChonAnh.BackColor = Color.FromArgb(39, 174, 96);
-            btnChonAnh.Cursor = Cursors.Hand;
-            btnChonAnh.FlatStyle = FlatStyle.Flat;
-            btnChonAnh.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            btnChonAnh.ForeColor = Color.White;
-            btnChonAnh.Location = new Point(375, 35);
-            btnChonAnh.Name = "btnChonAnh";
-            btnChonAnh.Size = new Size(120, 30);
-            btnChonAnh.TabIndex = 2;
-            btnChonAnh.Text = "📁 Chọn ảnh";
-            btnChonAnh.UseVisualStyleBackColor = false;
-            btnChonAnh.Click += btnChonAnh_Click;
-            // 
-            // txtImages
-            // 
-            txtImages.BackColor = Color.White;
-            txtImages.Font = new Font("Times New Roman", 10F);
-            txtImages.Location = new Point(15, 38);
-            txtImages.Name = "txtImages";
-            txtImages.ReadOnly = true;
-            txtImages.Size = new Size(350, 27);
-            txtImages.TabIndex = 1;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label8.Location = new Point(15, 12);
-            label8.Name = "label8";
-            label8.Size = new Size(127, 22);
-            label8.TabIndex = 0;
-            label8.Text = "Ảnh sản phẩm:";
-            // 
-            // txtSoLuong
-            // 
-            txtSoLuong.Font = new Font("Times New Roman", 11.25F);
-            txtSoLuong.Location = new Point(540, 103);
-            txtSoLuong.Name = "txtSoLuong";
-            txtSoLuong.Size = new Size(120, 29);
-            txtSoLuong.TabIndex = 13;
-            txtSoLuong.TextAlign = HorizontalAlignment.Right;
-            // 
-            // label7
-            // 
-            label7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label7.Location = new Point(420, 103);
-            label7.Name = "label7";
-            label7.Size = new Size(110, 25);
-            label7.TabIndex = 12;
-            label7.Text = "Số lượng:";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtGia
-            // 
-            txtGia.Font = new Font("Times New Roman", 11.25F);
-            txtGia.Location = new Point(540, 61);
-            txtGia.Name = "txtGia";
-            txtGia.Size = new Size(180, 29);
-            txtGia.TabIndex = 11;
-            txtGia.TextAlign = HorizontalAlignment.Right;
-            // 
-            // label6
-            // 
-            label6.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label6.Location = new Point(420, 61);
-            label6.Name = "label6";
-            label6.Size = new Size(110, 25);
-            label6.TabIndex = 10;
-            label6.Text = "Giá (VNĐ):";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtMauSac
-            // 
-            txtMauSac.Font = new Font("Times New Roman", 11.25F);
-            txtMauSac.Location = new Point(540, 19);
-            txtMauSac.Name = "txtMauSac";
-            txtMauSac.Size = new Size(180, 29);
-            txtMauSac.TabIndex = 9;
-            // 
-            // label5
-            // 
-            label5.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label5.Location = new Point(420, 19);
-            label5.Name = "label5";
-            label5.Size = new Size(110, 25);
-            label5.TabIndex = 8;
-            label5.Text = "Màu sắc:";
-            label5.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtKichCo
-            // 
-            txtKichCo.Font = new Font("Times New Roman", 11.25F);
-            txtKichCo.Location = new Point(160, 145);
-            txtKichCo.Name = "txtKichCo";
-            txtKichCo.Size = new Size(120, 29);
-            txtKichCo.TabIndex = 7;
-            // 
-            // label4
-            // 
-            label4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label4.Location = new Point(20, 145);
-            label4.Name = "label4";
-            label4.Size = new Size(130, 25);
-            label4.TabIndex = 6;
-            label4.Text = "Kích cỡ:";
-            label4.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // cboLoaiSP
-            // 
-            cboLoaiSP.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboLoaiSP.Font = new Font("Times New Roman", 11.25F);
-            cboLoaiSP.FormattingEnabled = true;
-            cboLoaiSP.Location = new Point(160, 103);
-            cboLoaiSP.Name = "cboLoaiSP";
-            cboLoaiSP.Size = new Size(220, 29);
-            cboLoaiSP.TabIndex = 5;
-            // 
-            // label3
-            // 
-            label3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label3.Location = new Point(20, 103);
-            label3.Name = "label3";
-            label3.Size = new Size(130, 25);
-            label3.TabIndex = 4;
-            label3.Text = "Loại sản phẩm:";
-            label3.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtTenSP
-            // 
-            txtTenSP.Font = new Font("Times New Roman", 11.25F);
-            txtTenSP.Location = new Point(160, 61);
-            txtTenSP.Name = "txtTenSP";
-            txtTenSP.Size = new Size(220, 29);
-            txtTenSP.TabIndex = 3;
-            // 
-            // label2
-            // 
-            label2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label2.Location = new Point(20, 61);
-            label2.Name = "label2";
-            label2.Size = new Size(130, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Tên sản phẩm:";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // txtMaSP
-            // 
-            txtMaSP.BackColor = Color.FromArgb(236, 240, 241);
-            txtMaSP.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            txtMaSP.ForeColor = Color.FromArgb(52, 73, 94);
-            txtMaSP.Location = new Point(160, 19);
-            txtMaSP.Name = "txtMaSP";
-            txtMaSP.ReadOnly = true;
-            txtMaSP.Size = new Size(120, 29);
-            txtMaSP.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label1.Location = new Point(20, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(130, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Mã sản phẩm:";
-            label1.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // panelButtons
-            // 
-            panelButtons.BackColor = Color.White;
-            panelButtons.BorderStyle = BorderStyle.FixedSingle;
-            panelButtons.Controls.Add(btnXoa);
-            panelButtons.Controls.Add(btnSua);
-            panelButtons.Controls.Add(btnThem);
-            panelButtons.Location = new Point(15, 370);
-            panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(1290, 65);
-            panelButtons.TabIndex = 3;
-            // 
-            // btnXoa
-            // 
-            btnXoa.BackColor = Color.FromArgb(231, 76, 60);
-            btnXoa.Cursor = Cursors.Hand;
-            btnXoa.FlatStyle = FlatStyle.Flat;
-            btnXoa.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(730, 12);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(140, 40);
-            btnXoa.TabIndex = 2;
-            btnXoa.Text = "🗑️ Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
-            btnXoa.Click += btnXoa_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.BackColor = Color.FromArgb(41, 128, 185);
-            btnSua.Cursor = Cursors.Hand;
-            btnSua.FlatStyle = FlatStyle.Flat;
-            btnSua.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(570, 12);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(140, 40);
-            btnSua.TabIndex = 1;
-            btnSua.Text = "✏️ Sửa";
-            btnSua.UseVisualStyleBackColor = false;
-            btnSua.Click += btnSua_Click;
-            // 
-            // btnThem
-            // 
-            btnThem.BackColor = Color.FromArgb(39, 174, 96);
-            btnThem.Cursor = Cursors.Hand;
-            btnThem.FlatStyle = FlatStyle.Flat;
-            btnThem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            btnThem.ForeColor = Color.White;
-            btnThem.Location = new Point(410, 12);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(140, 40);
-            btnThem.TabIndex = 0;
-            btnThem.Text = "➕ Thêm";
-            btnThem.UseVisualStyleBackColor = false;
-            btnThem.Click += btnThem_Click;
-            // 
-            // dgvSanPham
-            // 
-            dgvSanPham.AllowUserToAddRows = false;
-            dgvSanPham.AllowUserToDeleteRows = false;
-            dgvSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvSanPham.BackgroundColor = Color.White;
-            dgvSanPham.BorderStyle = BorderStyle.FixedSingle;
-            dgvSanPham.ColumnHeadersHeight = 40;
-            dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvSanPham.Location = new Point(15, 450);
-            dgvSanPham.MultiSelect = false;
-            dgvSanPham.Name = "dgvSanPham";
-            dgvSanPham.ReadOnly = true;
-            dgvSanPham.RowHeadersWidth = 50;
-            dgvSanPham.RowTemplate.Height = 35;
-            dgvSanPham.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSanPham.Size = new Size(1290, 280);
-            dgvSanPham.TabIndex = 4;
-            dgvSanPham.CellClick += dgvSanPham_CellClick;
-            // 
-            // FormQuanLySanPham
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(236, 240, 241);
-            ClientSize = new Size(1320, 750);
-            Controls.Add(dgvSanPham);
-            Controls.Add(panelButtons);
-            Controls.Add(panelInput);
-            Controls.Add(panelSearch);
-            Controls.Add(panelTop);
-            Name = "FormQuanLySanPham";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Quản lý Sản phẩm";
-            Load += FormQuanLySanPham_Load;
-            panelTop.ResumeLayout(false);
-            panelTop.PerformLayout();
-            panelSearch.ResumeLayout(false);
-            panelSearch.PerformLayout();
-            panelInput.ResumeLayout(false);
-            panelInput.PerformLayout();
-            panelImage.ResumeLayout(false);
-            panelImage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picPreview).EndInit();
-            panelButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
-            ResumeLayout(false);
-        }
+		private void InitializeComponent()
+		{
+			panelTop = new Panel();
+			lblTitle = new Label();
+			panelSearch = new Panel();
+			btnExportXML = new Button();
+			btnLamMoi = new Button();
+			btnTimKiem = new Button();
+			txtTimKiem = new TextBox();
+			lblTimKiem = new Label();
+			panelInput = new Panel();
+			panelImage = new Panel();
+			picPreview = new PictureBox();
+			btnChonAnh = new Button();
+			txtImages = new TextBox();
+			label8 = new Label();
+			txtSoLuong = new TextBox();
+			label7 = new Label();
+			txtGia = new TextBox();
+			label6 = new Label();
+			txtMauSac = new TextBox();
+			label5 = new Label();
+			txtKichCo = new TextBox();
+			label4 = new Label();
+			cboLoaiSP = new ComboBox();
+			label3 = new Label();
+			txtTenSP = new TextBox();
+			label2 = new Label();
+			txtMaSP = new TextBox();
+			label1 = new Label();
+			panelButtons = new Panel();
+			btnXoa = new Button();
+			btnSua = new Button();
+			btnThem = new Button();
+			dgvSanPham = new DataGridView();
+			panelTop.SuspendLayout();
+			panelSearch.SuspendLayout();
+			panelInput.SuspendLayout();
+			panelImage.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)picPreview).BeginInit();
+			panelButtons.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)dgvSanPham).BeginInit();
+			SuspendLayout();
+			// 
+			// panelTop
+			// 
+			panelTop.BackColor = Color.FromArgb(39, 174, 96);
+			panelTop.Controls.Add(lblTitle);
+			panelTop.Dock = DockStyle.Top;
+			panelTop.Location = new Point(0, 0);
+			panelTop.Name = "panelTop";
+			panelTop.Size = new Size(1320, 70);
+			panelTop.TabIndex = 0;
+			// 
+			// lblTitle
+			// 
+			lblTitle.AutoSize = true;
+			lblTitle.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold);
+			lblTitle.ForeColor = Color.White;
+			lblTitle.Location = new Point(20, 20);
+			lblTitle.Name = "lblTitle";
+			lblTitle.Size = new Size(289, 31);
+			lblTitle.TabIndex = 0;
+			lblTitle.Text = "QUẢN LÝ SẢN PHẨM";
+			// 
+			// panelSearch
+			// 
+			panelSearch.BackColor = Color.White;
+			panelSearch.BorderStyle = BorderStyle.FixedSingle;
+			panelSearch.Controls.Add(btnExportXML);
+			panelSearch.Controls.Add(btnLamMoi);
+			panelSearch.Controls.Add(btnTimKiem);
+			panelSearch.Controls.Add(txtTimKiem);
+			panelSearch.Controls.Add(lblTimKiem);
+			panelSearch.Location = new Point(15, 85);
+			panelSearch.Name = "panelSearch";
+			panelSearch.Size = new Size(1290, 65);
+			panelSearch.TabIndex = 1;
+			// 
+			// btnExportXML
+			// 
+			btnExportXML.BackColor = Color.FromArgb(41, 128, 185);
+			btnExportXML.Cursor = Cursors.Hand;
+			btnExportXML.FlatStyle = FlatStyle.Flat;
+			btnExportXML.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			btnExportXML.ForeColor = Color.White;
+			btnExportXML.Location = new Point(950, 15);
+			btnExportXML.Name = "btnExportXML";
+			btnExportXML.Size = new Size(140, 35);
+			btnExportXML.TabIndex = 4;
+			btnExportXML.Text = "📄 Export XML";
+			btnExportXML.UseVisualStyleBackColor = false;
+			btnExportXML.Click += btnExportXML_Click;
+			// 
+			// btnLamMoi
+			// 
+			btnLamMoi.BackColor = Color.FromArgb(149, 165, 166);
+			btnLamMoi.Cursor = Cursors.Hand;
+			btnLamMoi.FlatStyle = FlatStyle.Flat;
+			btnLamMoi.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			btnLamMoi.ForeColor = Color.White;
+			btnLamMoi.Location = new Point(790, 15);
+			btnLamMoi.Name = "btnLamMoi";
+			btnLamMoi.Size = new Size(140, 35);
+			btnLamMoi.TabIndex = 3;
+			btnLamMoi.Text = "🔄 Làm mới";
+			btnLamMoi.UseVisualStyleBackColor = false;
+			btnLamMoi.Click += btnLamMoi_Click;
+			// 
+			// btnTimKiem
+			// 
+			btnTimKiem.BackColor = Color.FromArgb(39, 174, 96);
+			btnTimKiem.Cursor = Cursors.Hand;
+			btnTimKiem.FlatStyle = FlatStyle.Flat;
+			btnTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			btnTimKiem.ForeColor = Color.White;
+			btnTimKiem.Location = new Point(630, 15);
+			btnTimKiem.Name = "btnTimKiem";
+			btnTimKiem.Size = new Size(140, 35);
+			btnTimKiem.TabIndex = 2;
+			btnTimKiem.Text = "🔍 Tìm kiếm";
+			btnTimKiem.UseVisualStyleBackColor = false;
+			btnTimKiem.Click += btnTimKiem_Click;
+			// 
+			// txtTimKiem
+			// 
+			txtTimKiem.Font = new Font("Times New Roman", 11.25F);
+			txtTimKiem.Location = new Point(120, 19);
+			txtTimKiem.Name = "txtTimKiem";
+			txtTimKiem.PlaceholderText = "Nhập tên, màu sắc hoặc loại sản phẩm để tìm kiếm...";
+			txtTimKiem.Size = new Size(490, 25);
+			txtTimKiem.TabIndex = 1;
+			// 
+			// lblTimKiem
+			// 
+			lblTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			lblTimKiem.Location = new Point(20, 19);
+			lblTimKiem.Name = "lblTimKiem";
+			lblTimKiem.Size = new Size(90, 25);
+			lblTimKiem.TabIndex = 0;
+			lblTimKiem.Text = "Tìm kiếm:";
+			lblTimKiem.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// panelInput
+			// 
+			panelInput.BackColor = Color.White;
+			panelInput.BorderStyle = BorderStyle.FixedSingle;
+			panelInput.Controls.Add(panelImage);
+			panelInput.Controls.Add(txtSoLuong);
+			panelInput.Controls.Add(label7);
+			panelInput.Controls.Add(txtGia);
+			panelInput.Controls.Add(label6);
+			panelInput.Controls.Add(txtMauSac);
+			panelInput.Controls.Add(label5);
+			panelInput.Controls.Add(txtKichCo);
+			panelInput.Controls.Add(label4);
+			panelInput.Controls.Add(cboLoaiSP);
+			panelInput.Controls.Add(label3);
+			panelInput.Controls.Add(txtTenSP);
+			panelInput.Controls.Add(label2);
+			panelInput.Controls.Add(txtMaSP);
+			panelInput.Controls.Add(label1);
+			panelInput.Location = new Point(15, 165);
+			panelInput.Name = "panelInput";
+			panelInput.Size = new Size(1290, 190);
+			panelInput.TabIndex = 2;
+			// 
+			// panelImage
+			// 
+			panelImage.BackColor = Color.FromArgb(236, 240, 241);
+			panelImage.BorderStyle = BorderStyle.FixedSingle;
+			panelImage.Controls.Add(picPreview);
+			panelImage.Controls.Add(btnChonAnh);
+			panelImage.Controls.Add(txtImages);
+			panelImage.Controls.Add(label8);
+			panelImage.Location = new Point(760, 15);
+			panelImage.Name = "panelImage";
+			panelImage.Size = new Size(510, 160);
+			panelImage.TabIndex = 14;
+			// 
+			// picPreview
+			// 
+			picPreview.BackColor = Color.White;
+			picPreview.BorderStyle = BorderStyle.FixedSingle;
+			picPreview.Location = new Point(15, 75);
+			picPreview.Name = "picPreview";
+			picPreview.Size = new Size(480, 75);
+			picPreview.SizeMode = PictureBoxSizeMode.Zoom;
+			picPreview.TabIndex = 3;
+			picPreview.TabStop = false;
+			// 
+			// btnChonAnh
+			// 
+			btnChonAnh.BackColor = Color.FromArgb(39, 174, 96);
+			btnChonAnh.Cursor = Cursors.Hand;
+			btnChonAnh.FlatStyle = FlatStyle.Flat;
+			btnChonAnh.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
+			btnChonAnh.ForeColor = Color.White;
+			btnChonAnh.Location = new Point(375, 35);
+			btnChonAnh.Name = "btnChonAnh";
+			btnChonAnh.Size = new Size(120, 30);
+			btnChonAnh.TabIndex = 2;
+			btnChonAnh.Text = "📁 Chọn ảnh";
+			btnChonAnh.UseVisualStyleBackColor = false;
+			btnChonAnh.Click += btnChonAnh_Click;
+			// 
+			// txtImages
+			// 
+			txtImages.BackColor = Color.White;
+			txtImages.Font = new Font("Times New Roman", 10F);
+			txtImages.Location = new Point(15, 38);
+			txtImages.Name = "txtImages";
+			txtImages.ReadOnly = true;
+			txtImages.Size = new Size(350, 23);
+			txtImages.TabIndex = 1;
+			// 
+			// label8
+			// 
+			label8.AutoSize = true;
+			label8.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label8.Location = new Point(15, 12);
+			label8.Name = "label8";
+			label8.Size = new Size(105, 17);
+			label8.TabIndex = 0;
+			label8.Text = "Ảnh sản phẩm:";
+			// 
+			// txtSoLuong
+			// 
+			txtSoLuong.Font = new Font("Times New Roman", 11.25F);
+			txtSoLuong.Location = new Point(540, 103);
+			txtSoLuong.Name = "txtSoLuong";
+			txtSoLuong.Size = new Size(120, 25);
+			txtSoLuong.TabIndex = 13;
+			txtSoLuong.TextAlign = HorizontalAlignment.Right;
+			// 
+			// label7
+			// 
+			label7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label7.Location = new Point(420, 103);
+			label7.Name = "label7";
+			label7.Size = new Size(110, 25);
+			label7.TabIndex = 12;
+			label7.Text = "Số lượng:";
+			label7.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// txtGia
+			// 
+			txtGia.Font = new Font("Times New Roman", 11.25F);
+			txtGia.Location = new Point(540, 61);
+			txtGia.Name = "txtGia";
+			txtGia.Size = new Size(180, 25);
+			txtGia.TabIndex = 11;
+			txtGia.TextAlign = HorizontalAlignment.Right;
+			// 
+			// label6
+			// 
+			label6.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label6.Location = new Point(420, 61);
+			label6.Name = "label6";
+			label6.Size = new Size(110, 25);
+			label6.TabIndex = 10;
+			label6.Text = "Giá (VNĐ):";
+			label6.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// txtMauSac
+			// 
+			txtMauSac.Font = new Font("Times New Roman", 11.25F);
+			txtMauSac.Location = new Point(540, 19);
+			txtMauSac.Name = "txtMauSac";
+			txtMauSac.Size = new Size(180, 25);
+			txtMauSac.TabIndex = 9;
+			// 
+			// label5
+			// 
+			label5.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label5.Location = new Point(420, 19);
+			label5.Name = "label5";
+			label5.Size = new Size(110, 25);
+			label5.TabIndex = 8;
+			label5.Text = "Màu sắc:";
+			label5.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// txtKichCo
+			// 
+			txtKichCo.Font = new Font("Times New Roman", 11.25F);
+			txtKichCo.Location = new Point(160, 145);
+			txtKichCo.Name = "txtKichCo";
+			txtKichCo.Size = new Size(120, 25);
+			txtKichCo.TabIndex = 7;
+			// 
+			// label4
+			// 
+			label4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label4.Location = new Point(20, 145);
+			label4.Name = "label4";
+			label4.Size = new Size(130, 25);
+			label4.TabIndex = 6;
+			label4.Text = "Kích cỡ:";
+			label4.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// cboLoaiSP
+			// 
+			cboLoaiSP.DropDownStyle = ComboBoxStyle.DropDownList;
+			cboLoaiSP.Font = new Font("Times New Roman", 11.25F);
+			cboLoaiSP.FormattingEnabled = true;
+			cboLoaiSP.Location = new Point(160, 103);
+			cboLoaiSP.Name = "cboLoaiSP";
+			cboLoaiSP.Size = new Size(220, 25);
+			cboLoaiSP.TabIndex = 5;
+			// 
+			// label3
+			// 
+			label3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label3.Location = new Point(20, 103);
+			label3.Name = "label3";
+			label3.Size = new Size(130, 25);
+			label3.TabIndex = 4;
+			label3.Text = "Loại sản phẩm:";
+			label3.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// txtTenSP
+			// 
+			txtTenSP.Font = new Font("Times New Roman", 11.25F);
+			txtTenSP.Location = new Point(160, 61);
+			txtTenSP.Name = "txtTenSP";
+			txtTenSP.Size = new Size(220, 25);
+			txtTenSP.TabIndex = 3;
+			// 
+			// label2
+			// 
+			label2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label2.Location = new Point(20, 61);
+			label2.Name = "label2";
+			label2.Size = new Size(130, 25);
+			label2.TabIndex = 2;
+			label2.Text = "Tên sản phẩm:";
+			label2.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// txtMaSP
+			// 
+			txtMaSP.BackColor = Color.FromArgb(236, 240, 241);
+			txtMaSP.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			txtMaSP.ForeColor = Color.FromArgb(52, 73, 94);
+			txtMaSP.Location = new Point(160, 19);
+			txtMaSP.Name = "txtMaSP";
+			txtMaSP.ReadOnly = true;
+			txtMaSP.Size = new Size(120, 25);
+			txtMaSP.TabIndex = 1;
+			// 
+			// label1
+			// 
+			label1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+			label1.Location = new Point(20, 19);
+			label1.Name = "label1";
+			label1.Size = new Size(130, 25);
+			label1.TabIndex = 0;
+			label1.Text = "Mã sản phẩm:";
+			label1.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// panelButtons
+			// 
+			panelButtons.BackColor = Color.White;
+			panelButtons.BorderStyle = BorderStyle.FixedSingle;
+			panelButtons.Controls.Add(btnXoa);
+			panelButtons.Controls.Add(btnSua);
+			panelButtons.Controls.Add(btnThem);
+			panelButtons.Location = new Point(15, 370);
+			panelButtons.Name = "panelButtons";
+			panelButtons.Size = new Size(1290, 65);
+			panelButtons.TabIndex = 3;
+			// 
+			// btnXoa
+			// 
+			btnXoa.BackColor = Color.FromArgb(231, 76, 60);
+			btnXoa.Cursor = Cursors.Hand;
+			btnXoa.FlatStyle = FlatStyle.Flat;
+			btnXoa.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+			btnXoa.ForeColor = Color.White;
+			btnXoa.Location = new Point(730, 12);
+			btnXoa.Name = "btnXoa";
+			btnXoa.Size = new Size(140, 40);
+			btnXoa.TabIndex = 2;
+			btnXoa.Text = "🗑️ Xóa";
+			btnXoa.UseVisualStyleBackColor = false;
+			btnXoa.Click += btnXoa_Click;
+			// 
+			// btnSua
+			// 
+			btnSua.BackColor = Color.FromArgb(41, 128, 185);
+			btnSua.Cursor = Cursors.Hand;
+			btnSua.FlatStyle = FlatStyle.Flat;
+			btnSua.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+			btnSua.ForeColor = Color.White;
+			btnSua.Location = new Point(570, 12);
+			btnSua.Name = "btnSua";
+			btnSua.Size = new Size(140, 40);
+			btnSua.TabIndex = 1;
+			btnSua.Text = "✏️ Sửa";
+			btnSua.UseVisualStyleBackColor = false;
+			btnSua.Click += btnSua_Click;
+			// 
+			// btnThem
+			// 
+			btnThem.BackColor = Color.FromArgb(39, 174, 96);
+			btnThem.Cursor = Cursors.Hand;
+			btnThem.FlatStyle = FlatStyle.Flat;
+			btnThem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+			btnThem.ForeColor = Color.White;
+			btnThem.Location = new Point(410, 12);
+			btnThem.Name = "btnThem";
+			btnThem.Size = new Size(140, 40);
+			btnThem.TabIndex = 0;
+			btnThem.Text = "➕ Thêm";
+			btnThem.UseVisualStyleBackColor = false;
+			btnThem.Click += btnThem_Click;
+			// 
+			// dgvSanPham
+			// 
+			dgvSanPham.AllowUserToAddRows = false;
+			dgvSanPham.AllowUserToDeleteRows = false;
+			dgvSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			dgvSanPham.BackgroundColor = Color.White;
+			dgvSanPham.ColumnHeadersHeight = 40;
+			dgvSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+			dgvSanPham.Location = new Point(15, 450);
+			dgvSanPham.MultiSelect = false;
+			dgvSanPham.Name = "dgvSanPham";
+			dgvSanPham.ReadOnly = true;
+			dgvSanPham.RowHeadersWidth = 50;
+			dgvSanPham.RowTemplate.Height = 35;
+			dgvSanPham.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+			dgvSanPham.Size = new Size(1290, 280);
+			dgvSanPham.TabIndex = 4;
+			dgvSanPham.CellClick += dgvSanPham_CellClick;
+			// 
+			// FormQuanLySanPham
+			// 
+			AutoScaleDimensions = new SizeF(7F, 15F);
+			AutoScaleMode = AutoScaleMode.Font;
+			BackColor = Color.FromArgb(236, 240, 241);
+			ClientSize = new Size(1320, 749);
+			Controls.Add(dgvSanPham);
+			Controls.Add(panelButtons);
+			Controls.Add(panelInput);
+			Controls.Add(panelSearch);
+			Controls.Add(panelTop);
+			Name = "FormQuanLySanPham";
+			StartPosition = FormStartPosition.CenterScreen;
+			Text = "Quản lý Sản phẩm";
+			panelTop.ResumeLayout(false);
+			panelTop.PerformLayout();
+			panelSearch.ResumeLayout(false);
+			panelSearch.PerformLayout();
+			panelInput.ResumeLayout(false);
+			panelInput.PerformLayout();
+			panelImage.ResumeLayout(false);
+			panelImage.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)picPreview).EndInit();
+			panelButtons.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
+			ResumeLayout(false);
+		}
 
-        private System.Windows.Forms.Panel panelTop;
+		private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.Button btnExportXML;

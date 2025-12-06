@@ -13,7 +13,7 @@ namespace ShoeShop.DAO
         public SqlConnection Connection()
         {
 			string connectionString = ConfigurationManager.ConnectionStrings["ShopBanGiay"].ConnectionString;
-			return new SqlConnection(connectionString); ;
+			return new SqlConnection(connectionString);
         }
     }
 }

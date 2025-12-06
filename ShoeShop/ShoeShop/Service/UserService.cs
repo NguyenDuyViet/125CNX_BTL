@@ -21,5 +21,25 @@ namespace ShoeShop.Service
         {
             return await user.CheckLogin(username, password);
         }
-    }
+
+        public async Task<List<UsersModel>> GetAllUsers()
+        {
+            return await user.GetAllUser();
+        }
+
+        public async Task<bool> UpdateUser(UsersModel us)
+        {
+            return await user.UpdateUser(us);
+        }
+
+		public async Task<bool> DeleteUser(int UID)
+		{
+			return await user.DeleteUser(UID);
+		}
+
+        public async Task<bool> AddUser(UsersModel us)
+        {
+            return await user.AddUser(us);
+        }
+	}
 }

@@ -1,13 +1,19 @@
-﻿using System;
+﻿using _125CNX_ECommerce.Models;
+using ShoeShop.Service;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ShoeShop
 {
     public partial class FormQuanLyNhanVien : Form
     {
-        private string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True";
+        private UserService usv;
+        private List<UsersModel> users;
 
         public FormQuanLyNhanVien()
         {
@@ -16,22 +22,41 @@ namespace ShoeShop
             FormatDataGridView();
         }
 
-        private void LoadData()
+        private async Task LoadData()
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"SELECT U_ID as 'Mã NV', HoTen as 'Họ tên', DiaChi as 'Địa chỉ', 
-                                    SDT as 'Số điện thoại', Email, ChucVu as 'Chức vụ', TenDangNhap as 'Tên đăng nhập' 
-                                    FROM Users WHERE RoleID IN (2, 4) ORDER BY U_ID DESC";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dgvNhanVien.DataSource = dt;
-                }
-            }
+                usv = new UserService();
+                users = await usv.GetAllUsers();
+
+				DataTable dt = new DataTable();
+				dt.Columns.Add("Mã NV", typeof(int));
+				dt.Columns.Add("Họ tên", typeof(string));
+				dt.Columns.Add("Địa chỉ", typeof(string));
+				dt.Columns.Add("Số điện thoại", typeof(string));
+				dt.Columns.Add("Email", typeof(string));
+				dt.Columns.Add("Chức vụ", typeof(string));
+				dt.Columns.Add("Tên đăng nhập", typeof(string));
+
+				foreach (var u in users)
+				{
+					if(u.RoleID == 2 || u.RoleID == 4)
+						dt.Rows.Add(
+							u.U_ID,
+							u.HoTen,
+							u.DiaChi,
+							u.SDT,
+							u.Email,
+							u.ChucVu,
+							u.TenDangNhap
+						);
+				}
+
+				dgvNhanVien.DataSource = dt;
+
+				// Auto Resize cho bảng Nhân viên
+				dgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			}
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi kết nối database: " + ex.Message, "Lỗi",
@@ -103,39 +128,45 @@ namespace ShoeShop
                 return;
             }
 
-            try
-            {
-                int roleID = cboChucVu.Text == "Quản lý" ? 4 : 2;
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"INSERT INTO Users (HoTen, DiaChi, SDT, Email, RoleID, TenDangNhap, MatKhau, ChucVu) 
-                                   VALUES (@HoTen, @DiaChi, @SDT, @Email, @RoleID, @TenDangNhap, @MatKhau, @ChucVu)";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@HoTen", txtHoTen.Text.Trim());
-                        cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
-                        cmd.Parameters.AddWithValue("@SDT", txtSDT.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@RoleID", roleID);
-                        cmd.Parameters.AddWithValue("@TenDangNhap", txtTenDangNhap.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MatKhau", txtMatKhau.Text);
-                        cmd.Parameters.AddWithValue("@ChucVu", cboChucVu.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Thêm nhân viên thành công!", "Thành công",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                        ClearInputs();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            AddUser();
         }
 
+        private async Task AddUser()
+        {
+			try
+			{
+				int roleID = cboChucVu.Text == "Quản lý" ? 4 : 2;
+
+				UsersModel user = new UsersModel();
+				usv = new UserService();
+
+				user.HoTen = txtHoTen.Text.Trim();
+				user.DiaChi = txtDiaChi.Text.Trim();
+				user.SDT = txtSDT.Text.Trim();
+				user.Email = txtEmail.Text.Trim();
+				user.RoleID = roleID;
+				user.TenDangNhap = txtTenDangNhap.Text.Trim();
+				user.MatKhau = txtMatKhau.Text.Trim();
+				user.ChucVu = cboChucVu.Text;
+
+				bool success = await usv.AddUser(user);
+
+				if (success)
+				{
+					MessageBox.Show("Thêm thành công!", "Thành công",
+					MessageBoxButtons.OK, MessageBoxIcon.Information);
+					LoadData();
+					ClearInputs();
+				}
+				else MessageBox.Show("Thêm thất bại!", "Thất bại",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+        //Sửa thông tin
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaNV.Text))
@@ -147,39 +178,45 @@ namespace ShoeShop
 
             if (!ValidateInput()) return;
 
-            try
-            {
-                int roleID = cboChucVu.Text == "Quản lý" ? 4 : 2;
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"UPDATE Users SET HoTen=@HoTen, DiaChi=@DiaChi, SDT=@SDT, 
-                                   Email=@Email, RoleID=@RoleID, TenDangNhap=@TenDangNhap, ChucVu=@ChucVu 
-                                   WHERE U_ID=@U_ID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@U_ID", int.Parse(txtMaNV.Text));
-                        cmd.Parameters.AddWithValue("@HoTen", txtHoTen.Text.Trim());
-                        cmd.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
-                        cmd.Parameters.AddWithValue("@SDT", txtSDT.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@RoleID", roleID);
-                        cmd.Parameters.AddWithValue("@TenDangNhap", txtTenDangNhap.Text.Trim());
-                        cmd.Parameters.AddWithValue("@ChucVu", cboChucVu.Text);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Cập nhật thành công!", "Thành công",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                        ClearInputs();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            UpdateUser();
         }
+
+        private async Task UpdateUser()
+        {
+			try
+			{
+				int roleID = cboChucVu.Text == "Quản lý" ? 4 : 2;
+
+				UsersModel user = new UsersModel();
+                usv = new UserService();
+
+				user.U_ID = int.Parse(txtMaNV.Text);
+				user.HoTen = txtHoTen.Text.Trim();
+				user.DiaChi = txtDiaChi.Text.Trim();
+				user.SDT = txtSDT.Text.Trim();
+				user.Email = txtEmail.Text.Trim();
+				user.RoleID = roleID;
+				user.TenDangNhap = txtTenDangNhap.Text.Trim();
+                user.MatKhau = txtMatKhau.Text.Trim();
+				user.ChucVu = cboChucVu.Text;
+
+                bool success = await usv.UpdateUser(user);
+
+                if (success)
+                {
+					MessageBox.Show("Cập nhật thành công!", "Thành công",
+					MessageBoxButtons.OK, MessageBoxIcon.Information);
+					LoadData();
+					ClearInputs();
+				}
+                else MessageBox.Show("Cập nhật thất bại!", "Thất bại",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -198,53 +235,69 @@ namespace ShoeShop
 
             if (result == DialogResult.Yes)
             {
-                try
-                {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        string query = "DELETE FROM Users WHERE U_ID=@U_ID";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@U_ID", int.Parse(txtMaNV.Text));
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Xóa thành công!", "Thành công",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadData();
-                            ClearInputs();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DeleteUser();
             }
         }
 
+        private async Task DeleteUser()
+        {
+			try
+			{
+				int UID = int.Parse(txtMaNV.Text);
+                usv = new UserService();
+
+                bool success = await usv.DeleteUser(UID);
+
+                if (success)
+                {
+					MessageBox.Show("Xóa thành công!", "Thành công",
+					MessageBoxButtons.OK, MessageBoxIcon.Information);
+					LoadData();
+					ClearInputs();
+				}
+				else MessageBox.Show("Có lỗi khi xoá nhân viên!", "Thất bại",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"SELECT U_ID as 'Mã NV', HoTen as 'Họ tên', DiaChi as 'Địa chỉ', 
-                                    SDT as 'Số điện thoại', Email, ChucVu as 'Chức vụ', TenDangNhap as 'Tên đăng nhập' 
-                                    FROM Users 
-                                    WHERE RoleID IN (2, 4) AND (HoTen LIKE @Search OR SDT LIKE @Search OR Email LIKE @Search OR ChucVu LIKE @Search)";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@Search", "%" + txtTimKiem.Text + "%");
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    dgvNhanVien.DataSource = dt;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+			try
+			{
+				string keyword = txtTimKiem.Text.Trim().ToLower();
+
+				// Nếu không nhập gì → trả lại toàn bộ danh sách
+				if (string.IsNullOrEmpty(keyword))
+				{
+					dgvNhanVien.DataSource = users;
+					return;
+				}
+
+				var result = users.Where(user =>
+					   user.U_ID.ToString().Contains(keyword)
+					|| user.HoTen.ToLower().Contains(keyword)
+					|| user.DiaChi.ToLower().Contains(keyword)
+					|| user.SDT.ToLower().Contains(keyword)
+					|| user.Email.ToLower().Contains(keyword)
+					|| user.ChucVu.ToLower().Contains(keyword)
+					|| user.TenDangNhap.ToLower().Contains(keyword)
+				).ToList();
+
+				dgvNhanVien.DataSource = result;
+
+				// Auto Resize cho bảng Nhân viên
+				dgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Lỗi: " + ex.Message, "Lỗi",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
@@ -280,13 +333,64 @@ namespace ShoeShop
             txtMatKhau.Clear();
             cboChucVu.SelectedIndex = -1;
         }
-
-        private void FormQuanLyNhanVien_Load(object sender, EventArgs e)
-        {
-
-        }
         private void btnExportXML_Click(object sender, EventArgs e)
         {
+            ExportAsyncXML();
         }
-    }
+
+		private async void ExportAsyncXML()
+		{
+			using (SaveFileDialog sfd = new SaveFileDialog())
+			{
+				sfd.Filter = "XML files (*.xml)|*.xml";
+				sfd.Title = "Lưu file XML";
+				sfd.FileName = "NhanVien.xml";
+
+				if (sfd.ShowDialog() == DialogResult.OK)
+				{
+					try
+					{
+						// Lấy dữ liệu từ service
+						usv = new UserService();
+						List<UsersModel> users = await usv.GetAllUsers();
+
+						// Chuẩn hóa dữ liệu: chỉ giữ các trường đơn giản
+						var exportList = new List<UsersModel>();
+						foreach (var u in users)
+						{
+                            if(u.RoleID == 2 || u.RoleID == 4) 
+                                exportList.Add(new UsersModel
+							    {
+                                    U_ID = u.U_ID,
+                                    HoTen = u.HoTen,
+                                    DiaChi = u.DiaChi,
+                                    SDT = u.SDT,
+                                    Email = u.Email,
+                                    RoleID = u.RoleID,
+                                    TenDangNhap = u.TenDangNhap,
+                                    MatKhau = "********",
+                                    ChucVu = u.ChucVu
+							    });
+						}
+
+						// Serialize ra XML
+						XmlSerializer serializer = new XmlSerializer(typeof(List<UsersModel>));
+						using (var writer = new StreamWriter(sfd.FileName))
+						{
+							serializer.Serialize(writer, exportList);
+						}
+
+						// Hiển thị DataGridView (tùy chọn)
+						LoadData();
+
+						MessageBox.Show("Xuất XML thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+			}
+		}
+	}
 }

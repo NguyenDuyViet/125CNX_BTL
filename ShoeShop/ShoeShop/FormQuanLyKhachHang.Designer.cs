@@ -393,7 +393,6 @@
             Name = "FormQuanLyKhachHang";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý Khách hàng";
-            Load += FormQuanLyKhachHang_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             panelSearch.ResumeLayout(false);
