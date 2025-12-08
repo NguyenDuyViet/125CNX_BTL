@@ -13,52 +13,66 @@ namespace _125CNX_ECommerce.Controllers
         {
             var userId = HttpContext.Session.GetInt32("U_ID");
             
+            // Nếu chưa đăng nhập, yêu cầu đăng nhập
             if (userId == null)
             {
+                TempData["Error"] = "Vui lòng đăng nhập để xem giỏ hàng";
                 return RedirectToAction("Index", "Home");
             }
 
             var cartItems = new List<GioHangModel>();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string query = @"SELECT g.*, p.TenSP, p.Gia, p.Images, p.SoLuong as ProductStock, c.C_Name
-                                FROM GioHang g
-                                INNER JOIN Products p ON g.MaSP = p.MaSP
-                                INNER JOIN Categories c ON p.C_ID = c.C_ID
-                                WHERE g.U_ID = @U_ID";
-                
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@U_ID", userId);
-
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    cartItems.Add(new GioHangModel
+                    string query = @"SELECT g.GioHangID, g.U_ID, g.MaSP, g.SoLuong, g.NgayThem,
+                                    p.TenSP, p.Gia, p.Images, p.SoLuong as ProductStock, p.C_ID,
+                                    c.C_Name
+                                    FROM GioHang g
+                                    INNER JOIN Products p ON g.MaSP = p.MaSP
+                                    INNER JOIN Categories c ON p.C_ID = c.C_ID
+                                    WHERE g.U_ID = @U_ID
+                                    ORDER BY g.NgayThem DESC";
+                    
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@U_ID", userId);
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        GioHangID = Convert.ToInt32(reader["GioHangID"]),
-                        U_ID = Convert.ToInt32(reader["U_ID"]),
-                        MaSP = Convert.ToInt32(reader["MaSP"]),
-                        SoLuong = Convert.ToInt32(reader["SoLuong"]),
-                        NgayThem = Convert.ToDateTime(reader["NgayThem"]),
-                        Product = new ProductModel
+                        cartItems.Add(new GioHangModel
                         {
+                            GioHangID = Convert.ToInt32(reader["GioHangID"]),
+                            U_ID = Convert.ToInt32(reader["U_ID"]),
                             MaSP = Convert.ToInt32(reader["MaSP"]),
-                            TenSP = reader["TenSP"].ToString(),
-                            Gia = Convert.ToDecimal(reader["Gia"]),
-                            Images = reader["Images"].ToString(),
-                            SoLuong = Convert.ToInt32(reader["ProductStock"]),
-                            Category = new CategoriesModel
+                            SoLuong = Convert.ToInt32(reader["SoLuong"]),
+                            NgayThem = Convert.ToDateTime(reader["NgayThem"]),
+                            Product = new ProductModel
                             {
-                                C_Name = reader["C_Name"].ToString()
+                                MaSP = Convert.ToInt32(reader["MaSP"]),
+                                TenSP = reader["TenSP"].ToString(),
+                                Gia = Convert.ToDecimal(reader["Gia"]),
+                                Images = reader["Images"].ToString(),
+                                SoLuong = Convert.ToInt32(reader["ProductStock"]),
+                                C_ID = Convert.ToInt32(reader["C_ID"]),
+                                Category = new CategoriesModel
+                                {
+                                    C_Name = reader["C_Name"].ToString()
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Lỗi khi tải giỏ hàng: {ex.Message}";
+            }
 
+            ViewBag.UserId = userId;
             return View(cartItems);
         }
 
@@ -69,10 +83,11 @@ namespace _125CNX_ECommerce.Controllers
         {
             var userId = HttpContext.Session.GetInt32("U_ID");
             
+            // Nếu chưa đăng nhập, yêu cầu đăng nhập
             if (userId == null)
             {
-                userId = 1;
-                HttpContext.Session.SetInt32("U_ID", 1);
+                TempData["Error"] = "Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng";
+                return RedirectToAction("Index", "Home");
             }
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -177,6 +192,247 @@ namespace _125CNX_ECommerce.Controllers
                 TempData["Success"] = "Đã xóa toàn bộ giỏ hàng";
             }
             return RedirectToAction("Index");
+        }
+
+        // GET: /Cart/Debug - For testing
+        public IActionResult Debug()
+        {
+            var userId = HttpContext.Session.GetInt32("U_ID");
+            var debugInfo = new
+            {
+                SessionUserId = userId,
+                HasSession = userId != null,
+                CartCount = 0
+            };
+
+            if (userId != null)
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = "SELECT COUNT(*) FROM GioHang WHERE U_ID = @U_ID";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@U_ID", userId);
+
+                    conn.Open();
+                    debugInfo = new
+                    {
+                        SessionUserId = userId,
+                        HasSession = true,
+                        CartCount = Convert.ToInt32(cmd.ExecuteScalar())
+                    };
+                }
+            }
+
+            return Json(debugInfo);
+        }
+
+        // POST: /Cart/Checkout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Checkout()
+        {
+            var userId = HttpContext.Session.GetInt32("U_ID");
+            
+            if (userId == null)
+            {
+                TempData["Error"] = "Vui lòng đăng nhập để thanh toán";
+                return RedirectToAction("Index", "Home");
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        // 1. Lấy thông tin giỏ hàng
+                        string getCartQuery = @"SELECT g.MaSP, g.SoLuong, p.Gia 
+                                               FROM GioHang g
+                                               INNER JOIN Products p ON g.MaSP = p.MaSP
+                                               WHERE g.U_ID = @U_ID";
+                        
+                        SqlCommand getCartCmd = new SqlCommand(getCartQuery, conn, transaction);
+                        getCartCmd.Parameters.AddWithValue("@U_ID", userId);
+
+                        var cartItems = new List<(int MaSP, int SoLuong, decimal Gia)>();
+                        decimal totalAmount = 0;
+
+                        SqlDataReader reader = getCartCmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int maSP = Convert.ToInt32(reader["MaSP"]);
+                            int soLuong = Convert.ToInt32(reader["SoLuong"]);
+                            decimal gia = Convert.ToDecimal(reader["Gia"]);
+                            
+                            cartItems.Add((maSP, soLuong, gia));
+                            totalAmount += gia * soLuong;
+                        }
+                        reader.Close();
+
+                        if (cartItems.Count == 0)
+                        {
+                            transaction.Rollback();
+                            TempData["Error"] = "Giỏ hàng trống!";
+                            return RedirectToAction("Index");
+                        }
+
+                        // Thêm phí ship nếu < 500K
+                        if (totalAmount < 500000)
+                        {
+                            totalAmount += 30000;
+                        }
+
+                        // 2. Tạo đơn hàng
+                        string createOrderQuery = @"INSERT INTO DonHang (MaKH, NgayDat, TongTien, TrangThai) 
+                                                   OUTPUT INSERTED.MaDH
+                                                   VALUES (@MaKH, @NgayDat, @TongTien, @TrangThai)";
+                        
+                        SqlCommand createOrderCmd = new SqlCommand(createOrderQuery, conn, transaction);
+                        createOrderCmd.Parameters.AddWithValue("@MaKH", userId);
+                        createOrderCmd.Parameters.AddWithValue("@NgayDat", DateTime.Now);
+                        createOrderCmd.Parameters.AddWithValue("@TongTien", totalAmount);
+                        createOrderCmd.Parameters.AddWithValue("@TrangThai", "Chờ xác nhận");
+
+                        int orderId = Convert.ToInt32(createOrderCmd.ExecuteScalar());
+
+                        // 3. Tạo chi tiết đơn hàng
+                        foreach (var item in cartItems)
+                        {
+                            string createDetailQuery = @"INSERT INTO ChiTietDonHang (MaDH, MaSP, SoLuong, DonGia) 
+                                                        VALUES (@MaDH, @MaSP, @SoLuong, @DonGia)";
+                            
+                            SqlCommand createDetailCmd = new SqlCommand(createDetailQuery, conn, transaction);
+                            createDetailCmd.Parameters.AddWithValue("@MaDH", orderId);
+                            createDetailCmd.Parameters.AddWithValue("@MaSP", item.MaSP);
+                            createDetailCmd.Parameters.AddWithValue("@SoLuong", item.SoLuong);
+                            createDetailCmd.Parameters.AddWithValue("@DonGia", item.Gia);
+                            createDetailCmd.ExecuteNonQuery();
+
+                            // Giảm số lượng sản phẩm trong kho
+                            string updateStockQuery = "UPDATE Products SET SoLuong = SoLuong - @SoLuong WHERE MaSP = @MaSP";
+                            SqlCommand updateStockCmd = new SqlCommand(updateStockQuery, conn, transaction);
+                            updateStockCmd.Parameters.AddWithValue("@SoLuong", item.SoLuong);
+                            updateStockCmd.Parameters.AddWithValue("@MaSP", item.MaSP);
+                            updateStockCmd.ExecuteNonQuery();
+                        }
+
+                        // 4. Xóa giỏ hàng
+                        string clearCartQuery = "DELETE FROM GioHang WHERE U_ID = @U_ID";
+                        SqlCommand clearCartCmd = new SqlCommand(clearCartQuery, conn, transaction);
+                        clearCartCmd.Parameters.AddWithValue("@U_ID", userId);
+                        clearCartCmd.ExecuteNonQuery();
+
+                        // Commit transaction
+                        transaction.Commit();
+
+                        // Redirect đến trang thông báo thành công
+                        return RedirectToAction("OrderSuccess", new { orderId = orderId });
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        TempData["Error"] = $"Lỗi khi tạo đơn hàng: {ex.Message}";
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Lỗi hệ thống: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        // GET: /Cart/OrderSuccess
+        public IActionResult OrderSuccess(int orderId)
+        {
+            var userId = HttpContext.Session.GetInt32("U_ID");
+            
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Lấy thông tin đơn hàng
+            DonHangModel order = null;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT MaDH, MaKH, NgayDat, TongTien, TrangThai 
+                                FROM DonHang 
+                                WHERE MaDH = @MaDH AND MaKH = @MaKH";
+                
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaDH", orderId);
+                cmd.Parameters.AddWithValue("@MaKH", userId);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    order = new DonHangModel
+                    {
+                        MaDH = Convert.ToInt32(reader["MaDH"]),
+                        MaKH = Convert.ToInt32(reader["MaKH"]),
+                        NgayDat = Convert.ToDateTime(reader["NgayDat"]),
+                        TongTien = Convert.ToDecimal(reader["TongTien"]),
+                        TrangThai = reader["TrangThai"].ToString()
+                    };
+                }
+            }
+
+            if (order == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(order);
+        }
+
+        // GET: /Cart/MyOrders
+        public IActionResult MyOrders()
+        {
+            var userId = HttpContext.Session.GetInt32("U_ID");
+            
+            if (userId == null)
+            {
+                TempData["Error"] = "Vui lòng đăng nhập để xem đơn hàng";
+                return RedirectToAction("Index", "Home");
+            }
+
+            var orders = new List<DonHangModel>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT MaDH, MaKH, NgayDat, TongTien, TrangThai 
+                                FROM DonHang 
+                                WHERE MaKH = @MaKH
+                                ORDER BY NgayDat DESC";
+                
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaKH", userId);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    orders.Add(new DonHangModel
+                    {
+                        MaDH = Convert.ToInt32(reader["MaDH"]),
+                        MaKH = Convert.ToInt32(reader["MaKH"]),
+                        NgayDat = Convert.ToDateTime(reader["NgayDat"]),
+                        TongTien = Convert.ToDecimal(reader["TongTien"]),
+                        TrangThai = reader["TrangThai"].ToString()
+                    });
+                }
+            }
+
+            return View(orders);
         }
     }
 }

@@ -130,15 +130,51 @@ INSERT INTO Users (HoTen, DiaChi, SDT, Email, RoleID, TenDangNhap, MatKhau, Chuc
 
 -- Sản phẩm
 INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images) VALUES
-(N'Giày Sneaker Nike Air 42 trắng', 1, N'42', N'Trắng', 1500000, 20, N'https://sneakerdouble.net/wp-content/uploads/2023/07/image-4-compressed.jpg'),
+-- Sneaker
+(N'Giày Sneaker Nike Air 42 ', 1, N'42', N'Trắng', 1500000, 20, N'https://sneakerdouble.net/wp-content/uploads/2023/07/image-4-compressed.jpg'),
 (N'Giày Sneaker Nike Air 43 đen', 1, N'43', N'Đen', 1550000, 25, N'https://i.pinimg.com/474x/1f/80/b8/1f80b82585f81b4d75f14cab8ef42d32.jpg'),
+(N'Giày Sneaker Adidas ', 1, N'40', N'Đen', 1800000, 18, N'https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2022/10/giay-the-thao-adidas-pharrell-williams-ultraboost-dna-shoes-h01893-mau-den-size-40-63438da211836-10102022101234.jpg'),
+(N'Giày Sneaker Nike Jordan  ', 1, N'42', N'Trắng/Đỏ', 2100000, 15, N'https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2022/11/giay-the-thao-nike-air-jordan-1-low-reverse-black-toe-dc0774-160-mau-do-trang-size-43-638430ce90e8f-28112022105350.jpg'),
+(N'Giày Sneaker Nike Air Force 1 ', 1, N'41', N'Trắng', 1900000, 22, N'https://item-shopping.c.yimg.jp/i/n/joyfoot_dv0788-100'),
+(N'Giày Sneaker Adidas Stan ', 1, N'40', N'Trắng/Xanh', 1650000, 20, N'https://giaysneakerhcm.com/wp-content/uploads/2018/06/giay-stan-smith-got-xanh-la-4.jpeg'),
+(N'Giày Sneaker Puma RS-X ', 1, N'43', N'Trắng/Xanh', 1750000, 18, N'https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2023/06/giay-the-thao-puma-rebound-game-row-sneakers-386373-mau-trang-xanh-green-size-40-5-64993f5b5d072-26062023143347.jpg'),
+(N'Giày Sneaker Converse  ', 1, N'42', N'Đen', 1500000, 25, N'https://cf.shopee.vn/file/857a2dc8ba76c87b763b71f786067cee'),
+(N'Giày Sneaker Vans Old Skool', 1, N'41', N'Đen/Trắng', 1450000, 30, N'https://down-br.img.susercontent.com/file/br-11134201-23010-e5oypgsrzjmv2f'),
+
+-- Sandal
 (N'Sandal Nữ quai ngang đen', 2, N'38', N'Đen', 460000, 40, N'https://shop.r10s.jp/ferrisota/cabinet/3123/168690406-1.jpg'),
 (N'Sandal Nữ quai ngang hồng', 2, N'37', N'Hồng', 450000, 30, N'https://image.rakuten.co.jp/windyshop/cabinet/sandals/sandals-20a005_1.jpg'),
+(N'Sandal nam quai ngang ', 2, N'42', N'Đen', 350000, 40, N'https://product.hstatic.net/200000104423/product/hunter_sd_11009__3__copy_8f838f68d11c4b709c940b8f944bd21e_master.jpg'),
+(N'Sandal nữ đế bệt trắng ', 2, N'37', N'Trắng', 380000, 35, N'https://cf.shopee.vn/file/bbc75114e9109dd49f777df7cb0244bb'),
+(N'Sandal nữ cao 5cm kem', 2, N'38', N'Kem', 420000, 25, N'https://cdn.shop-list.com/res/up/shoplist/shp/__thum370__/styleblock/94/sb-sandal194_5.jpg'),
+(N'Sandal nam kiểu Hàn Quốc ', 2, N'43', N'Nâu', 390000, 28, N'https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/68cbbf7e9d81da6c4c2c282b8489e686.jpg'),
+(N'Sandal nữ quai mảnh ', 2, N'36', N'Hồng', 450000, 32, N'https://static.dafiti.com.br/p/Klin-Sand%C3%A1lia-Infantil-Klin-Suami-Rosa-2502-05172831-1-zoom.jpg'),
+
+-- Cao gót
 (N'Giày cao gót 9cm đỏ', 3, N'38', N'Đỏ', 700000, 15, N'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-md0mnyyw5zfgd2'),
+(N'Giày cao gót 7cm mũi nhọn ', 3, N'37', N'Đen', 650000, 18, N'https://agiay.vn/wp-content/uploads/2022/08/1.dior-min-1024x1024.jpg'),
+(N'Giày cao gót 5cm quai trong', 3, N'38', N'Trắng Trong', 620000, 22, N'https://elise.vn/media/catalog/product/cache/bb52e54e5ec1828d48ae8bf7c98f9f69/f/s/fs2105003fslebk.jpg'),
+(N'Giày cao gót 9cm ánh kim ', 3, N'39', N'Bạc', 780000, 12, N'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lqdnbtd4c30705'),
+(N'Giày cao gót mũi vuông nude', 3, N'37', N'Nude', 690000, 20, N'https://cdn.chiaki.vn/unsafe/0x900/left/top/smart/filters:quality(90)/https://chiaki.vn/upload/product/2022/11/dep-sandals-charles-keith-ankle-strap-stacked-heel-ck1-60190301-chalk-636c5a4821894-10112022085624.jpg'),
+(N'Giày cao gót slingback 6cm ', 3, N'38', N'Đỏ đô', 720000, 14, N'https://tse1.mm.bing.net/th/id/OIP.CDgvIjqz8m1FDOE6jJtPAgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3'),
+
+-- Dép
 (N'Dép lê nam Adidas xanh', 4, N'42', N'Xanh', 320000, 50, N'https://www.sportzon.rs/files/thumbs/files/images/slike_proizvoda/thumbs_600/F35541_600_900px.jpg'),
+(N'Dép lê nam Nike đen trắng', 4, N'43', N'Đen/Trắng', 350000, 50, N'https://tse3.mm.bing.net/th/id/OIP.NvKwYmyGBci6c_rNtLvLWwHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain&o=7&rm=3'),
+(N'Dép thời trang nữ màu ', 4, N'37', N'Hồng', 220000, 45, N'https://tse2.mm.bing.net/th/id/OIP.9LSQhce0kCDdipO-3x6-AQHaFn?rs=1&pid=ImgDetMain&o=7&rm=3'),
+(N'Dép kẹp nam Adidas đen', 4, N'42', N'Đen', 300000, 60, N'https://down-id.img.susercontent.com/file/id-11134207-7rase-m3mccqm0livo7f'),
+(N'Dép lông nữ màu kem ', 4, N'36', N'Kem', 180000, 55, N'https://down-vn.img.susercontent.com/file/sg-11134201-7rcev-ltdejpqqx9qs75'),
+(N'Dép tổ ong truyền thống vàng', 4, N'41', N'Vàng', 120000, 80, N'https://sieuthisieure.vn/SalesUploads/141/19082018/128833aa-b04f-42e8-a5fc-9f1eec8a9ad6.jpg'),
+
+-- Boot
 (N'Boot nữ da lộn nâu', 5, N'36', N'Nâu', 1200000, 8, N'https://di2ponv0v5otw.cloudfront.net/posts/2023/01/04/63b5aff1f8c5da45a337b56e/m_63b5afff8d7a3c6cc9f9c92b.jpg'),
-(N'Giày Sneaker Adidas Ultraboost', 1, N'40', N'Đen', 1800000, 18, N'https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2022/10/giay-the-thao-adidas-pharrell-williams-ultraboost-dna-shoes-h01893-mau-den-size-40-63438da211836-10102022101234.jpg');
--- Đơn hàng
+(N'Boot nữ cổ ngắn đen', 5, N'37', N'Đen', 1350000, 10, N'https://giaybootnu.com/kcfinder/upload/images/GBN-32/boot-de-tret-cot-day-mau-den-xinh-xan-08.jpg'),
+(N'Boot nữ da bóng cổ cao', 5, N'38', N'Đen', 1450000, 8, N'https://tse4.mm.bing.net/th/id/OIP.q5sXSifoo24QoLjwJ1rwZgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3'),
+(N'Boot nam da bò nâu', 5, N'42', N'Nâu', 1600000, 12, N'https://forshoes.vn/wp-content/uploads/2024/03/Goc-1-6.webp'),
+(N'Boot nữ da lộn cao cổ xám', 5, N'36', N'Xám', 1300000, 9, N'https://cf.shopee.vn/file/c2ef3ab21abfb0a62f27a416e15554ef'),
+(N'Boot nam Chelsea đen', 5, N'41', N'Đen', 1750000, 14, N'https://www.sohada.vn/wp-content/uploads/2022/11/z3904227141861a0cd1549f6fb6aac9fdbefca74489fbd.jpg'),
+(N'Boot nữ đế cao 7cm màu kem', 5, N'37', N'Kem', 1400000, 11, N'https://tse4.mm.bing.net/th/id/OIP.niAYJRi0EAS0KxOKedG9iwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3');
+--đơn hàng
 INSERT INTO DonHang (MaKH, NgayDat, TongTien, TrangThai) VALUES
 (1, '2025-10-10', 1550000, N'Chờ xác nhận'),
 (2, '2025-10-12', 450000, N'Đã giao'),
@@ -167,21 +203,21 @@ INSERT INTO ThanhToan (MaHD, PhuongThuc, SoTien, NgayTT, TrangThai) VALUES
 (2, N'Tiền mặt', 450000, '2025-10-12', N'Hoàn tất'),
 (3, N'Chuyển khoản', 320000, '2025-10-15', N'Hoàn tất');
 
--- Yêu thích sản phẩm
-INSERT INTO Wishlist (U_ID, MaSP) VALUES
-(1, 1), (1, 2),           -- User 1 thích sp 1, 2
-(2, 1),                   -- User 2 thích sp 1
-(3, 7),                   -- Nhân viên cũng có thể thích sản phẩm (tuỳ business)
-(6, 3), (6, 4);           -- User 6 thích sp 3, 4
+-- Yêu thích sản phẩm (Dữ liệu mẫu - có thể bỏ comment nếu cần test)
+-- INSERT INTO Wishlist (U_ID, MaSP) VALUES
+-- (1, 1), (1, 2),           -- User 1 thích sp 1, 2
+-- (2, 1),                   -- User 2 thích sp 1
+-- (3, 7),                   -- Nhân viên cũng có thể thích sản phẩm (tuỳ business)
+-- (6, 3), (6, 4);           -- User 6 thích sp 3, 4
 
--- Giỏ hàng (U_ID, MaSP, SoLuong)
-INSERT INTO GioHang (U_ID, MaSP, SoLuong) VALUES
-(1, 2, 2),
-(1, 6, 1),
-(2, 3, 1),
-(2, 4, 1),
-(6, 1, 1),
-(6, 5, 2);
+-- Giỏ hàng (U_ID, MaSP, SoLuong) (Dữ liệu mẫu - có thể bỏ comment nếu cần test)
+-- INSERT INTO GioHang (U_ID, MaSP, SoLuong) VALUES
+-- (1, 2, 2),
+-- (1, 6, 1),
+-- (2, 3, 1),
+-- (2, 4, 1),
+-- (6, 1, 1),
+-- (6, 5, 2);
 
 -- Chi tiết hóa đơn
 INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong, DonGia) VALUES
