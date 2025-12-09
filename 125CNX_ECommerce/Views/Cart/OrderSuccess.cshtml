@@ -70,25 +70,54 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="step pending">
+                                        <div class="step @(Model.TrangThai == "Chờ xác nhận" ? "pending" : (Model.TrangThai == "Đã xác nhận" || Model.TrangThai == "Đang giao" || Model.TrangThai == "Đã giao" ? "active" : ""))">
                                             <div class="step-icon">
-                                                <i class="bi bi-clock"></i>
+                                                @if (Model.TrangThai == "Chờ xác nhận")
+                                                {
+                                                    <i class="bi bi-clock"></i>
+                                                }
+                                                else if (Model.TrangThai == "Đã xác nhận" || Model.TrangThai == "Đang giao" || Model.TrangThai == "Đã giao")
+                                                {
+                                                    <i class="bi bi-check-circle-fill"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="bi bi-clock"></i>
+                                                }
                                             </div>
                                             <small class="d-block mt-2">Chờ duyệt</small>
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="step">
+                                        <div class="step @(Model.TrangThai == "Đang giao" ? "pending" : (Model.TrangThai == "Đã giao" ? "active" : ""))">
                                             <div class="step-icon">
-                                                <i class="bi bi-truck"></i>
+                                                @if (Model.TrangThai == "Đang giao")
+                                                {
+                                                    <i class="bi bi-truck"></i>
+                                                }
+                                                else if (Model.TrangThai == "Đã giao")
+                                                {
+                                                    <i class="bi bi-check-circle-fill"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="bi bi-truck"></i>
+                                                }
                                             </div>
                                             <small class="d-block mt-2">Giao hàng</small>
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="step">
+                                        <div class="step @(Model.TrangThai == "Đã giao" ? "active" : "")">
                                             <div class="step-icon">
-                                                <i class="bi bi-box-seam"></i>
+                                                @if (Model.TrangThai == "Đã giao")
+                                                {
+                                                    <i class="bi bi-check-circle-fill"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="bi bi-box-seam"></i>
+                                                }
                                             </div>
                                             <small class="d-block mt-2">Hoàn thành</small>
                                         </div>
@@ -185,11 +214,34 @@
         content: '';
         position: absolute;
         top: 20px;
-        left: 12.5%;
-        right: 12.5%;
+        left: 18%;
+        right: 18%;
         height: 2px;
         background: #e0e0e0;
         z-index: 0;
+    }
+
+    .timeline-steps::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 18%;
+        height: 2px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        z-index: 0;
+        transition: width 0.5s ease;
+    }
+
+    @{
+        var progressWidth = "0%";
+        if (Model.TrangThai == "Chờ xác nhận") progressWidth = "0%";
+        else if (Model.TrangThai == "Đã xác nhận") progressWidth = "33.33%";
+        else if (Model.TrangThai == "Đang giao") progressWidth = "66.66%";
+        else if (Model.TrangThai == "Đã giao") progressWidth = "100%";
+    }
+
+    .timeline-steps::after {
+        width: @progressWidth;
     }
 
     .step {

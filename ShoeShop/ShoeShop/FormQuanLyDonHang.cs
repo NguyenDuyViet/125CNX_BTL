@@ -40,10 +40,13 @@ namespace ShoeShop
 				dgvDonHang.DataSource = dt;
 				// Auto Resize cho bảng đơn hàng
 				dgvDonHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+				
+				// Cập nhật tiêu đề form với số lượng đơn hàng
+				this.Text = $"Quản lý đơn hàng ({donhangs.Count} đơn)";
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Lỗi: " + ex.Message);
+				MessageBox.Show($"Lỗi khi tải dữ liệu:\n{ex.Message}\n\nChi tiết: {ex.InnerException?.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 

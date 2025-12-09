@@ -10,35 +10,49 @@ namespace ShoeShop.DAO
 		{
 			List<DonHangModel> list = new List<DonHangModel>();
 			CSDBConnection db = new CSDBConnection();
-			SqlConnection conn = db.Connection();
-			await conn.OpenAsync();
-
-			string query = @"
-							SELECT 
-								dh.MaDH, 
-								dh.MaKH,
-								u.HoTen AS TenKhachHang,
-								dh.NgayDat, 
-								dh.TongTien, 
-								dh.TrangThai
-							FROM DonHang dh
-							LEFT JOIN Users u ON dh.MaKH = u.U_ID";
-			SqlCommand cmd = new SqlCommand(query, conn);
-			SqlDataReader reader = await cmd.ExecuteReaderAsync();
-
-			while (await reader.ReadAsync())
+			
+			using (SqlConnection conn = db.Connection())
 			{
-				list.Add(new DonHangModel
+				try
 				{
-					MaDH = reader.GetInt32(0),
-					MaKH = reader.GetInt32(1),
-					TenKhachHang = reader.IsDBNull(2) ? "" : reader.GetString(2),
-					NgayDat = reader.GetDateTime(3),
-					TongTien = reader.GetDecimal(4),
-					TrangThai = reader.GetString(5)
-				});
+					await conn.OpenAsync();
+
+					string query = @"
+								SELECT 
+									dh.MaDH, 
+									dh.MaKH,
+									u.HoTen AS TenKhachHang,
+									dh.NgayDat, 
+									dh.TongTien, 
+									dh.TrangThai
+								FROM DonHang dh
+								LEFT JOIN Users u ON dh.MaKH = u.U_ID
+								ORDER BY dh.NgayDat DESC";
+					
+					using (SqlCommand cmd = new SqlCommand(query, conn))
+					{
+						using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+						{
+							while (await reader.ReadAsync())
+							{
+								list.Add(new DonHangModel
+								{
+									MaDH = reader.GetInt32(0),
+									MaKH = reader.GetInt32(1),
+									TenKhachHang = reader.IsDBNull(2) ? "Khách vãng lai" : reader.GetString(2),
+									NgayDat = reader.GetDateTime(3),
+									TongTien = reader.GetDecimal(4),
+									TrangThai = reader.GetString(5)
+								});
+							}
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+					throw new Exception($"Lỗi khi lấy danh sách đơn hàng: {ex.Message}", ex);
+				}
 			}
-			conn.CloseAsync();
 
 			return list;
 		}
