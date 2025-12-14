@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <HoaDon>
+    <MaHD>1</MaHD>
+    <MaDH>1</MaDH>
+    <NgayLap>2025-10-10T00:00:00+07:00</NgayLap>
+    <TongTien>1550000.00</TongTien>
+    <TrangThai>Chưa thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>2</MaHD>
+    <MaDH>2</MaDH>
+    <NgayLap>2025-10-12T00:00:00+07:00</NgayLap>
+    <TongTien>450000.00</TongTien>
+    <TrangThai>Đã thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>3</MaHD>
+    <MaDH>3</MaDH>
+    <NgayLap>2025-10-15T00:00:00+07:00</NgayLap>
+    <TongTien>320000.00</TongTien>
+    <TrangThai>Chưa thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>4</MaHD>
+    <MaDH>4</MaDH>
+    <NgayLap>2025-10-16T00:00:00+07:00</NgayLap>
+    <TongTien>700000.00</TongTien>
+    <TrangThai>Đã hủy</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>5</MaHD>
+    <MaDH>5</MaDH>
+    <NgayLap>2025-10-22T00:00:00+07:00</NgayLap>
+    <TongTien>1200000.00</TongTien>
+    <TrangThai>Chưa thanh toán</TrangThai>
+  </HoaDon>
+</NewDataSet>

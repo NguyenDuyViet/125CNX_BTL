@@ -1,0 +1,113 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Users>
+    <U_ID>1</U_ID>
+    <HoTen>Nguyễn Văn An</HoTen>
+    <DiaChi>12 Lê Lợi, Hà Nội</DiaChi>
+    <SDT>0901234567</SDT>
+    <Email>an@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>an123</TenDangNhap>
+    <MatKhau>123456</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>2</U_ID>
+    <HoTen>Lê Thị B</HoTen>
+    <DiaChi>22 Nguyễn Huệ, Huế</DiaChi>
+    <SDT>0911987687</SDT>
+    <Email>btle@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>letb</TenDangNhap>
+    <MatKhau>123456</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>3</U_ID>
+    <HoTen>Nguyễn Hồng Quân</HoTen>
+    <DiaChi>15 Pasteur, TP.HCM</DiaChi>
+    <SDT>0978661234</SDT>
+    <Email>quanhnv@gmail.com</Email>
+    <RoleID>2</RoleID>
+    <TenDangNhap>quanhnv</TenDangNhap>
+    <MatKhau>123</MatKhau>
+    <ChucVu>Bán hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>4</U_ID>
+    <HoTen>Phạm Thị Hoa</HoTen>
+    <DiaChi>Kho hàng</DiaChi>
+    <SDT>0988008877</SDT>
+    <Email>hoapt@gmail.com</Email>
+    <RoleID>2</RoleID>
+    <TenDangNhap>hoapt</TenDangNhap>
+    <MatKhau>123</MatKhau>
+    <ChucVu>Kho</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>5</U_ID>
+    <HoTen>Hoàng Minh</HoTen>
+    <DiaChi>KT, Hà Nội</DiaChi>
+    <SDT>0933445566</SDT>
+    <Email>minhhm@gmail.com</Email>
+    <RoleID>4</RoleID>
+    <TenDangNhap>minhhm</TenDangNhap>
+    <MatKhau>123</MatKhau>
+    <ChucVu>Quản lý</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>6</U_ID>
+    <HoTen>Trần Mai</HoTen>
+    <DiaChi>24 Hai Bà Trưng, Hà Nội</DiaChi>
+    <SDT>0966112211</SDT>
+    <Email>maitr@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>traimai</TenDangNhap>
+    <MatKhau>123</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>7</U_ID>
+    <HoTen>Nguyễn Duy Việt</HoTen>
+    <DiaChi>70 Phú Thạnh, Huế</DiaChi>
+    <SDT>0335903401</SDT>
+    <Email>duyvietnguyen0805@gmail.com</Email>
+    <RoleID>1</RoleID>
+    <TenDangNhap>duyvietadmin</TenDangNhap>
+    <MatKhau>Abc123456@</MatKhau>
+    <ChucVu>Admin</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>8</U_ID>
+    <HoTen>Nguyễn Văn Luỹ</HoTen>
+    <DiaChi>Gò Vấp, Hà Nội</DiaChi>
+    <SDT>0366767848</SDT>
+    <Email>vanluy@gmail.com</Email>
+    <RoleID>2</RoleID>
+    <TenDangNhap>vanluy123</TenDangNhap>
+    <MatKhau>Abc123456@</MatKhau>
+    <ChucVu>Bán hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>9</U_ID>
+    <HoTen>Nguyễn Duy Việt</HoTen>
+    <DiaChi>Phú Vang, Huế</DiaChi>
+    <SDT>0335903401</SDT>
+    <Email>duyvietnguyen0805@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>duyvietuser</TenDangNhap>
+    <MatKhau>Abc123456@</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>10</U_ID>
+    <HoTen>Nguyễn Duy Gôn</HoTen>
+    <DiaChi>Hoà Tây, Phú Vang, TP Huế</DiaChi>
+    <SDT>0354048101</SDT>
+    <Email>duygon1507@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>gojo</TenDangNhap>
+    <MatKhau>123456</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+</NewDataSet>

@@ -1,5 +1,320 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<_125CNX_ECommerce.Models.ProductModel>
 @{
+    ViewData["Title"] = "Tất cả sản phẩm";
 }
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-3">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Sản phẩm</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-white fw-bold mb-2">
+                    <i class="bi bi-grid-3x3-gap me-2"></i>Tất cả sản phẩm
+                </h1>
+                <p class="text-white-50 mb-0">Khám phá bộ sưu tập giày đa dạng của chúng tôi</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="text-white">
+                    <h3 class="fw-bold mb-0">@Model.Count()</h3>
+                    <small>Sản phẩm</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Filters -->
+            <div class="col-lg-3 mb-4">
+                <div class="filters-sidebar">
+                    <!-- Category Filter -->
+                    <div class="filter-card card border-0 shadow-sm mb-3">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">
+                                <i class="bi bi-funnel me-2 text-primary"></i>Danh mục
+                            </h6>
+                            <div class="list-group list-group-flush">
+                                <a href="/Product" class="list-group-item list-group-item-action border-0 @(string.IsNullOrEmpty(ViewBag.CurrentCategory) ? "active" : "")">
+                                    <i class="bi bi-grid me-2"></i>Tất cả sản phẩm
+                                    <span class="badge bg-primary float-end">@Model.Count()</span>
+                                </a>
+                                @if (ViewBag.Categories != null)
+                                {
+                                    @foreach (var cat in (List<_125CNX_ECommerce.Models.CategoriesModel>)ViewBag.Categories)
+                                    {
+                                        var count = Model.Count(p => p.C_ID == cat.C_ID);
+                                        <a href="/Product?category=@cat.C_Name" class="list-group-item list-group-item-action border-0 @(ViewBag.CurrentCategory == cat.C_Name ? "active" : "")">
+                                            <i class="bi bi-tag me-2"></i>@cat.C_Name
+                                            <span class="badge bg-light text-dark float-end">@count</span>
+                                        </a>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-card card border-0 shadow-sm mb-3">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">
+                                <i class="bi bi-cash-stack me-2 text-success"></i>Khoảng giá
+                            </h6>
+                            <form action="/Product" method="get">
+                                @if (!string.IsNullOrEmpty(ViewBag.CurrentCategory))
+                                {
+                                    <input type="hidden" name="category" value="@ViewBag.CurrentCategory" />
+                                }
+                                <div class="mb-3">
+                                    <label class="form-label small">Từ:</label>
+                                    <input type="number" name="minPrice" class="form-control form-control-sm" placeholder="0đ" value="@ViewBag.MinPrice">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small">Đến:</label>
+                                    <input type="number" name="maxPrice" class="form-control form-control-sm" placeholder="10,000,000đ" value="@ViewBag.MaxPrice">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm w-100">
+                                    <i class="bi bi-search me-1"></i>Lọc giá
+                                </button>
+                            </form>
+                            <div class="mt-3">
+                                <small class="text-muted d-block mb-1">Gợi ý:</small>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <a href="/Product?maxPrice=500000" class="badge bg-light text-dark text-decoration-none">Dưới 500K</a>
+                                    <a href="/Product?minPrice=500000&maxPrice=1000000" class="badge bg-light text-dark text-decoration-none">500K - 1M</a>
+                                    <a href="/Product?minPrice=1000000&maxPrice=2000000" class="badge bg-light text-dark text-decoration-none">1M - 2M</a>
+                                    <a href="/Product?minPrice=2000000" class="badge bg-light text-dark text-decoration-none">Trên 2M</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Info -->
+                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="card-body text-white text-center">
+                            <i class="bi bi-lightning-fill fs-1 mb-2"></i>
+                            <h6 class="fw-bold">Flash Sale</h6>
+                            <p class="small mb-3">Giảm đến 50% cho sản phẩm được chọn</p>
+                            <a href="#" class="btn btn-light btn-sm">Xem ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="col-lg-9">
+                <!-- Toolbar -->
+                <div class="products-toolbar d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded">
+                    <div>
+                        <span class="text-muted">Hiển thị <strong>@Model.Count()</strong> sản phẩm</span>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <label class="mb-0 me-2 small">Sắp xếp:</label>
+                        <select class="form-select form-select-sm" style="width: auto;" onchange="window.location.href='/Product?category=@ViewBag.CurrentCategory&sort=' + this.value">
+                            <option value="">Mặc định</option>
+                            <option value="newest" @@(ViewBag.CurrentSort == "newest" ? "selected" : "")>Mới nhất</option>
+                            <option value="price-asc" @@(ViewBag.CurrentSort == "price-asc" ? "selected" : "")>Giá: Thấp → Cao</option>
+                            <option value="price-desc" @@(ViewBag.CurrentSort == "price-desc" ? "selected" : "")>Giá: Cao → Thấp</option>
+                            <option value="name-asc" @@(ViewBag.CurrentSort == "name-asc" ? "selected" : "")>Tên: A → Z</option>
+                            <option value="name-desc" @@(ViewBag.CurrentSort == "name-desc" ? "selected" : "")>Tên: Z → A</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                @if (Model.Any())
+                {
+                    <div class="row g-4">
+                        @foreach (var product in Model)
+                        {
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product-card-modern">
+                                    <div class="card border-0 shadow-sm h-100">
+                                        <div class="position-relative overflow-hidden">
+                                            <a href="/Product/Details/@product.MaSP">
+                                                <img src="@product.Images" class="card-img-top product-image" alt="@product.TenSP" style="height: 250px; object-fit: cover;">
+                                            </a>
+                                            <div class="product-badges">
+                                                @if (product.SoLuong < 10)
+                                                {
+                                                    <span class="badge bg-danger">Sắp hết</span>
+                                                }
+                                                @if (product.SoLuong == 0)
+                                                {
+                                                    <span class="badge bg-dark">Hết hàng</span>
+                                                }
+                                                @if (product.Gia < 500000)
+                                                {
+                                                    <span class="badge bg-warning text-dark">HOT</span>
+                                                }
+                                            </div>
+                                            <div class="product-overlay">
+                                                <button type="button" class="btn btn-light btn-sm rounded-circle me-2" title="Yêu thích" onclick="toggleWishlist(@(product.MaSP), this)">
+                                                    <i class="bi bi-heart"></i>
+                                                </button>
+                                                <a href="/Product/Details/@product.MaSP" class="btn btn-light btn-sm rounded-circle me-2" title="Xem chi tiết">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a href="/Wishlist" class="btn btn-light btn-sm rounded-circle" title="Xem yêu thích">
+                                                    <i class="bi bi-heart-fill"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-2">
+                                                <span class="badge bg-light text-dark border">@product.Category.C_Name</span>
+                                            </div>
+                                            <h6 class="card-title mb-2">
+                                                <a href="/Product/Details/@product.MaSP" class="text-decoration-none text-dark">
+                                                    @product.TenSP
+                                                </a>
+                                            </h6>
+                                            <div class="rating mb-2">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-half text-warning"></i>
+                                                <span class="text-muted ms-1">(4.5)</span>
+                                            </div>
+                                            <div class="mb-2">
+                                                <small class="text-muted">
+                                                    <i class="bi bi-palette me-1"></i>@product.MauSac
+                                                    <i class="bi bi-rulers ms-2 me-1"></i>Size @product.KichCo
+                                                </small>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <div>
+                                                    <h5 class="text-danger mb-0 fw-bold">@product.Gia.ToString("N0")đ</h5>
+                                                </div>
+                                                <small class="text-muted">Còn @product.SoLuong</small>
+                                            </div>
+                                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline w-100" onsubmit="return requireLogin(event)">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="productId" value="@product.MaSP" />
+                                                <input type="hidden" name="quantity" value="1" />
+                                                <button type="submit" class="btn btn-primary w-100" @(product.SoLuong == 0 ? "disabled" : "")>
+                                                    <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox display-1 text-muted"></i>
+                        <h4 class="mt-3">Không tìm thấy sản phẩm</h4>
+                        <p class="text-muted">Vui lòng thử lại với bộ lọc khác</p>
+                        <a href="/Product" class="btn btn-primary">Xem tất cả sản phẩm</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: #667eea;
+    }
+
+    .breadcrumb-item a:hover {
+        text-decoration: underline;
+    }
+
+    .filter-card {
+        transition: all 0.3s ease;
+    }
+
+    .filter-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .list-group-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+        padding-left: 1.5rem;
+    }
+
+    .list-group-item.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-color: transparent;
+        color: white;
+    }
+
+    .product-card-modern {
+        transition: all 0.3s ease;
+    }
+
+    .product-card-modern:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-image {
+        transition: transform 0.3s ease;
+    }
+
+    .product-card-modern:hover .product-image {
+        transform: scale(1.1);
+    }
+
+    .product-badges {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+
+    .product-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 3;
+    }
+
+    .product-card-modern:hover .product-overlay {
+        opacity: 1;
+    }
+
+    .products-toolbar select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    }
+</style>

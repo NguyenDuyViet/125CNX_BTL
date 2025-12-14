@@ -158,68 +158,105 @@
 </section>
 
 <!-- Categories Grid -->
-<section class="categories-section py-5">
+<section class="categories-section py-5 bg-light">
     <div class="container">
         <div class="section-header text-center mb-5">
-            <h2 class="display-6 fw-bold mb-2">Danh Mục Sản Phẩm</h2>
+            <h2 class="display-5 fw-bold mb-2">Danh Mục Sản Phẩm</h2>
             <p class="text-muted">Khám phá bộ sưu tập đa dạng của chúng tôi</p>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card-modern">
-                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
-                        <div class="category-image" style="background: linear-gradient(135deg, rgba(102,126,234,0.9), rgba(118,75,162,0.9)), url('~/images/cat-sport.jpg'); background-size: cover; background-position: center; height: 250px;">
-                            <div class="category-overlay">
-                                <i class="bi bi-lightning-charge display-1 text-white mb-3"></i>
-                                <h4 class="text-white fw-bold">Giày Thể Thao</h4>
-                                <p class="text-white-50 mb-3">500+ Sản phẩm</p>
-                                <a href="/Product?category=sport" class="btn btn-light btn-sm">Xem Ngay</a>
+        
+        <!-- Main Grid: 4 items on top row -->
+        <div class="row g-4 mb-4">
+            <!-- Sneaker -->
+            <div class="col-lg-3 col-md-6 col-6">
+                <a href="/Product?category=Sneaker" class="text-decoration-none">
+                    <div class="category-card-new">
+                        <div class="card border-0 shadow-sm h-100 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; overflow: hidden;">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                                <div class="category-icon mb-3">
+                                    <i class="bi bi-stars" style="font-size: 3.5rem; color: white;"></i>
+                                </div>
+                                <h4 class="text-white fw-bold mb-2">Giày Sneaker</h4>
+                                <p class="text-white-50 small mb-3">Phong cách thể thao</p>
+                                <span class="btn btn-light btn-sm">Xem Ngay</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card-modern">
-                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
-                        <div class="category-image" style="background: linear-gradient(135deg, rgba(118,75,162,0.9), rgba(168,85,247,0.9)), url('~/images/cat-formal.jpg'); background-size: cover; background-position: center; height: 250px;">
-                            <div class="category-overlay">
-                                <i class="bi bi-briefcase display-1 text-white mb-3"></i>
-                                <h4 class="text-white fw-bold">Giày Công Sở</h4>
-                                <p class="text-white-50 mb-3">300+ Sản phẩm</p>
-                                <a href="/Product?category=formal" class="btn btn-light btn-sm">Xem Ngay</a>
+            
+            <!-- Sandal -->
+            <div class="col-lg-3 col-md-6 col-6">
+                <a href="/Product?category=Sandal" class="text-decoration-none">
+                    <div class="category-card-new">
+                        <div class="card border-0 shadow-sm h-100 text-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 20px; overflow: hidden;">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                                <div class="category-icon mb-3">
+                                    <i class="bi bi-brightness-high" style="font-size: 3.5rem; color: white;"></i>
+                                </div>
+                                <h4 class="text-white fw-bold mb-2">Sandal</h4>
+                                <p class="text-white-50 small mb-3">Thoải mái mùa hè</p>
+                                <span class="btn btn-light btn-sm">Xem Ngay</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card-modern">
-                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
-                        <div class="category-image" style="background: linear-gradient(135deg, rgba(240,147,251,0.9), rgba(245,87,108,0.9)), url('~/images/cat-sneaker.jpg'); background-size: cover; background-position: center; height: 250px;">
-                            <div class="category-overlay">
-                                <i class="bi bi-stars display-1 text-white mb-3"></i>
-                                <h4 class="text-white fw-bold">Giày Sneaker</h4>
-                                <p class="text-white-50 mb-3">450+ Sản phẩm</p>
-                                <a href="/Product?category=sneaker" class="btn btn-light btn-sm">Xem Ngay</a>
+            
+            <!-- Cao gót -->
+            <div class="col-lg-3 col-md-6 col-6">
+                <a href="/Product?category=Cao gót" class="text-decoration-none">
+                    <div class="category-card-new">
+                        <div class="card border-0 shadow-sm h-100 text-center" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); border-radius: 20px; overflow: hidden;">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                                <div class="category-icon mb-3">
+                                    <i class="bi bi-gem" style="font-size: 3.5rem; color: white;"></i>
+                                </div>
+                                <h4 class="text-white fw-bold mb-2">Giày Cao Gót</h4>
+                                <p class="text-white-50 small mb-3">Sang trọng, quý phái</p>
+                                <span class="btn btn-light btn-sm">Xem Ngay</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card-modern">
-                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
-                        <div class="category-image" style="background: linear-gradient(135deg, rgba(79,172,254,0.9), rgba(0,242,254,0.9)), url('~/images/cat-premium.jpg'); background-size: cover; background-position: center; height: 250px;">
-                            <div class="category-overlay">
-                                <i class="bi bi-gem display-1 text-white mb-3"></i>
-                                <h4 class="text-white fw-bold">Giày Cao Cấp</h4>
-                                <p class="text-white-50 mb-3">200+ Sản phẩm</p>
-                                <a href="/Product?category=premium" class="btn btn-light btn-sm">Xem Ngay</a>
+            
+            <!-- Dép -->
+            <div class="col-lg-3 col-md-6 col-6">
+                <a href="/Product?category=Dép" class="text-decoration-none">
+                    <div class="category-card-new">
+                        <div class="card border-0 shadow-sm h-100 text-center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 20px; overflow: hidden;">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                                <div class="category-icon mb-3">
+                                    <i class="bi bi-water" style="font-size: 3.5rem; color: white;"></i>
+                                </div>
+                                <h4 class="text-white fw-bold mb-2">Dép</h4>
+                                <p class="text-white-50 small mb-3">Tiện lợi hàng ngày</p>
+                                <span class="btn btn-light btn-sm">Xem Ngay</span>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Bottom Row: Boot centered -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-6 col-6">
+                <a href="/Product?category=Boot" class="text-decoration-none">
+                    <div class="category-card-new">
+                        <div class="card border-0 shadow-sm h-100 text-center" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 20px; overflow: hidden;">
+                            <div class="card-body p-4 d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                                <div class="category-icon mb-3">
+                                    <i class="bi bi-snow" style="font-size: 3.5rem; color: #667eea;"></i>
+                                </div>
+                                <h4 class="fw-bold mb-2" style="color: #667eea;">Boot</h4>
+                                <p class="small mb-3" style="color: #764ba2;">Phong cách mạnh mẽ</p>
+                                <span class="btn btn-primary btn-sm">Xem Ngay</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -294,15 +331,15 @@
                                     }
                                 </div>
                                 <div class="product-overlay">
-                                    <button class="btn btn-light btn-sm rounded-circle me-2" title="Yêu thích">
+                                    <button type="button" class="btn btn-light btn-sm rounded-circle me-2" title="Yêu thích" onclick="toggleWishlist(@(product.MaSP), this)">
                                         <i class="bi bi-heart"></i>
                                     </button>
                                     <a href="/Product/Details/@product.MaSP" class="btn btn-light btn-sm rounded-circle me-2" title="Xem chi tiết">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <button class="btn btn-light btn-sm rounded-circle" title="So sánh">
-                                        <i class="bi bi-arrow-left-right"></i>
-                                    </button>
+                                    <a href="/Wishlist" class="btn btn-light btn-sm rounded-circle" title="Xem yêu thích">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -334,7 +371,7 @@
                                     </div>
                                     <small class="text-muted">Còn @product.SoLuong</small>
                                 </div>
-                                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline w-100">
+                                <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline w-100" onsubmit="return requireLogin(event)">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="productId" value="@product.MaSP" />
                                     <input type="hidden" name="quantity" value="1" />
@@ -562,7 +599,57 @@
         filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
     }
 
-    /* Category Cards Modern */
+    /* Category Cards New Design */
+    .category-card-new {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .category-card-new:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+
+    .category-card-new .card {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .category-card-new .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .category-card-new:hover .card::before {
+        left: 100%;
+    }
+
+    .category-card-new .card:hover {
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+    }
+
+    .category-icon {
+        transition: all 0.3s ease;
+    }
+
+    .category-card-new:hover .category-icon {
+        transform: scale(1.2) rotate(5deg);
+    }
+
+    .category-card-new .btn {
+        transition: all 0.3s ease;
+    }
+
+    .category-card-new:hover .btn {
+        transform: scale(1.1);
+    }
+
+    /* Category Cards Modern (old style - keep for compatibility) */
     .category-card-modern {
         transition: transform 0.3s ease;
     }

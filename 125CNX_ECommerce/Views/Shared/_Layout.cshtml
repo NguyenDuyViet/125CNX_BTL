@@ -88,10 +88,11 @@
                         <ul class="dropdown-menu text-start">
                             <li><a class="dropdown-item" href="/Product">Tất cả sản phẩm</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/Product?category=sport">Giày Thể Thao</a></li>
-                            <li><a class="dropdown-item" href="/Product?category=formal">Giày Công Sở</a></li>
-                            <li><a class="dropdown-item" href="/Product?category=sneaker">Giày Sneaker</a></li>
-                            <li><a class="dropdown-item" href="/Product?category=premium">Giày Cao Cấp</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Sneaker">Giày Sneaker</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Sandal">Sandal</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Cao gót">Giày Cao Gót</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Dép">Dép</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Boot">Boot</a></li>
                         </ul>
                     </li>
 
@@ -131,11 +132,9 @@
                     </div>
 
                     <!-- Wishlist -->
-                    <a href="/Home/Wishlist" class="position-relative text-dark" title="Yêu thích">
+                    <a href="/Wishlist" class="position-relative text-dark" title="Yêu thích">
                         <i class="bi bi-heart fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-                            3
-                        </span>
+                        @await Component.InvokeAsync("WishlistCount")
                     </a>
 
                     <!-- Cart -->
@@ -174,8 +173,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/Order">
-                                        <i class="bi bi-bag-check me-2"></i>Đơn hàng
+                                    <a class="dropdown-item" href="/Cart/MyOrders">
+                                        <i class="bi bi-bag-check me-2"></i>Đơn hàng của tôi
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -233,6 +232,38 @@
     <main role="main">
         @RenderBody()
     </main>
+
+    <!-- Toast Notification -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-success text-white">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <strong class="me-auto">Thành công</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    @TempData["Success"]
+                </div>
+            </div>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-danger text-white">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                    <strong class="me-auto">Lỗi</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    @TempData["Error"]
+                </div>
+            </div>
+        </div>
+    }
 
     <!-- Footer -->
     <footer class="footer bg-dark text-white pt-5 pb-3 mt-5">
@@ -544,6 +575,132 @@
         searchInput?.addEventListener('blur', function() {
             this.parentElement.classList.remove('shadow-sm');
         });
+    </script>
+
+    <!-- Toast Auto Hide -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toasts = document.querySelectorAll('.toast');
+            toasts.forEach(toast => {
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            });
+
+            // Auto open login modal if error message contains "đăng nhập"
+            @if (TempData["Error"] != null && TempData["Error"].ToString().Contains("đăng nhập"))
+            {
+                <text>
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                </text>
+            }
+        });
+
+        // Check if user is logged in
+        function isLoggedIn() {
+            @if (Context.Session.GetString("Username") != null)
+            {
+                <text>return true;</text>
+            }
+            else
+            {
+                <text>return false;</text>
+            }
+        }
+
+        // Show login modal if not logged in
+        function requireLogin(event) {
+            if (!isLoggedIn()) {
+                event.preventDefault();
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                return false;
+            }
+            return true;
+        }
+
+        // Toggle wishlist
+        function toggleWishlist(productId, button) {
+            console.log('toggleWishlist called - productId:', productId, 'type:', typeof productId);
+            
+            if (!isLoggedIn()) {
+                console.log('User not logged in');
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                return;
+            }
+
+            console.log('Sending request to /Wishlist/Toggle with productId:', productId);
+            fetch('/Wishlist/Toggle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId: parseInt(productId) })
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                if (data.success) {
+                    // Toggle icon
+                    const icon = button.querySelector('i');
+                    if (data.action === 'added') {
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                        button.classList.add('text-danger');
+                    } else {
+                        icon.classList.remove('bi-heart-fill');
+                        icon.classList.add('bi-heart');
+                        button.classList.remove('text-danger');
+                    }
+                    
+                    // Show toast
+                    showWishlistToast(data.message);
+                    
+                    // Reload page to update count
+                    setTimeout(() => location.reload(), 1000);
+                } else if (data.requireLogin) {
+                    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                    loginModal.show();
+                } else {
+                    console.error('Error from server:', data.message);
+                    alert(data.message + (data.errorNumber ? ' (Error: ' + data.errorNumber + ')' : ''));
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Có lỗi xảy ra. Vui lòng thử lại!');
+            });
+        }
+
+        function showWishlistToast(message) {
+            const toastHtml = `
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div class="toast show" role="alert">
+                        <div class="toast-header bg-success text-white">
+                            <i class="bi bi-heart-fill me-2"></i>
+                            <strong class="me-auto">Yêu thích</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">${message}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', toastHtml);
+            
+            setTimeout(() => {
+                const toasts = document.querySelectorAll('.toast');
+                if (toasts.length > 0) {
+                    toasts[toasts.length - 1].remove();
+                }
+            }, 3000);
+        }
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)

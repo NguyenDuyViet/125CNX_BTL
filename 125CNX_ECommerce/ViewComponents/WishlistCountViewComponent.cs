@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace _125CNX_ECommerce.ViewComponents
 {
-    public class CartCountViewComponent : ViewComponent
+    public class WishlistCountViewComponent : ViewComponent
     {
         private readonly string connectionString = "Data Source=localhost;Initial Catalog=SQLShopBanGiay;Integrated Security=True;Trust Server Certificate=True";
 
@@ -16,19 +16,19 @@ namespace _125CNX_ECommerce.ViewComponents
                 return View("Default", "0");
             }
 
-            int cartCount = 0;
+            int wishlistCount = 0;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT ISNULL(SUM(SoLuong), 0) FROM GioHang WHERE U_ID = @U_ID";
+                string query = "SELECT COUNT(*) FROM Wishlist WHERE U_ID = @U_ID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@U_ID", userId);
 
                 conn.Open();
-                cartCount = Convert.ToInt32(cmd.ExecuteScalar());
+                wishlistCount = Convert.ToInt32(cmd.ExecuteScalar());
             }
 
-            return View("Default", cartCount.ToString());
+            return View("Default", wishlistCount.ToString());
         }
     }
 }

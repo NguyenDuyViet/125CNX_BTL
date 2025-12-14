@@ -1,49 +1,103 @@
 ﻿using _125CNX_ECommerce.Models;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
 
 namespace ShoeShop.DAO
 {
     class DonHangDao
     {
-		public async Task<List<DonHangModel>> GetAllDonHang()
+		private string GetXmlPath(string fileName)
+		{
+			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\App_Data\", fileName);
+			return Path.GetFullPath(path);
+		}
+		public List<DonHangModel> GetAllDonHang()
 		{
 			List<DonHangModel> list = new List<DonHangModel>();
-			CSDBConnection db = new CSDBConnection();
-			SqlConnection conn = db.Connection();
-			await conn.OpenAsync();
 
-			string query = @"
-							SELECT 
-								dh.MaDH, 
-								dh.MaKH,
-								u.HoTen AS TenKhachHang,
-								dh.NgayDat, 
-								dh.TongTien, 
-								dh.TrangThai
-							FROM DonHang dh
-							LEFT JOIN Users u ON dh.MaKH = u.U_ID";
-			SqlCommand cmd = new SqlCommand(query, conn);
-			SqlDataReader reader = await cmd.ExecuteReaderAsync();
+			string donHangPath = GetXmlPath("DonHang.xml");
+			if (!File.Exists(donHangPath))
+				return list;
 
-			while (await reader.ReadAsync())
+			DataSet dsDonHang = new DataSet();
+			dsDonHang.ReadXml(donHangPath);
+			DataTable tbDonHang = dsDonHang.Tables[0];
+
+			DataTable tbUser = null;
+			string UserPath = GetXmlPath("Users.xml");
+
+			if (File.Exists(UserPath))
 			{
+				DataSet dsTT = new DataSet();
+				dsTT.ReadXml(UserPath);
+				tbUser = dsTT.Tables[0];
+			}
+			foreach (DataRow row in tbDonHang.Rows)
+			{
+				int UID = row["MaKH"] == DBNull.Value ? 0 : Convert.ToInt32(row["MaKH"]);
+
+				// Tìm user tương ứng
+				DataRow ttRow = tbUser?
+					.AsEnumerable()
+					.FirstOrDefault(r =>
+						r["U_ID"] != DBNull.Value &&
+						Convert.ToInt32(r["U_ID"]) == UID);
+
 				list.Add(new DonHangModel
 				{
-					MaDH = reader.GetInt32(0),
-					MaKH = reader.GetInt32(1),
-					TenKhachHang = reader.IsDBNull(2) ? "" : reader.GetString(2),
-					NgayDat = reader.GetDateTime(3),
-					TongTien = reader.GetDecimal(4),
-					TrangThai = reader.GetString(5)
+					MaDH = Convert.ToInt32(row["MaDH"]),
+					MaKH = Convert.ToInt32(row["MaKH"]),
+					TenKhachHang = ttRow?["HoTen"]?.ToString() ?? "Không xác định",
+					NgayDat = Convert.ToDateTime(row["NgayDat"]),
+					TongTien = Convert.ToDecimal(row["TongTien"]),
+					TrangThai = row["TrangThai"].ToString()
 				});
 			}
-			conn.CloseAsync();
-
 			return list;
 		}
 
-		public async Task<bool> UpdateStatus(int maDH, string status)
+		public bool UpdateStatus(int maDH, string status)
+		{
+			string xmlPath = GetXmlPath("DonHang.xml");
+
+			if (!File.Exists(xmlPath))
+				return false;
+			
+			
+			DataSet ds = new DataSet();
+			ds.ReadXml(xmlPath);
+
+			if (ds.Tables.Count == 0)
+				return false;
+
+			DataTable tb = ds.Tables[0];
+
+			DataRow row = tb.AsEnumerable()
+				.FirstOrDefault(r =>
+					r["MaDH"] != DBNull.Value &&
+					Convert.ToInt32(r["MaDH"]) == maDH);
+
+			if (row == null)
+				return false;
+
+			// ===== Update trạng thái =====
+			row["TrangThai"] = status;
+
+			// ===== Ghi ngược lại XML =====
+			ds.WriteXml(xmlPath, XmlWriteMode.WriteSchema);
+			//Gọi hàm update vào sql
+			UpdatetoSQL(maDH, status);
+
+			return true;
+		}
+
+		public async Task<bool> UpdatetoSQL(int maDH, string status)
 		{
 			CSDBConnection db = new CSDBConnection();
 
@@ -65,42 +119,58 @@ namespace ShoeShop.DAO
 			}
 		}
 
-		public async Task<ChiTietDonHangModel> GetChiTietByMaDH(int maDH)
+		public ChiTietDonHangModel GetChiTietByMaDH(int maDH)
 		{
-			CSDBConnection db = new CSDBConnection();
-			ChiTietDonHangModel chitiet = new ChiTietDonHangModel();
-			using (SqlConnection conn = db.Connection())
+			string ctPath = GetXmlPath("ChiTietDonHang.xml");
+			string spPath = GetXmlPath("Products.xml");
+
+			if (!File.Exists(ctPath))
+				return null;
+
+			//Load ChiTietDonHang.xml
+			DataSet dsCT = new DataSet();
+			dsCT.ReadXml(ctPath);
+			DataTable tbCT = dsCT.Tables[0];
+
+			//Load Products.xml
+			DataTable tbSP = null;
+			if (File.Exists(spPath))
 			{
-				await conn.OpenAsync();
-
-				string query = @"
-            SELECT TOP 1 ct.MaCTDH, p.TenSP, ct.SoLuong, ct.DonGia, (ct.SoLuong * ct.DonGia) as ThanhTien
-            FROM ChiTietDonHang ct
-            LEFT JOIN Products p ON ct.MaSP = p.MaSP
-            WHERE ct.MaDH = @MaDH";
-
-				using (SqlCommand cmd = new SqlCommand(query, conn))
-				{
-					cmd.Parameters.AddWithValue("@MaDH", maDH);
-
-					using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-					{
-						if (await reader.ReadAsync()) // chỉ đọc hàng đầu tiên
-						{
-							chitiet = new ChiTietDonHangModel
-							{
-								MaCTDH = reader.GetInt32(0),
-								TenSP = reader.IsDBNull(1) ? "" : reader.GetString(1),
-								SoLuong = reader.GetInt32(2),
-								DonGia = reader.GetDecimal(3),
-								ThanhTien = reader.GetDecimal(4)
-							};
-						}
-					}
-				}
+				DataSet dsSP = new DataSet();
+				dsSP.ReadXml(spPath);
+				tbSP = dsSP.Tables[0];
 			}
 
-			return chitiet;
+			//Lấy chi tiết đầu tiên theo MaDH
+			DataRow ctRow = tbCT.AsEnumerable()
+				.FirstOrDefault(r =>
+					r["MaDH"] != DBNull.Value &&
+					Convert.ToInt32(r["MaDH"]) == maDH);
+
+			if (ctRow == null)
+				return null;
+
+			int maSP = ctRow["MaSP"] == DBNull.Value ? 0 : Convert.ToInt32(ctRow["MaSP"]);
+
+			//JOIN thủ công qua XML
+			DataRow spRow = tbSP?
+				.AsEnumerable()
+				.FirstOrDefault(r =>
+					r["MaSP"] != DBNull.Value &&
+					Convert.ToInt32(r["MaSP"]) == maSP);
+
+			int soLuong = ctRow["SoLuong"] == DBNull.Value ? 0 : Convert.ToInt32(ctRow["SoLuong"]);
+			decimal donGia = ctRow["DonGia"] == DBNull.Value ? 0 : Convert.ToDecimal(ctRow["DonGia"]);
+
+			return new ChiTietDonHangModel
+			{
+				MaCTDH = ctRow["MaCTDH"] == DBNull.Value ? 0 : Convert.ToInt32(ctRow["MaCTDH"]),
+				TenSP = spRow?["TenSP"]?.ToString() ?? "",
+				SoLuong = soLuong,
+				DonGia = donGia,
+				ThanhTien = soLuong * donGia
+			};
 		}
+
 	}
 }

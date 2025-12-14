@@ -17,12 +17,12 @@ namespace ShoeShop
 			LoadData();
 		}
 
-		private async Task LoadData()
+		private  void LoadData()
 		{
 			try
 			{
 				donhangSV = new DonHangService();
-				List<DonHangModel> donhangs = await donhangSV.GetAllDonHang();
+				List<DonHangModel> donhangs = donhangSV.GetAllDonHang();
 				DataTable dt = new DataTable();
 
 				// Tạo các cột giống như trong DonHangModel
@@ -40,10 +40,13 @@ namespace ShoeShop
 				dgvDonHang.DataSource = dt;
 				// Auto Resize cho bảng đơn hàng
 				dgvDonHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+				
+				// Cập nhật tiêu đề form với số lượng đơn hàng
+				this.Text = $"Quản lý đơn hàng ({donhangs.Count} đơn)";
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Lỗi: " + ex.Message);
+				MessageBox.Show($"Lỗi khi tải dữ liệu:\n{ex.Message}\n\nChi tiết: {ex.InnerException?.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -88,7 +91,7 @@ namespace ShoeShop
 			DetailsOders();
 		}
 		//Hàm xử lý logic để xem chi tiết đơn hàng
-		private async void DetailsOders()
+		private void DetailsOders()
 		{
 			if (string.IsNullOrEmpty(txtMaDH.Text))
 			{
@@ -98,7 +101,7 @@ namespace ShoeShop
 			//Nếu đã chọn đơn hàng
 			int maDH = int.Parse(txtMaDH.Text);
 			donhangSV = new DonHangService();
-			ChiTietDonHangModel chitiet = await donhangSV.GetChiTietByMaDH(maDH);
+			ChiTietDonHangModel chitiet = donhangSV.GetChiTietByMaDH(maDH);
 			DataTable dt = new DataTable();
 
 			// Tạo các cột giống như trong DonHangModel
@@ -133,7 +136,7 @@ namespace ShoeShop
 			LoadData();
 		}
 
-		private async void btnExportAsync()
+		private void btnExportAsync()
 		{
 			using (SaveFileDialog sfd = new SaveFileDialog())
 			{
@@ -147,7 +150,7 @@ namespace ShoeShop
 					{
 						// Lấy dữ liệu từ service
 						donhangSV = new DonHangService();
-						List<DonHangModel> donhangs = await donhangSV.GetAllDonHang();
+						List<DonHangModel> donhangs = donhangSV.GetAllDonHang();
 
 						// Chuẩn hóa dữ liệu: chỉ giữ các trường đơn giản
 						var exportList = new List<DonHangModel>();
