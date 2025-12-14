@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Xml;
 
 namespace ShoeShop.DAO
 {
@@ -12,7 +17,7 @@ namespace ShoeShop.DAO
 			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\App_Data\", fileName);
 			return Path.GetFullPath(path);
 		}
-		public async Task<List<DonHangModel>> GetAllDonHang()
+		public List<DonHangModel> GetAllDonHang()
 		{
 			List<DonHangModel> list = new List<DonHangModel>();
 
@@ -48,13 +53,12 @@ namespace ShoeShop.DAO
 				{
 					MaDH = Convert.ToInt32(row["MaDH"]),
 					MaKH = Convert.ToInt32(row["MaKH"]),
-					TenKhachHang = ttRow["HoTen"].ToString(),
+					TenKhachHang = ttRow?["HoTen"]?.ToString() ?? "Không xác định",
 					NgayDat = Convert.ToDateTime(row["NgayDat"]),
 					TongTien = Convert.ToDecimal(row["TongTien"]),
 					TrangThai = row["TrangThai"].ToString()
 				});
 			}
-
 			return list;
 		}
 
@@ -115,7 +119,7 @@ namespace ShoeShop.DAO
 			}
 		}
 
-		public async Task<ChiTietDonHangModel> GetChiTietByMaDH(int maDH)
+		public ChiTietDonHangModel GetChiTietByMaDH(int maDH)
 		{
 			string ctPath = GetXmlPath("ChiTietDonHang.xml");
 			string spPath = GetXmlPath("Products.xml");

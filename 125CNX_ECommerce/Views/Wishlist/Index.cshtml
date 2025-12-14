@@ -1,0 +1,217 @@
+@model IEnumerable<_125CNX_ECommerce.Models.WishlistModel>
+@{
+    ViewData["Title"] = "Sản phẩm yêu thích";
+}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-3">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Yêu thích</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Wishlist Section -->
+<section class="wishlist-section py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">
+                <i class="bi bi-heart-fill text-danger me-2"></i>Sản phẩm yêu thích
+            </h2>
+            <span class="text-muted">(@Model.Count() sản phẩm)</span>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <!-- Empty Wishlist -->
+            <div class="text-center py-5">
+                <i class="bi bi-heart display-1 text-muted mb-4"></i>
+                <h4 class="mb-3">Chưa có sản phẩm yêu thích</h4>
+                <p class="text-muted mb-4">Hãy thêm những sản phẩm bạn thích vào danh sách này</p>
+                <a href="/Product" class="btn btn-primary btn-lg">
+                    <i class="bi bi-bag me-2"></i>Khám phá sản phẩm
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6" id="wishlist-item-@item.YeuThichID">
+                        <div class="product-card-modern">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative overflow-hidden">
+                                    <a href="/Product/Details/@item.Product.MaSP">
+                                        <img src="@item.Product.Images" class="card-img-top product-image" alt="@item.Product.TenSP" style="height: 250px; object-fit: cover;">
+                                    </a>
+                                    <div class="product-badges">
+                                        @if (item.Product.SoLuong < 10)
+                                        {
+                                            <span class="badge bg-danger">Sắp hết</span>
+                                        }
+                                        @if (item.Product.SoLuong == 0)
+                                        {
+                                            <span class="badge bg-dark">Hết hàng</span>
+                                        }
+                                    </div>
+                                    <!-- Remove from Wishlist Button -->
+                                    <button class="btn btn-danger btn-sm rounded-circle position-absolute top-0 end-0 m-2" 
+                                            onclick="removeFromWishlist(@item.YeuThichID)"
+                                            title="Xóa khỏi yêu thích">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <span class="badge bg-light text-dark border">@item.Product.Category.C_Name</span>
+                                    </div>
+                                    <h6 class="card-title mb-2">
+                                        <a href="/Product/Details/@item.Product.MaSP" class="text-decoration-none text-dark">
+                                            @item.Product.TenSP
+                                        </a>
+                                    </h6>
+                                    <div class="mb-2">
+                                        <small class="text-muted">
+                                            <i class="bi bi-palette me-1"></i>@item.Product.MauSac
+                                            <i class="bi bi-rulers ms-2 me-1"></i>Size @item.Product.KichCo
+                                        </small>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-danger mb-0 fw-bold">@item.Product.Gia.ToString("N0")đ</h5>
+                                        <small class="text-muted">Còn @item.Product.SoLuong</small>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post" onsubmit="return requireLogin(event)">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="productId" value="@item.Product.MaSP" />
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <button type="submit" class="btn btn-primary w-100" @(item.Product.SoLuong == 0 ? "disabled" : "")>
+                                                <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ
+                                            </button>
+                                        </form>
+                                        <a href="/Product/Details/@item.Product.MaSP" class="btn btn-outline-secondary w-100">
+                                            <i class="bi bi-eye me-2"></i>Xem chi tiết
+                                        </a>
+                                    </div>
+                                    <small class="text-muted d-block mt-2">
+                                        <i class="bi bi-clock me-1"></i>Thêm ngày @item.NgayYeuThich.ToString("dd/MM/yyyy")
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function removeFromWishlist(wishlistId) {
+            if (!confirm('Bạn có chắc muốn xóa sản phẩm này khỏi danh sách yêu thích?')) {
+                return;
+            }
+
+            fetch('/Wishlist/Remove', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ wishlistId: wishlistId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Remove item with animation
+                    const item = document.getElementById('wishlist-item-' + wishlistId);
+                    item.style.transition = 'all 0.3s ease';
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    
+                    setTimeout(() => {
+                        item.remove();
+                        
+                        // Check if wishlist is empty
+                        const remainingItems = document.querySelectorAll('[id^="wishlist-item-"]');
+                        if (remainingItems.length === 0) {
+                            location.reload();
+                        }
+                    }, 300);
+
+                    // Show toast
+                    showToast('success', data.message);
+                } else {
+                    showToast('error', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('error', 'Có lỗi xảy ra. Vui lòng thử lại!');
+            });
+        }
+
+        function showToast(type, message) {
+            const toastHtml = `
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div class="toast show" role="alert">
+                        <div class="toast-header bg-${type === 'success' ? 'success' : 'danger'} text-white">
+                            <i class="bi bi-${type === 'success' ? 'check' : 'x'}-circle-fill me-2"></i>
+                            <strong class="me-auto">${type === 'success' ? 'Thành công' : 'Lỗi'}</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">${message}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', toastHtml);
+            
+            setTimeout(() => {
+                const toasts = document.querySelectorAll('.toast');
+                toasts[toasts.length - 1].remove();
+            }, 3000);
+        }
+    </script>
+}
+
+<style>
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: #667eea;
+    }
+
+    .breadcrumb-item a:hover {
+        text-decoration: underline;
+    }
+
+    .product-card-modern {
+        transition: all 0.3s ease;
+    }
+
+    .product-card-modern:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-image {
+        transition: transform 0.3s ease;
+    }
+
+    .product-card-modern:hover .product-image {
+        transform: scale(1.1);
+    }
+
+    .product-badges {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+</style>

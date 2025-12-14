@@ -11,9 +11,9 @@ namespace ShoeShop.Service
         {
             donhang = new DonHangDao();
         }
-		public async Task<List<DonHangModel>> GetAllDonHang()
+		public List<DonHangModel> GetAllDonHang()
 		{
-			return await donhang.GetAllDonHang();
+			return donhang.GetAllDonHang();
 		}
 
         public async Task<bool> UpdateStatus(int MaDH, string status)
@@ -21,9 +21,9 @@ namespace ShoeShop.Service
             return donhang.UpdateStatus(MaDH, status);
         }
 
-        public async Task<ChiTietDonHangModel> GetChiTietByMaDH(int MaDH)
+        public ChiTietDonHangModel GetChiTietByMaDH(int MaDH)
         {
-            ChiTietDonHangModel chitiet = await donhang.GetChiTietByMaDH(MaDH);
+            ChiTietDonHangModel chitiet = donhang.GetChiTietByMaDH(MaDH);
             return chitiet;
         }
 	}

@@ -121,7 +121,7 @@
 
                     <!-- Action Buttons -->
                     <div class="action-buttons mb-4">
-                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post" onsubmit="return requireLogin(event)">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="productId" value="@Model.MaSP" />
                             <input type="hidden" name="quantity" id="quantityValue" value="1" />
@@ -131,14 +131,14 @@
                         </form>
                         <div class="row g-2">
                             <div class="col-6">
-                                <button class="btn btn-outline-danger w-100">
+                                <button type="button" class="btn btn-outline-danger w-100" onclick="toggleWishlist(@(Model.MaSP), this)">
                                     <i class="bi bi-heart me-2"></i>Yêu thích
                                 </button>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-outline-secondary w-100">
-                                    <i class="bi bi-arrow-left-right me-2"></i>So sánh
-                                </button>
+                                <a href="/Wishlist" class="btn btn-outline-secondary w-100">
+                                    <i class="bi bi-heart-fill me-2"></i>Xem yêu thích
+                                </a>
                             </div>
                         </div>
                     </div>
