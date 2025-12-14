@@ -134,7 +134,7 @@ namespace ShoeShop
 				if (success)
 				{
 					MessageBox.Show("Thêm khách hàng thành công!", "Thành công");
-					LoadData();
+					await LoadData();
 					ClearInputs();
 				}
 				else

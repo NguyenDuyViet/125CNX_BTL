@@ -1,0 +1,57 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="DonHang">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="MaDH" type="xs:string" minOccurs="0" />
+                <xs:element name="MaKH" type="xs:string" minOccurs="0" />
+                <xs:element name="NgayDat" type="xs:string" minOccurs="0" />
+                <xs:element name="TongTien" type="xs:string" minOccurs="0" />
+                <xs:element name="TrangThai" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <DonHang>
+    <MaDH>1</MaDH>
+    <MaKH>1</MaKH>
+    <NgayDat>2025-10-10T00:00:00+07:00</NgayDat>
+    <TongTien>1550000.00</TongTien>
+    <TrangThai>Đang giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>2</MaDH>
+    <MaKH>2</MaKH>
+    <NgayDat>2025-10-12T00:00:00+07:00</NgayDat>
+    <TongTien>450000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>3</MaDH>
+    <MaKH>6</MaKH>
+    <NgayDat>2025-10-15T00:00:00+07:00</NgayDat>
+    <TongTien>320000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>4</MaDH>
+    <MaKH>1</MaKH>
+    <NgayDat>2025-10-16T00:00:00+07:00</NgayDat>
+    <TongTien>700000.00</TongTien>
+    <TrangThai>Đã hủy</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>5</MaDH>
+    <MaKH>2</MaKH>
+    <NgayDat>2025-10-22T00:00:00+07:00</NgayDat>
+    <TongTien>1200000.00</TongTien>
+    <TrangThai>Đang giao</TrangThai>
+  </DonHang>
+</NewDataSet>

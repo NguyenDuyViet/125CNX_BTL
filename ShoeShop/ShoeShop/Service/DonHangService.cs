@@ -18,7 +18,7 @@ namespace ShoeShop.Service
 
         public async Task<bool> UpdateStatus(int MaDH, string status)
         {
-            return await donhang.UpdateStatus(MaDH, status);
+            return donhang.UpdateStatus(MaDH, status);
         }
 
         public async Task<ChiTietDonHangModel> GetChiTietByMaDH(int MaDH)

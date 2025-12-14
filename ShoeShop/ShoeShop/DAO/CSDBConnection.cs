@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace ShoeShop.DAO
 {
-    public class CSDBConnection
+    public class CSDBConnection : IDisposable
     {
         public SqlConnection Connection()
         {
 			string connectionString = ConfigurationManager.ConnectionStrings["ShopBanGiay"].ConnectionString;
 			return new SqlConnection(connectionString);
         }
-    }
+
+		public void Dispose()
+		{
+			//Không làm gì cả
+		}
+	}
 }

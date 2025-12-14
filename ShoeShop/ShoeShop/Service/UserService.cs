@@ -41,5 +41,9 @@ namespace ShoeShop.Service
         {
             return await user.AddUser(us);
         }
+
+        public async Task XmlExporter(string tableName) {
+            await user.XmlExporter(tableName);
+        }
 	}
 }

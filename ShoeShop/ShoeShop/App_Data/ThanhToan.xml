@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ThanhToan>
+    <MaTT>1</MaTT>
+    <MaHD>2</MaHD>
+    <PhuongThuc>Tiền mặt</PhuongThuc>
+    <SoTien>450000.00</SoTien>
+    <NgayTT>2025-10-12T00:00:00+07:00</NgayTT>
+    <TrangThai>Hoàn tất</TrangThai>
+  </ThanhToan>
+  <ThanhToan>
+    <MaTT>2</MaTT>
+    <MaHD>3</MaHD>
+    <PhuongThuc>Chuyển khoản</PhuongThuc>
+    <SoTien>320000.00</SoTien>
+    <NgayTT>2025-10-15T00:00:00+07:00</NgayTT>
+    <TrangThai>Hoàn tất</TrangThai>
+  </ThanhToan>
+</NewDataSet>
