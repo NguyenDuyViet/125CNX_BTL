@@ -3,36 +3,85 @@
   <HoaDon>
     <MaHD>1</MaHD>
     <MaDH>1</MaDH>
-    <NgayLap>2025-10-10T00:00:00+07:00</NgayLap>
+    <NgayLap>2025-01-10T00:00:00+07:00</NgayLap>
     <TongTien>1550000.00</TongTien>
     <TrangThai>Chưa thanh toán</TrangThai>
   </HoaDon>
   <HoaDon>
     <MaHD>2</MaHD>
     <MaDH>2</MaDH>
-    <NgayLap>2025-10-12T00:00:00+07:00</NgayLap>
+    <NgayLap>2025-02-12T00:00:00+07:00</NgayLap>
     <TongTien>450000.00</TongTien>
     <TrangThai>Đã thanh toán</TrangThai>
   </HoaDon>
   <HoaDon>
     <MaHD>3</MaHD>
     <MaDH>3</MaDH>
-    <NgayLap>2025-10-15T00:00:00+07:00</NgayLap>
+    <NgayLap>2025-03-15T00:00:00+07:00</NgayLap>
     <TongTien>320000.00</TongTien>
     <TrangThai>Chưa thanh toán</TrangThai>
   </HoaDon>
   <HoaDon>
     <MaHD>4</MaHD>
     <MaDH>4</MaDH>
-    <NgayLap>2025-10-16T00:00:00+07:00</NgayLap>
+    <NgayLap>2025-04-16T00:00:00+07:00</NgayLap>
     <TongTien>700000.00</TongTien>
     <TrangThai>Đã hủy</TrangThai>
   </HoaDon>
   <HoaDon>
     <MaHD>5</MaHD>
     <MaDH>5</MaDH>
-    <NgayLap>2025-10-22T00:00:00+07:00</NgayLap>
+    <NgayLap>2025-05-22T00:00:00+07:00</NgayLap>
     <TongTien>1200000.00</TongTien>
+    <TrangThai>Chưa thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>6</MaHD>
+    <MaDH>6</MaDH>
+    <NgayLap>2025-06-10T00:00:00+07:00</NgayLap>
+    <TongTien>980000.00</TongTien>
+    <TrangThai>Đã thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>7</MaHD>
+    <MaDH>7</MaDH>
+    <NgayLap>2025-07-11T00:00:00+07:00</NgayLap>
+    <TongTien>410000.00</TongTien>
+    <TrangThai>Chưa thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>8</MaHD>
+    <MaDH>8</MaDH>
+    <NgayLap>2025-08-12T00:00:00+07:00</NgayLap>
+    <TongTien>860000.00</TongTien>
+    <TrangThai>Đã thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>9</MaHD>
+    <MaDH>9</MaDH>
+    <NgayLap>2025-09-13T00:00:00+07:00</NgayLap>
+    <TongTien>530000.00</TongTien>
+    <TrangThai>Chưa thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>10</MaHD>
+    <MaDH>10</MaDH>
+    <NgayLap>2025-10-14T00:00:00+07:00</NgayLap>
+    <TongTien>1500000.00</TongTien>
+    <TrangThai>Đã thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>11</MaHD>
+    <MaDH>11</MaDH>
+    <NgayLap>2025-11-15T00:00:00+07:00</NgayLap>
+    <TongTien>620000.00</TongTien>
+    <TrangThai>Đã hủy</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <MaHD>12</MaHD>
+    <MaDH>12</MaDH>
+    <NgayLap>2025-12-16T00:00:00+07:00</NgayLap>
+    <TongTien>1100000.00</TongTien>
     <TrangThai>Chưa thanh toán</TrangThai>
   </HoaDon>
 </NewDataSet>

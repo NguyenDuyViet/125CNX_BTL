@@ -9,7 +9,6 @@
     <RoleID>3</RoleID>
     <TenDangNhap>an123</TenDangNhap>
     <MatKhau>123456</MatKhau>
-    <ChucVu>Khách hàng</ChucVu>
   </Users>
   <Users>
     <U_ID>2</U_ID>
@@ -19,8 +18,7 @@
     <Email>btle@gmail.com</Email>
     <RoleID>3</RoleID>
     <TenDangNhap>letb</TenDangNhap>
-    <MatKhau>123456</MatKhau>
-    <ChucVu>Khách hàng</ChucVu>
+    <MatKhau>654321</MatKhau>
   </Users>
   <Users>
     <U_ID>3</U_ID>
@@ -30,7 +28,7 @@
     <Email>quanhnv@gmail.com</Email>
     <RoleID>2</RoleID>
     <TenDangNhap>quanhnv</TenDangNhap>
-    <MatKhau>123</MatKhau>
+    <MatKhau>nv9876</MatKhau>
     <ChucVu>Bán hàng</ChucVu>
   </Users>
   <Users>
@@ -41,7 +39,7 @@
     <Email>hoapt@gmail.com</Email>
     <RoleID>2</RoleID>
     <TenDangNhap>hoapt</TenDangNhap>
-    <MatKhau>123</MatKhau>
+    <MatKhau>nv2345</MatKhau>
     <ChucVu>Kho</ChucVu>
   </Users>
   <Users>
@@ -52,7 +50,7 @@
     <Email>minhhm@gmail.com</Email>
     <RoleID>4</RoleID>
     <TenDangNhap>minhhm</TenDangNhap>
-    <MatKhau>123</MatKhau>
+    <MatKhau>123123</MatKhau>
     <ChucVu>Quản lý</ChucVu>
   </Users>
   <Users>
@@ -63,51 +61,39 @@
     <Email>maitr@gmail.com</Email>
     <RoleID>3</RoleID>
     <TenDangNhap>traimai</TenDangNhap>
-    <MatKhau>123</MatKhau>
-    <ChucVu>Khách hàng</ChucVu>
+    <MatKhau>123abc</MatKhau>
   </Users>
   <Users>
     <U_ID>7</U_ID>
-    <HoTen>Nguyễn Duy Việt</HoTen>
-    <DiaChi>70 Phú Thạnh, Huế</DiaChi>
-    <SDT>0335903401</SDT>
-    <Email>duyvietnguyen0805@gmail.com</Email>
+    <HoTen>Quản trị viên</HoTen>
+    <DiaChi>Hệ thống</DiaChi>
+    <SDT />
+    <Email />
     <RoleID>1</RoleID>
-    <TenDangNhap>duyvietadmin</TenDangNhap>
-    <MatKhau>Abc123456@</MatKhau>
+    <TenDangNhap>admin</TenDangNhap>
+    <MatKhau>admin123</MatKhau>
     <ChucVu>Admin</ChucVu>
   </Users>
   <Users>
     <U_ID>8</U_ID>
-    <HoTen>Nguyễn Văn Luỹ</HoTen>
-    <DiaChi>Gò Vấp, Hà Nội</DiaChi>
-    <SDT>0366767848</SDT>
-    <Email>vanluy@gmail.com</Email>
-    <RoleID>2</RoleID>
-    <TenDangNhap>vanluy123</TenDangNhap>
-    <MatKhau>Abc123456@</MatKhau>
-    <ChucVu>Bán hàng</ChucVu>
-  </Users>
-  <Users>
-    <U_ID>9</U_ID>
-    <HoTen>Nguyễn Duy Việt</HoTen>
-    <DiaChi>Phú Vang, Huế</DiaChi>
-    <SDT>0335903401</SDT>
-    <Email>duyvietnguyen0805@gmail.com</Email>
+    <HoTen>fevfce</HoTen>
+    <DiaChi>xdưed</DiaChi>
+    <SDT>132436586</SDT>
+    <Email>fdfw@gmail.com</Email>
     <RoleID>3</RoleID>
-    <TenDangNhap>duyvietuser</TenDangNhap>
-    <MatKhau>Abc123456@</MatKhau>
+    <TenDangNhap>fregf</TenDangNhap>
+    <MatKhau>123</MatKhau>
     <ChucVu>Khách hàng</ChucVu>
   </Users>
   <Users>
-    <U_ID>10</U_ID>
-    <HoTen>Nguyễn Duy Gôn</HoTen>
-    <DiaChi>Hoà Tây, Phú Vang, TP Huế</DiaChi>
-    <SDT>0354048101</SDT>
-    <Email>duygon1507@gmail.com</Email>
+    <U_ID>9</U_ID>
+    <HoTen>rẻdưe</HoTen>
+    <DiaChi>fede</DiaChi>
+    <SDT>0128341</SDT>
+    <Email>csvc@gmail.com</Email>
     <RoleID>3</RoleID>
-    <TenDangNhap>gojo</TenDangNhap>
-    <MatKhau>123456</MatKhau>
+    <TenDangNhap>ềcwv</TenDangNhap>
+    <MatKhau>123</MatKhau>
     <ChucVu>Khách hàng</ChucVu>
   </Users>
 </NewDataSet>

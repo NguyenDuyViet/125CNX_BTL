@@ -58,8 +58,9 @@
             panelTop.Controls.Add(lblTitle);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
+            panelTop.Margin = new Padding(4, 5, 4, 5);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1220, 70);
+            panelTop.Size = new Size(1743, 117);
             panelTop.TabIndex = 0;
             // 
             // lblTitle
@@ -67,9 +68,10 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Times New Roman", 20.25F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 20);
+            lblTitle.Location = new Point(29, 33);
+            lblTitle.Margin = new Padding(4, 0, 4, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(340, 31);
+            lblTitle.Size = new Size(454, 47);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "QUẢN LÝ NHÂN VIÊN";
             // 
@@ -82,9 +84,10 @@
             panelSearch.Controls.Add(btnTimKiem);
             panelSearch.Controls.Add(txtTimKiem);
             panelSearch.Controls.Add(lblTimKiem);
-            panelSearch.Location = new Point(15, 85);
+            panelSearch.Location = new Point(21, 142);
+            panelSearch.Margin = new Padding(4, 5, 4, 5);
             panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(1190, 65);
+            panelSearch.Size = new Size(1699, 107);
             panelSearch.TabIndex = 1;
             // 
             // btnExportXML
@@ -94,9 +97,10 @@
             btnExportXML.FlatStyle = FlatStyle.Flat;
             btnExportXML.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
             btnExportXML.ForeColor = Color.White;
-            btnExportXML.Location = new Point(880, 15);
+            btnExportXML.Location = new Point(1257, 25);
+            btnExportXML.Margin = new Padding(4, 5, 4, 5);
             btnExportXML.Name = "btnExportXML";
-            btnExportXML.Size = new Size(140, 35);
+            btnExportXML.Size = new Size(200, 58);
             btnExportXML.TabIndex = 4;
             btnExportXML.Text = "📄 Export XML";
             btnExportXML.UseVisualStyleBackColor = false;
@@ -109,9 +113,10 @@
             btnLamMoi.FlatStyle = FlatStyle.Flat;
             btnLamMoi.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
             btnLamMoi.ForeColor = Color.White;
-            btnLamMoi.Location = new Point(720, 15);
+            btnLamMoi.Location = new Point(1029, 25);
+            btnLamMoi.Margin = new Padding(4, 5, 4, 5);
             btnLamMoi.Name = "btnLamMoi";
-            btnLamMoi.Size = new Size(140, 35);
+            btnLamMoi.Size = new Size(200, 58);
             btnLamMoi.TabIndex = 3;
             btnLamMoi.Text = "🔄 Làm mới";
             btnLamMoi.UseVisualStyleBackColor = false;
@@ -124,9 +129,10 @@
             btnTimKiem.FlatStyle = FlatStyle.Flat;
             btnTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
             btnTimKiem.ForeColor = Color.White;
-            btnTimKiem.Location = new Point(560, 15);
+            btnTimKiem.Location = new Point(800, 25);
+            btnTimKiem.Margin = new Padding(4, 5, 4, 5);
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(140, 35);
+            btnTimKiem.Size = new Size(200, 58);
             btnTimKiem.TabIndex = 2;
             btnTimKiem.Text = "🔍 Tìm kiếm";
             btnTimKiem.UseVisualStyleBackColor = false;
@@ -135,18 +141,20 @@
             // txtTimKiem
             // 
             txtTimKiem.Font = new Font("Times New Roman", 11.25F);
-            txtTimKiem.Location = new Point(120, 19);
+            txtTimKiem.Location = new Point(171, 32);
+            txtTimKiem.Margin = new Padding(4, 5, 4, 5);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.PlaceholderText = "Nhập tên, SĐT, email hoặc chức vụ để tìm kiếm...";
-            txtTimKiem.Size = new Size(420, 29);
+            txtTimKiem.Size = new Size(598, 33);
             txtTimKiem.TabIndex = 1;
             // 
             // lblTimKiem
             // 
             lblTimKiem.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            lblTimKiem.Location = new Point(20, 19);
+            lblTimKiem.Location = new Point(29, 32);
+            lblTimKiem.Margin = new Padding(4, 0, 4, 0);
             lblTimKiem.Name = "lblTimKiem";
-            lblTimKiem.Size = new Size(90, 25);
+            lblTimKiem.Size = new Size(129, 42);
             lblTimKiem.TabIndex = 0;
             lblTimKiem.Text = "Tìm kiếm:";
             lblTimKiem.TextAlign = ContentAlignment.MiddleLeft;
@@ -171,26 +179,29 @@
             panelInput.Controls.Add(label2);
             panelInput.Controls.Add(txtMaNV);
             panelInput.Controls.Add(label1);
-            panelInput.Location = new Point(15, 165);
+            panelInput.Location = new Point(21, 275);
+            panelInput.Margin = new Padding(4, 5, 4, 5);
             panelInput.Name = "panelInput";
-            panelInput.Size = new Size(1190, 150);
+            panelInput.Size = new Size(1699, 249);
             panelInput.TabIndex = 2;
             // 
             // txtMatKhau
             // 
             txtMatKhau.Font = new Font("Times New Roman", 11.25F);
-            txtMatKhau.Location = new Point(940, 61);
+            txtMatKhau.Location = new Point(1343, 102);
+            txtMatKhau.Margin = new Padding(4, 5, 4, 5);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '●';
-            txtMatKhau.Size = new Size(200, 29);
+            txtMatKhau.Size = new Size(284, 33);
             txtMatKhau.TabIndex = 15;
             // 
             // label8
             // 
             label8.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label8.Location = new Point(820, 61);
+            label8.Location = new Point(1171, 102);
+            label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(110, 25);
+            label8.Size = new Size(157, 42);
             label8.TabIndex = 14;
             label8.Text = "Mật khẩu:";
             label8.TextAlign = ContentAlignment.MiddleLeft;
@@ -198,17 +209,19 @@
             // txtTenDangNhap
             // 
             txtTenDangNhap.Font = new Font("Times New Roman", 11.25F);
-            txtTenDangNhap.Location = new Point(940, 19);
+            txtTenDangNhap.Location = new Point(1343, 32);
+            txtTenDangNhap.Margin = new Padding(4, 5, 4, 5);
             txtTenDangNhap.Name = "txtTenDangNhap";
-            txtTenDangNhap.Size = new Size(200, 29);
+            txtTenDangNhap.Size = new Size(284, 33);
             txtTenDangNhap.TabIndex = 13;
             // 
             // label7
             // 
             label7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label7.Location = new Point(820, 19);
+            label7.Location = new Point(1171, 32);
+            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(110, 25);
+            label7.Size = new Size(157, 42);
             label7.TabIndex = 12;
             label7.Text = "Tên đăng nhập:";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -219,17 +232,19 @@
             cboChucVu.Font = new Font("Times New Roman", 11.25F);
             cboChucVu.FormattingEnabled = true;
             cboChucVu.Items.AddRange(new object[] { "Bán hàng", "Kho", "Quản lý" });
-            cboChucVu.Location = new Point(550, 103);
+            cboChucVu.Location = new Point(786, 172);
+            cboChucVu.Margin = new Padding(4, 5, 4, 5);
             cboChucVu.Name = "cboChucVu";
-            cboChucVu.Size = new Size(220, 29);
+            cboChucVu.Size = new Size(313, 34);
             cboChucVu.TabIndex = 11;
             // 
             // label6
             // 
             label6.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label6.Location = new Point(420, 103);
+            label6.Location = new Point(600, 172);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(120, 25);
+            label6.Size = new Size(171, 42);
             label6.TabIndex = 10;
             label6.Text = "Chức vụ:";
             label6.TextAlign = ContentAlignment.MiddleLeft;
@@ -237,17 +252,19 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Times New Roman", 11.25F);
-            txtEmail.Location = new Point(550, 61);
+            txtEmail.Location = new Point(786, 102);
+            txtEmail.Margin = new Padding(4, 5, 4, 5);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(220, 29);
+            txtEmail.Size = new Size(313, 33);
             txtEmail.TabIndex = 9;
             // 
             // label5
             // 
             label5.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label5.Location = new Point(420, 61);
+            label5.Location = new Point(600, 102);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(120, 25);
+            label5.Size = new Size(171, 42);
             label5.TabIndex = 8;
             label5.Text = "Email:";
             label5.TextAlign = ContentAlignment.MiddleLeft;
@@ -255,17 +272,19 @@
             // txtSDT
             // 
             txtSDT.Font = new Font("Times New Roman", 11.25F);
-            txtSDT.Location = new Point(550, 19);
+            txtSDT.Location = new Point(786, 32);
+            txtSDT.Margin = new Padding(4, 5, 4, 5);
             txtSDT.Name = "txtSDT";
-            txtSDT.Size = new Size(220, 29);
+            txtSDT.Size = new Size(313, 33);
             txtSDT.TabIndex = 7;
             // 
             // label4
             // 
             label4.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label4.Location = new Point(420, 19);
+            label4.Location = new Point(600, 32);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(120, 25);
+            label4.Size = new Size(171, 42);
             label4.TabIndex = 6;
             label4.Text = "Số điện thoại:";
             label4.TextAlign = ContentAlignment.MiddleLeft;
@@ -273,17 +292,19 @@
             // txtDiaChi
             // 
             txtDiaChi.Font = new Font("Times New Roman", 11.25F);
-            txtDiaChi.Location = new Point(120, 103);
+            txtDiaChi.Location = new Point(171, 172);
+            txtDiaChi.Margin = new Padding(4, 5, 4, 5);
             txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(260, 29);
+            txtDiaChi.Size = new Size(370, 33);
             txtDiaChi.TabIndex = 5;
             // 
             // label3
             // 
             label3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label3.Location = new Point(20, 103);
+            label3.Location = new Point(29, 172);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(90, 25);
+            label3.Size = new Size(129, 42);
             label3.TabIndex = 4;
             label3.Text = "Địa chỉ:";
             label3.TextAlign = ContentAlignment.MiddleLeft;
@@ -291,17 +312,19 @@
             // txtHoTen
             // 
             txtHoTen.Font = new Font("Times New Roman", 11.25F);
-            txtHoTen.Location = new Point(120, 61);
+            txtHoTen.Location = new Point(171, 102);
+            txtHoTen.Margin = new Padding(4, 5, 4, 5);
             txtHoTen.Name = "txtHoTen";
-            txtHoTen.Size = new Size(260, 29);
+            txtHoTen.Size = new Size(370, 33);
             txtHoTen.TabIndex = 3;
             // 
             // label2
             // 
             label2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label2.Location = new Point(20, 61);
+            label2.Location = new Point(29, 102);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(90, 25);
+            label2.Size = new Size(129, 42);
             label2.TabIndex = 2;
             label2.Text = "Họ tên:";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -311,18 +334,20 @@
             txtMaNV.BackColor = Color.FromArgb(236, 240, 241);
             txtMaNV.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
             txtMaNV.ForeColor = Color.FromArgb(52, 73, 94);
-            txtMaNV.Location = new Point(120, 19);
+            txtMaNV.Location = new Point(171, 32);
+            txtMaNV.Margin = new Padding(4, 5, 4, 5);
             txtMaNV.Name = "txtMaNV";
             txtMaNV.ReadOnly = true;
-            txtMaNV.Size = new Size(150, 29);
+            txtMaNV.Size = new Size(213, 33);
             txtMaNV.TabIndex = 1;
             // 
             // label1
             // 
             label1.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label1.Location = new Point(20, 19);
+            label1.Location = new Point(29, 32);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(90, 25);
+            label1.Size = new Size(129, 42);
             label1.TabIndex = 0;
             label1.Text = "Mã NV:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -334,9 +359,10 @@
             panelButtons.Controls.Add(btnXoa);
             panelButtons.Controls.Add(btnSua);
             panelButtons.Controls.Add(btnThem);
-            panelButtons.Location = new Point(15, 330);
+            panelButtons.Location = new Point(21, 550);
+            panelButtons.Margin = new Padding(4, 5, 4, 5);
             panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(1190, 65);
+            panelButtons.Size = new Size(1699, 107);
             panelButtons.TabIndex = 3;
             // 
             // btnXoa
@@ -346,9 +372,10 @@
             btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(660, 12);
+            btnXoa.Location = new Point(943, 20);
+            btnXoa.Margin = new Padding(4, 5, 4, 5);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(140, 40);
+            btnXoa.Size = new Size(200, 67);
             btnXoa.TabIndex = 2;
             btnXoa.Text = "🗑️ Xóa";
             btnXoa.UseVisualStyleBackColor = false;
@@ -361,9 +388,10 @@
             btnSua.FlatStyle = FlatStyle.Flat;
             btnSua.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(500, 12);
+            btnSua.Location = new Point(714, 20);
+            btnSua.Margin = new Padding(4, 5, 4, 5);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(140, 40);
+            btnSua.Size = new Size(200, 67);
             btnSua.TabIndex = 1;
             btnSua.Text = "✏️ Sửa";
             btnSua.UseVisualStyleBackColor = false;
@@ -376,9 +404,10 @@
             btnThem.FlatStyle = FlatStyle.Flat;
             btnThem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             btnThem.ForeColor = Color.White;
-            btnThem.Location = new Point(340, 12);
+            btnThem.Location = new Point(486, 20);
+            btnThem.Margin = new Padding(4, 5, 4, 5);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(140, 40);
+            btnThem.Size = new Size(200, 67);
             btnThem.TabIndex = 0;
             btnThem.Text = "➕ Thêm";
             btnThem.UseVisualStyleBackColor = false;
@@ -390,31 +419,32 @@
             dgvNhanVien.AllowUserToDeleteRows = false;
             dgvNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvNhanVien.BackgroundColor = Color.White;
-            dgvNhanVien.BorderStyle = BorderStyle.FixedSingle;
             dgvNhanVien.ColumnHeadersHeight = 40;
             dgvNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvNhanVien.Location = new Point(15, 410);
+            dgvNhanVien.Location = new Point(21, 682);
+            dgvNhanVien.Margin = new Padding(4, 5, 4, 5);
             dgvNhanVien.MultiSelect = false;
             dgvNhanVien.Name = "dgvNhanVien";
             dgvNhanVien.ReadOnly = true;
             dgvNhanVien.RowHeadersWidth = 50;
             dgvNhanVien.RowTemplate.Height = 35;
             dgvNhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvNhanVien.Size = new Size(1190, 320);
+            dgvNhanVien.Size = new Size(1700, 474);
             dgvNhanVien.TabIndex = 4;
             dgvNhanVien.CellClick += dgvNhanVien_CellClick;
             // 
             // FormQuanLyNhanVien
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(236, 240, 241);
-            ClientSize = new Size(1220, 750);
+            ClientSize = new Size(1743, 1170);
             Controls.Add(dgvNhanVien);
             Controls.Add(panelButtons);
             Controls.Add(panelInput);
             Controls.Add(panelSearch);
             Controls.Add(panelTop);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FormQuanLyNhanVien";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý Nhân viên";

@@ -176,11 +176,20 @@ INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images) VALUES
 (N'Boot nữ đế cao 7cm màu kem', 5, N'37', N'Kem', 1400000, 11, N'https://tse4.mm.bing.net/th/id/OIP.niAYJRi0EAS0KxOKedG9iwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3');
 --đơn hàng
 INSERT INTO DonHang (MaKH, NgayDat, TongTien, TrangThai) VALUES
-(1, '2025-10-10', 1550000, N'Chờ xác nhận'),
-(2, '2025-10-12', 450000, N'Đã giao'),
-(6, '2025-10-15', 320000, N'Đã giao'),
-(1, '2025-10-16', 700000, N'Đã hủy'),
-(2, '2025-10-22', 1200000, N'Chờ xác nhận');
+(1, '2025-01-10', 1550000, N'Chờ xác nhận'),
+(2, '2025-02-12', 450000,  N'Đã giao'),
+(6, '2025-03-15', 320000,  N'Đã giao'),
+(1, '2025-04-16', 700000,  N'Đã hủy'),
+(2, '2025-05-22', 1200000, N'Chờ xác nhận'),
+(3, '2025-06-10', 980000,  N'Đã giao'),
+(4, '2025-07-11', 410000,  N'Chờ xác nhận'),
+(5, '2025-08-12', 860000,  N'Đã giao'),
+(1, '2025-09-13', 530000,  N'Chờ xác nhận'),
+(2, '2025-10-14', 1500000, N'Đã giao'),
+(3, '2025-11-15', 620000,  N'Đã hủy'),
+(4, '2025-12-16', 1100000, N'Chờ xác nhận');
+
+
 
 -- Chi tiết đơn hàng
 INSERT INTO ChiTietDonHang (MaDH, MaSP, SoLuong, DonGia) VALUES
@@ -192,32 +201,23 @@ INSERT INTO ChiTietDonHang (MaDH, MaSP, SoLuong, DonGia) VALUES
 
 -- Hóa đơn
 INSERT INTO HoaDon (MaDH, NgayLap, TongTien, TrangThai) VALUES
-(1, '2025-10-10', 1550000, N'Chưa thanh toán'),
-(2, '2025-10-12', 450000, N'Đã thanh toán'),
-(3, '2025-10-15', 320000, N'Chưa thanh toán'),
-(4, '2025-10-16', 700000, N'Đã hủy'),
-(5, '2025-10-22', 1200000, N'Chưa thanh toán');
+(1, '2025-01-10', 1550000, N'Chưa thanh toán'),
+(2, '2025-02-12', 450000,  N'Đã thanh toán'),
+(3, '2025-03-15', 320000,  N'Chưa thanh toán'),
+(4, '2025-04-16', 700000,  N'Đã hủy'),
+(5, '2025-05-22', 1200000, N'Chưa thanh toán'),
+(6,  '2025-06-10', 980000,  N'Đã thanh toán'),
+(7,  '2025-07-11', 410000,  N'Chưa thanh toán'),
+(8,  '2025-08-12', 860000,  N'Đã thanh toán'),
+(9,  '2025-09-13', 530000,  N'Chưa thanh toán'),
+(10, '2025-10-14', 1500000, N'Đã thanh toán'),
+(11, '2025-11-15', 620000,  N'Đã hủy'),
+(12, '2025-12-16', 1100000, N'Chưa thanh toán');
 
 -- Thanh toán
 INSERT INTO ThanhToan (MaHD, PhuongThuc, SoTien, NgayTT, TrangThai) VALUES
 (2, N'Tiền mặt', 450000, '2025-10-12', N'Hoàn tất'),
 (3, N'Chuyển khoản', 320000, '2025-10-15', N'Hoàn tất');
-
--- Yêu thích sản phẩm (Dữ liệu mẫu - có thể bỏ comment nếu cần test)
--- INSERT INTO Wishlist (U_ID, MaSP) VALUES
--- (1, 1), (1, 2),           -- User 1 thích sp 1, 2
--- (2, 1),                   -- User 2 thích sp 1
--- (3, 7),                   -- Nhân viên cũng có thể thích sản phẩm (tuỳ business)
--- (6, 3), (6, 4);           -- User 6 thích sp 3, 4
-
--- Giỏ hàng (U_ID, MaSP, SoLuong) (Dữ liệu mẫu - có thể bỏ comment nếu cần test)
--- INSERT INTO GioHang (U_ID, MaSP, SoLuong) VALUES
--- (1, 2, 2),
--- (1, 6, 1),
--- (2, 3, 1),
--- (2, 4, 1),
--- (6, 1, 1),
--- (6, 5, 2);
 
 -- Chi tiết hóa đơn
 INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong, DonGia) VALUES
@@ -228,3 +228,4 @@ INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong, DonGia) VALUES
 (4, 5, 1, 700000),
 (5, 7, 1, 1200000);
 
+SELECT * FROM dbo.Products;
