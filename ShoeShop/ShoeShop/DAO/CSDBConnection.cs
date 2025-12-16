@@ -18,7 +18,7 @@ namespace ShoeShop.DAO
 
 		public void Dispose()
 		{
-			//Không làm gì cả
+			
 		}
 	}
 }

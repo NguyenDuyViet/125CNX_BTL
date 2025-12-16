@@ -23,56 +23,74 @@ namespace ShoeShop.DAO
 			DataSet ds = new DataSet();
 			ds.ReadXml(xmlPath);
 
+			if (ds.Tables.Count == 0)
+				return list;
+
 			DataTable tb = ds.Tables[0];
 			foreach (DataRow row in tb.Rows)
 			{
 				list.Add(new ProductModel
 				{
-					MaSP = Convert.ToInt32(row["MaSP"]),
-					TenSP = row["TenSP"].ToString(),
-					C_ID = Convert.ToInt32(row["C_ID"]),
-					KichCo = row["KichCo"].ToString(),
-					MauSac = row["MauSac"].ToString(),
-					Gia = Convert.ToDecimal(row["Gia"]),
-					SoLuong = Convert.ToInt32(row["SoLuong"]),
-					Images = row["Images"].ToString(),
+					MaSP = row["MaSP"] == DBNull.Value ? 0 : Convert.ToInt32(row["MaSP"]),
+					TenSP = row["TenSP"] == DBNull.Value ? "" : row["TenSP"].ToString(),
+					C_ID = row["C_ID"] == DBNull.Value ? 0 : Convert.ToInt32(row["C_ID"]),
+					KichCo = row["KichCo"] == DBNull.Value ? "" : row["KichCo"].ToString(),
+					MauSac = row["MauSac"] == DBNull.Value ? "" : row["MauSac"].ToString(),
+					Gia = row["Gia"] == DBNull.Value ? 0 : Convert.ToDecimal(row["Gia"]),
+					SoLuong = row["SoLuong"] == DBNull.Value ? 0 : Convert.ToInt32(row["SoLuong"]),
+					Images = row["Images"] == DBNull.Value ? "" : row["Images"].ToString(),
 				});
 			}
 
 			return list;
 		}
 
-		public async Task<bool> AddProduct(ProductModel pdm)
-		{
-			string xmlPath = GetXmlPath("Products.xml");
-			DataSet ds = new DataSet();
+        public async Task<bool> AddProduct(ProductModel pdm)
+        {
+            string xmlPath = GetXmlPath("Products.xml");
+            DataSet ds = new DataSet();
 
-			if (File.Exists(xmlPath))
-				ds.ReadXml(xmlPath);
-			else
-				ds.Tables.Add("Products"); // nếu chưa có file
+            if (File.Exists(xmlPath))
+                ds.ReadXml(xmlPath);
+            else
+            {
+                DataTable newTable = new DataTable("Products");
+                newTable.Columns.Add("MaSP", typeof(int));
+                newTable.Columns.Add("TenSP", typeof(string));
+                newTable.Columns.Add("C_ID", typeof(int));
+                newTable.Columns.Add("KichCo", typeof(string));
+                newTable.Columns.Add("MauSac", typeof(string));
+                newTable.Columns.Add("Gia", typeof(decimal));
+                newTable.Columns.Add("SoLuong", typeof(int));
+                newTable.Columns.Add("Images", typeof(string));
+                ds.Tables.Add(newTable);
+            }
 
-			DataTable tb = ds.Tables[0];
+            DataTable tb = ds.Tables[0];
 
-			// Tạo dòng mới
-			DataRow newRow = tb.NewRow();
-			newRow["TenSP"] = pdm.TenSP;
-			newRow["C_ID"] = pdm.C_ID;
-			newRow["KichCo"] = pdm.KichCo;
-			newRow["MauSac"] = pdm.MauSac;
-			newRow["Gia"] = pdm.Gia;
-			newRow["SoLuong"] = pdm.SoLuong;
-			newRow["Images"] = pdm.Images;
+            DataRow newRow = tb.NewRow();
+            // ❌ KHÔNG GÁN MaSP
+            newRow["TenSP"] = pdm.TenSP ?? "";
+            newRow["C_ID"] = pdm.C_ID;
+            newRow["KichCo"] = pdm.KichCo ?? "";
+            newRow["MauSac"] = pdm.MauSac ?? "";
+            newRow["Gia"] = pdm.Gia;
+            newRow["SoLuong"] = pdm.SoLuong;
+            newRow["Images"] = pdm.Images ?? "";
 
-			tb.Rows.Add(newRow);
+            tb.Rows.Add(newRow);
 
-			// Ghi lại XML
-			ds.WriteXml(xmlPath);
+            // ✅ GHI XML
+            ds.WriteXml(xmlPath);
 
-			return await SyncXmlToSql();
-		}
+            // ✅ SQL INSERT + GHI NGƯỢC MaSP
+            await SyncXmlToSql();
 
-		public async Task<bool> DeleteProduct(int maSP)
+            return true;
+        }
+
+
+        public async Task<bool> DeleteProduct(int maSP)
 		{
 			string xmlPath = GetXmlPath("Products.xml");
 
@@ -181,70 +199,73 @@ namespace ShoeShop.DAO
 			using (SqlConnection conn = new CSDBConnection().Connection())
 			{
 				await conn.OpenAsync();
-
 				foreach (DataRow row in tb.Rows)
 				{
-					// ===== FIX 1: Không được Convert null =====
-					int masp = row["MaSP"] == DBNull.Value || string.IsNullOrWhiteSpace(row["MaSP"].ToString())
-						? 0
-						: Convert.ToInt32(row["MaSP"]);
+					int maSP = row.Table.Columns.Contains("MaSP") &&
+							   row["MaSP"] != DBNull.Value
+							   ? Convert.ToInt32(row["MaSP"])
+							   : 0;
 
-					// 2) Kiểm tra masp tồn tại trong SQL chưa
-					string checkQuery = "SELECT COUNT(*) FROM Products WHERE MaSP = @MaSP";
-					SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
-					checkCmd.Parameters.AddWithValue("@MaSP", masp);
-
-					int count = Convert.ToInt32(await checkCmd.ExecuteScalarAsync());
-
-					if (count == 0)
+					if (maSP <= 0)
 					{
-						// 3) INSERT mới
-						string insertQuery = @"
-							INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images) 
-                                VALUES (@TenSP, @C_ID, @KichCo, @MauSac, @Gia, @SoLuong, @Images)";
+						// ===== INSERT =====
+						string insertSql = @"
+            INSERT INTO Products (TenSP, C_ID, KichCo, MauSac, Gia, SoLuong, Images)
+            VALUES (@TenSP, @C_ID, @KichCo, @MauSac, @Gia, @SoLuong, @Images);
+            SELECT SCOPE_IDENTITY();";
 
-						SqlCommand cmd = new SqlCommand(insertQuery, conn);
+						SqlCommand cmd = new SqlCommand(insertSql, conn);
 
-						cmd.Parameters.AddWithValue("@TenSP", row["TenSP"]);
-						cmd.Parameters.AddWithValue("@C_ID", row["C_ID"]);
-						cmd.Parameters.AddWithValue("@KichCo", row["KichCo"]);
-						cmd.Parameters.AddWithValue("@MauSac", row["MauSac"]);
-						cmd.Parameters.AddWithValue("@Gia", row["Gia"]);
-						cmd.Parameters.AddWithValue("@SoLuong", row["SoLuong"]);
-						cmd.Parameters.AddWithValue("@Images", row["Images"]);
+						cmd.Parameters.AddWithValue("@TenSP", row["TenSP"] ?? "");
+						cmd.Parameters.AddWithValue("@C_ID", row["C_ID"] ?? 0);
+						cmd.Parameters.AddWithValue("@KichCo", row["KichCo"] ?? "");
+						cmd.Parameters.AddWithValue("@MauSac", row["MauSac"] ?? "");
+						cmd.Parameters.AddWithValue("@Gia", row["Gia"] ?? 0);
+						cmd.Parameters.AddWithValue("@SoLuong", row["SoLuong"] ?? 0);
+						cmd.Parameters.AddWithValue("@Images", row["Images"] ?? "");
 
-						await cmd.ExecuteNonQueryAsync();
+						int newId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+
+						// 🔥 GHI NGƯỢC MaSP VỀ XML
+						if (!tb.Columns.Contains("MaSP"))
+							tb.Columns.Add("MaSP", typeof(int));
+
+						row["MaSP"] = newId;
 					}
 					else
 					{
-						// 4) UPDATE
-						string updateQuery = @"
-											UPDATE Products
-											SET TenSP = @TenSP,
-												C_ID = @C_ID,
-												KichCo = @KichCo,
-												MauSac = @MauSac,
-												Gia = @Gia,
-												SoLuong = @SoLuong,
-												Images = @Images
-											WHERE MaSP = @MaSP";
+						// ===== UPDATE =====
+						string updateSql = @"
+            UPDATE Products
+            SET TenSP=@TenSP,
+                C_ID=@C_ID,
+                KichCo=@KichCo,
+                MauSac=@MauSac,
+                Gia=@Gia,
+                SoLuong=@SoLuong,
+                Images=@Images
+            WHERE MaSP=@MaSP";
 
-						SqlCommand cmd = new SqlCommand(updateQuery, conn);
+						SqlCommand cmd = new SqlCommand(updateSql, conn);
 
-						cmd.Parameters.AddWithValue("@MaSP", row["MaSP"]);
-						cmd.Parameters.AddWithValue("@TenSP", row["TenSP"]);
-						cmd.Parameters.AddWithValue("@C_ID", row["C_ID"]);
-						cmd.Parameters.AddWithValue("@KichCo", row["KichCo"]);
-						cmd.Parameters.AddWithValue("@MauSac", row["MauSac"]);
-						cmd.Parameters.AddWithValue("@Gia", row["Gia"]);
-						cmd.Parameters.AddWithValue("@SoLuong", row["SoLuong"]);
-						cmd.Parameters.AddWithValue("@Images", row["Images"]);
+						cmd.Parameters.AddWithValue("@MaSP", maSP);
+						cmd.Parameters.AddWithValue("@TenSP", row["TenSP"] ?? "");
+						cmd.Parameters.AddWithValue("@C_ID", row["C_ID"] ?? 0);
+						cmd.Parameters.AddWithValue("@KichCo", row["KichCo"] ?? "");
+						cmd.Parameters.AddWithValue("@MauSac", row["MauSac"] ?? "");
+						cmd.Parameters.AddWithValue("@Gia", row["Gia"] ?? 0);
+						cmd.Parameters.AddWithValue("@SoLuong", row["SoLuong"] ?? 0);
+						cmd.Parameters.AddWithValue("@Images", row["Images"] ?? "");
 
 						await cmd.ExecuteNonQueryAsync();
 					}
 				}
+
+				// Sau vòng foreach → ghi XML lại
+				ds.WriteXml(xmlPath);
+				return true;
+
 			}
-			return true;
 		}
 	}
 }

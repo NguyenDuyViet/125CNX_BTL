@@ -93,10 +93,23 @@ namespace ShoeShop
             f.Show();
         }
 
+        private void TrangChu_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            FormThongKe f = new FormThongKe();
-            f.Show();
+            try
+            {
+                FormThongKe f = new FormThongKe();
+                f.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở form thống kê:\n{ex.Message}\n\nChi tiết: {ex.InnerException?.Message}", 
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

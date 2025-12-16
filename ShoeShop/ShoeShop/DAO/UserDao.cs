@@ -5,8 +5,8 @@ using System.Data.SqlClient;
 
 namespace ShoeShop.DAO
 {
-    class UserDao
-    {
+	class UserDao
+	{
 		private string GetXmlPath(string fileName)
 		{
 			string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\App_Data\", fileName);
@@ -14,7 +14,7 @@ namespace ShoeShop.DAO
 		}
 
 		public async Task<UsersModel> CheckLogin(string username, string password)
-        {
+		{
 			// Lấy đường dẫn App_Data trong project
 			string xmlPath = GetXmlPath("Users.xml");
 
@@ -35,8 +35,8 @@ namespace ShoeShop.DAO
 			DataTable table = ds.Tables[0];
 
 			// Tìm user hợp lệ
-			DataRow found = table.AsEnumerable().FirstOrDefault(row => 
-							row["TenDangNhap"].ToString() == username && 
+			DataRow found = table.AsEnumerable().FirstOrDefault(row =>
+							row["TenDangNhap"].ToString() == username &&
 							row["MatKhau"].ToString() == password);
 
 			if (found != null)
@@ -228,13 +228,8 @@ namespace ShoeShop.DAO
 		public async Task<bool> SyncXmlToSql()
 		{
 			string xmlPath = GetXmlPath("Users.xml");
+			if (!File.Exists(xmlPath)) return false;
 
-			if (!File.Exists(xmlPath))
-			{
-				return false;
-			}
-
-			// 1) Đọc XML
 			DataSet ds = new DataSet();
 			ds.ReadXml(xmlPath);
 			DataTable tb = ds.Tables[0];
@@ -245,72 +240,74 @@ namespace ShoeShop.DAO
 
 				foreach (DataRow row in tb.Rows)
 				{
-					// ===== FIX 1: Không được Convert null =====
-					int id = row["U_ID"] == DBNull.Value || string.IsNullOrWhiteSpace(row["U_ID"].ToString())
-						? 0
-						: Convert.ToInt32(row["U_ID"]);
+					int uid = row.Table.Columns.Contains("U_ID") &&
+							  row["U_ID"] != DBNull.Value
+							  ? Convert.ToInt32(row["U_ID"])
+							  : 0;
 
-					// 2) Kiểm tra user tồn tại trong SQL chưa
-					string checkQuery = "SELECT COUNT(*) FROM Users WHERE U_ID = @ID";
-					SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
-					checkCmd.Parameters.AddWithValue("@ID", id);
-
-					int count = Convert.ToInt32(await checkCmd.ExecuteScalarAsync());
-
-					if (count == 0)
+					if (uid <= 0)
 					{
-						// 3) INSERT mới
-						string insertQuery = @"
-							INSERT INTO Users (HoTen, DiaChi, SDT, Email, RoleID, TenDangNhap, MatKhau, ChucVu)
-							VALUES (@HoTen, @DiaChi, @SDT, @Email, @RoleID, @TenDangNhap, @MatKhau, @ChucVu)
-						";
+						// ===== INSERT =====
+						string insertSql = @"
+                INSERT INTO Users (HoTen, DiaChi, SDT, Email, RoleID, TenDangNhap, MatKhau, ChucVu)
+                VALUES (@HoTen, @DiaChi, @SDT, @Email, @RoleID, @TenDangNhap, @MatKhau, @ChucVu);
+                SELECT SCOPE_IDENTITY();";
 
-						SqlCommand cmd = new SqlCommand(insertQuery, conn);
+						SqlCommand cmd = new SqlCommand(insertSql, conn);
 
-						cmd.Parameters.AddWithValue("@HoTen", row["HoTen"]);
-						cmd.Parameters.AddWithValue("@DiaChi", row["DiaChi"]);
-						cmd.Parameters.AddWithValue("@SDT", row["SDT"]);
-						cmd.Parameters.AddWithValue("@Email", row["Email"]);
-						cmd.Parameters.AddWithValue("@RoleID", row["RoleID"]);
-						cmd.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"]);
-						cmd.Parameters.AddWithValue("@MatKhau", row["MatKhau"]);
-						cmd.Parameters.AddWithValue("@ChucVu", row["ChucVu"]);
+						cmd.Parameters.AddWithValue("@HoTen", row["HoTen"] ?? "");
+						cmd.Parameters.AddWithValue("@DiaChi", row["DiaChi"] ?? "");
+						cmd.Parameters.AddWithValue("@SDT", row["SDT"] ?? "");
+						cmd.Parameters.AddWithValue("@Email", row["Email"] ?? "");
+						cmd.Parameters.AddWithValue("@RoleID", row["RoleID"] ?? 0);
+						cmd.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"] ?? "");
+						cmd.Parameters.AddWithValue("@MatKhau", row["MatKhau"] ?? "");
+						cmd.Parameters.AddWithValue("@ChucVu", row["ChucVu"] ?? "");
 
-						await cmd.ExecuteNonQueryAsync();
+						int newId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+
+						// 🔥 GHI NGƯỢC ID VỀ XML
+						if (!tb.Columns.Contains("U_ID"))
+							tb.Columns.Add("U_ID", typeof(int));
+
+						row["U_ID"] = newId;
 					}
 					else
 					{
-						// 4) UPDATE
-						string updateQuery = @"
-											UPDATE Users SET
-												HoTen = @HoTen,
-												DiaChi = @DiaChi,
-												SDT = @SDT,
-												Email = @Email,
-												RoleID = @RoleID,
-												TenDangNhap = @TenDangNhap,
-												MatKhau = @MatKhau,
-												ChucVu = @ChucVu
-											WHERE U_ID = @ID
-										";
+						// ===== UPDATE =====
+						string updateSql = @"
+                UPDATE Users SET
+                    HoTen=@HoTen,
+                    DiaChi=@DiaChi,
+                    SDT=@SDT,
+                    Email=@Email,
+                    RoleID=@RoleID,
+                    TenDangNhap=@TenDangNhap,
+                    MatKhau=@MatKhau,
+                    ChucVu=@ChucVu
+                WHERE U_ID=@U_ID";
 
-						SqlCommand cmd = new SqlCommand(updateQuery, conn);
+						SqlCommand cmd = new SqlCommand(updateSql, conn);
 
-						cmd.Parameters.AddWithValue("@ID", row["U_ID"]);
-						cmd.Parameters.AddWithValue("@HoTen", row["HoTen"]);
-						cmd.Parameters.AddWithValue("@DiaChi", row["DiaChi"]);
-						cmd.Parameters.AddWithValue("@SDT", row["SDT"]);
-						cmd.Parameters.AddWithValue("@Email", row["Email"]);
-						cmd.Parameters.AddWithValue("@RoleID", row["RoleID"]);
-						cmd.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"]);
-						cmd.Parameters.AddWithValue("@MatKhau", row["MatKhau"]);
-						cmd.Parameters.AddWithValue("@ChucVu", row["ChucVu"]);
+						cmd.Parameters.AddWithValue("@U_ID", uid);
+						cmd.Parameters.AddWithValue("@HoTen", row["HoTen"] ?? "");
+						cmd.Parameters.AddWithValue("@DiaChi", row["DiaChi"] ?? "");
+						cmd.Parameters.AddWithValue("@SDT", row["SDT"] ?? "");
+						cmd.Parameters.AddWithValue("@Email", row["Email"] ?? "");
+						cmd.Parameters.AddWithValue("@RoleID", row["RoleID"] ?? 0);
+						cmd.Parameters.AddWithValue("@TenDangNhap", row["TenDangNhap"] ?? "");
+						cmd.Parameters.AddWithValue("@MatKhau", row["MatKhau"] ?? "");
+						cmd.Parameters.AddWithValue("@ChucVu", row["ChucVu"] ?? "");
 
 						await cmd.ExecuteNonQueryAsync();
 					}
 				}
+
+				// GHI XML SAU KHI ĐỒNG BỘ
+				ds.WriteXml(xmlPath);
+				return true;
 			}
-			return true;
 		}
+
 	}
 }

@@ -13,8 +13,15 @@ namespace ShoeShop
 
 		public FormThongKe()
 		{
-			InitializeComponent();
-			_donHangService = new DonHangService();
+			try
+			{
+				InitializeComponent();
+				_donHangService = new DonHangService();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Lỗi khởi tạo FormThongKe:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		// ====================================
@@ -30,8 +37,8 @@ namespace ShoeShop
 		// ====================================
 		private async Task LoadData()
 		{
-			// 1. LẤY ĐƠN HÀNG (async)
-			dsDonHang = await _donHangService.GetAllDonHang();
+			// 1. LẤY ĐƠN HÀNG (sync)
+			dsDonHang = _donHangService.GetAllDonHang();
 
 			if (dsDonHang == null)
 			{
@@ -40,11 +47,11 @@ namespace ShoeShop
 			}
 
 			// 2. LOAD THỐNG KÊ
-			await LoadStatistics();
+			LoadStatistics();
 
 			// 3. BUILD DATA CHO BIỂU ĐỒ
 			BuildRevenueChartData();
-			await BuildProductChartData();
+			BuildProductChartData();
 
 			// 4. VẼ
 			panelRevenueChart.Invalidate();
@@ -54,7 +61,7 @@ namespace ShoeShop
 		// ====================================
 		// 1. THỐNG KÊ
 		// ====================================
-		private async Task LoadStatistics()
+		private void LoadStatistics()
 		{
 			try
 			{
@@ -70,7 +77,7 @@ namespace ShoeShop
 
 				foreach (var dh in dsDonHang)
 				{
-					var ct = await _donHangService.GetChiTietByMaDH(dh.MaDH);
+					var ct = _donHangService.GetChiTietByMaDH(dh.MaDH);
 					tongSP += ct?.SoLuong ?? 0;
 				}
 
@@ -104,13 +111,13 @@ namespace ShoeShop
 		// ====================================
 		// 3. BIỂU ĐỒ SẢN PHẨM BÁN CHẠY
 		// ====================================
-		private async Task BuildProductChartData()
+		private void BuildProductChartData()
 		{
 			var categoryCount = new Dictionary<string, int>();
 
 			foreach (var dh in dsDonHang)
 			{
-				var ct = await _donHangService.GetChiTietByMaDH(dh.MaDH);
+				var ct = _donHangService.GetChiTietByMaDH(dh.MaDH);
 
 				if (ct == null) continue;
 
