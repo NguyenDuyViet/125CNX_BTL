@@ -41,6 +41,11 @@ bld/
 # Alternatively, ignore all files in image directory
 # FrontEnd-ASP/wwwroot/image/imageBlog/*
 
+# ===== Winform C# App (Shoeshop) =====
+ShoeShop/ShoeShop/*.config
+ShoeShop/ShoeShop/bin/
+ShoeShop/ShoeShop/obj/
+
 # ===== Visual Studio files =====
 *_i.c
 *_p.c

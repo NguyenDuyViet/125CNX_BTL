@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Roles>
+    <RoleID>1</RoleID>
+    <RoleName>Admin</RoleName>
+  </Roles>
+  <Roles>
+    <RoleID>2</RoleID>
+    <RoleName>Nhân viên</RoleName>
+  </Roles>
+  <Roles>
+    <RoleID>3</RoleID>
+    <RoleName>Khách hàng</RoleName>
+  </Roles>
+  <Roles>
+    <RoleID>4</RoleID>
+    <RoleName>Quản lý</RoleName>
+  </Roles>
+</NewDataSet>

@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ChiTietDonHang>
+    <MaCTDH>1</MaCTDH>
+    <MaDH>1</MaDH>
+    <MaSP>2</MaSP>
+    <SoLuong>1</SoLuong>
+    <DonGia>1550000.00</DonGia>
+  </ChiTietDonHang>
+  <ChiTietDonHang>
+    <MaCTDH>2</MaCTDH>
+    <MaDH>2</MaDH>
+    <MaSP>4</MaSP>
+    <SoLuong>1</SoLuong>
+    <DonGia>450000.00</DonGia>
+  </ChiTietDonHang>
+  <ChiTietDonHang>
+    <MaCTDH>3</MaCTDH>
+    <MaDH>3</MaDH>
+    <MaSP>6</MaSP>
+    <SoLuong>1</SoLuong>
+    <DonGia>320000.00</DonGia>
+  </ChiTietDonHang>
+  <ChiTietDonHang>
+    <MaCTDH>4</MaCTDH>
+    <MaDH>4</MaDH>
+    <MaSP>5</MaSP>
+    <SoLuong>1</SoLuong>
+    <DonGia>700000.00</DonGia>
+  </ChiTietDonHang>
+  <ChiTietDonHang>
+    <MaCTDH>5</MaCTDH>
+    <MaDH>5</MaDH>
+    <MaSP>7</MaSP>
+    <SoLuong>1</SoLuong>
+    <DonGia>1200000.00</DonGia>
+  </ChiTietDonHang>
+</NewDataSet>

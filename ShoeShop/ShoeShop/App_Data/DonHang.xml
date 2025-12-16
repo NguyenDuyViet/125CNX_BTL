@@ -1,0 +1,87 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <DonHang>
+    <MaDH>1</MaDH>
+    <MaKH>1</MaKH>
+    <NgayDat>2025-01-10T00:00:00+07:00</NgayDat>
+    <TongTien>1550000.00</TongTien>
+    <TrangThai>Chờ xác nhận</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>2</MaDH>
+    <MaKH>2</MaKH>
+    <NgayDat>2025-02-12T00:00:00+07:00</NgayDat>
+    <TongTien>450000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>3</MaDH>
+    <MaKH>6</MaKH>
+    <NgayDat>2025-03-15T00:00:00+07:00</NgayDat>
+    <TongTien>320000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>4</MaDH>
+    <MaKH>1</MaKH>
+    <NgayDat>2025-04-16T00:00:00+07:00</NgayDat>
+    <TongTien>700000.00</TongTien>
+    <TrangThai>Đã hủy</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>5</MaDH>
+    <MaKH>2</MaKH>
+    <NgayDat>2025-05-22T00:00:00+07:00</NgayDat>
+    <TongTien>1200000.00</TongTien>
+    <TrangThai>Chờ xác nhận</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>6</MaDH>
+    <MaKH>3</MaKH>
+    <NgayDat>2025-06-10T00:00:00+07:00</NgayDat>
+    <TongTien>980000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>7</MaDH>
+    <MaKH>4</MaKH>
+    <NgayDat>2025-07-11T00:00:00+07:00</NgayDat>
+    <TongTien>410000.00</TongTien>
+    <TrangThai>Chờ xác nhận</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>8</MaDH>
+    <MaKH>5</MaKH>
+    <NgayDat>2025-08-12T00:00:00+07:00</NgayDat>
+    <TongTien>860000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>9</MaDH>
+    <MaKH>1</MaKH>
+    <NgayDat>2025-09-13T00:00:00+07:00</NgayDat>
+    <TongTien>530000.00</TongTien>
+    <TrangThai>Chờ xác nhận</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>10</MaDH>
+    <MaKH>2</MaKH>
+    <NgayDat>2025-10-14T00:00:00+07:00</NgayDat>
+    <TongTien>1500000.00</TongTien>
+    <TrangThai>Đã giao</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>11</MaDH>
+    <MaKH>3</MaKH>
+    <NgayDat>2025-11-15T00:00:00+07:00</NgayDat>
+    <TongTien>620000.00</TongTien>
+    <TrangThai>Đã hủy</TrangThai>
+  </DonHang>
+  <DonHang>
+    <MaDH>12</MaDH>
+    <MaKH>4</MaKH>
+    <NgayDat>2025-12-16T00:00:00+07:00</NgayDat>
+    <TongTien>1100000.00</TongTien>
+    <TrangThai>Chờ xác nhận</TrangThai>
+  </DonHang>
+</NewDataSet>

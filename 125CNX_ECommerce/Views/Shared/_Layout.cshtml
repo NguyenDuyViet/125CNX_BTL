@@ -88,10 +88,11 @@
                         <ul class="dropdown-menu text-start">
                             <li><a class="dropdown-item" href="/Product">Tất cả sản phẩm</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/Product?category=sport">Giày Thể Thao</a></li>
-                            <li><a class="dropdown-item" href="/Product?category=formal">Giày Công Sở</a></li>
-                            <li><a class="dropdown-item" href="/Product?category=sneaker">Giày Sneaker</a></li>
-                            <li><a class="dropdown-item" href="/Product?category=premium">Giày Cao Cấp</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Sneaker">Giày Sneaker</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Sandal">Sandal</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Cao gót">Giày Cao Gót</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Dép">Dép</a></li>
+                            <li><a class="dropdown-item" href="/Product?category=Boot">Boot</a></li>
                         </ul>
                     </li>
 
@@ -131,19 +132,15 @@
                     </div>
 
                     <!-- Wishlist -->
-                    <a href="/Home/Wishlist" class="position-relative text-dark" title="Yêu thích">
+                    <a href="/Wishlist" class="position-relative text-dark" title="Yêu thích">
                         <i class="bi bi-heart fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-                            3
-                        </span>
+                        @await Component.InvokeAsync("WishlistCount")
                     </a>
 
                     <!-- Cart -->
                     <a href="/Cart" class="position-relative text-dark" title="Giỏ hàng">
                         <i class="bi bi-cart3 fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 0.6rem;">
-                            5
-                        </span>
+                        @await Component.InvokeAsync("CartCount")
                     </a>
 
                     <!-- User Account -->
@@ -157,12 +154,12 @@
                             {
                                 <!-- Nếu chưa đăng nhập -->
                                 <li>
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="Login">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
                                         <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="Create">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
                                         <i class="bi bi-person-plus me-2"></i>Đăng ký
                                     </a>
                                 </li>
@@ -176,11 +173,16 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/Order">
-                                        <i class="bi bi-bag-check me-2"></i>Đơn hàng
+                                    <a class="dropdown-item" href="/Cart/MyOrders">
+                                        <i class="bi bi-bag-check me-2"></i>Đơn hàng của tôi
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" href="/Admin/Dashboard">
+                                        <i class="bi bi-speedometer2 me-2"></i>Quản trị
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="dropdown-item" href="/Account/Logout">
                                         <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
@@ -230,6 +232,38 @@
     <main role="main">
         @RenderBody()
     </main>
+
+    <!-- Toast Notification -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-success text-white">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <strong class="me-auto">Thành công</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    @TempData["Success"]
+                </div>
+            </div>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-danger text-white">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                    <strong class="me-auto">Lỗi</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    @TempData["Error"]
+                </div>
+            </div>
+        </div>
+    }
 
     <!-- Footer -->
     <footer class="footer bg-dark text-white pt-5 pb-3 mt-5">
@@ -361,6 +395,145 @@
         <i class="bi bi-arrow-up"></i>
     </button>
 
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-0">
+                    <div class="text-center mb-4">
+                        <div class="mb-3">
+                            <i class="bi bi-box-arrow-in-right" style="font-size: 3rem; color: #667eea;"></i>
+                        </div>
+                        <h2 class="fw-bold mb-2">Đăng nhập</h2>
+                        <p class="text-muted">Chào mừng bạn quay trở lại!</p>
+                    </div>
+
+                    <form asp-controller="Account" asp-action="LoginModal" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-person me-1"></i>Tên đăng nhập
+                            </label>
+                            <input type="text" name="TenDangNhap" class="form-control form-control-lg" placeholder="Nhập tên đăng nhập" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-lock me-1"></i>Mật khẩu
+                            </label>
+                            <div class="input-group">
+                                <input type="password" name="MatKhau" class="form-control form-control-lg" id="loginPassword" placeholder="Nhập mật khẩu" required />
+                                <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword" style="border-radius: 0 10px 10px 0;">
+                                    <i class="bi bi-eye" id="loginToggleIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label small" for="rememberMe">
+                                    Ghi nhớ đăng nhập
+                                </label>
+                            </div>
+                            <a href="#" class="text-primary text-decoration-none small">
+                                Quên mật khẩu?
+                            </a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-semibold">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                        </button>
+
+                        <div class="text-center">
+                            <span class="text-muted">Chưa có tài khoản?</span>
+                            <a href="#" class="text-primary text-decoration-none fw-semibold ms-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">
+                                Đăng ký ngay
+                            </a>
+                        </div>
+                    </form>
+
+                    <div class="divider my-4">
+                        <span class="divider-text text-muted small">Hoặc đăng nhập với</span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-danger">
+                            <i class="bi bi-google me-2"></i>Google
+                        </button>
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-facebook me-2"></i>Facebook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-0">
+                    <div class="text-center mb-4">
+                        <div class="mb-3">
+                            <i class="bi bi-person-plus-fill" style="font-size: 3rem; color: #dc3545;"></i>
+                        </div>
+                        <h2 class="fw-bold mb-2">Tạo tài khoản mới</h2>
+                        <p class="text-muted">Điền thông tin để bắt đầu mua sắm</p>
+                    </div>
+
+                    <form id="registerForm" action="/Account/Register" method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-person me-1"></i>Tên đăng nhập
+                            </label>
+                            <input type="text" name="TenDangNhap" class="form-control form-control-lg" placeholder="Nhập tên đăng nhập" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-envelope me-1"></i>Email
+                            </label>
+                            <input type="email" name="Email" class="form-control form-control-lg" placeholder="example@email.com" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-lock me-1"></i>Mật khẩu
+                            </label>
+                            <input type="password" name="MatKhau" class="form-control form-control-lg" placeholder="Nhập mật khẩu" required />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                <i class="bi bi-lock-fill me-1"></i>Xác nhận mật khẩu
+                            </label>
+                            <input type="password" name="XacNhanMatKhau" class="form-control form-control-lg" placeholder="Nhập lại mật khẩu" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-danger btn-lg w-100 mb-3 fw-semibold">
+                            <i class="bi bi-check-circle me-2"></i>Đăng ký ngay
+                        </button>
+
+                        <div class="text-center">
+                            <span class="text-muted">Bạn đã có tài khoản?</span>
+                            <a href="#" class="text-danger text-decoration-none fw-semibold ms-1" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Đăng nhập ngay
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -402,6 +575,132 @@
         searchInput?.addEventListener('blur', function() {
             this.parentElement.classList.remove('shadow-sm');
         });
+    </script>
+
+    <!-- Toast Auto Hide -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toasts = document.querySelectorAll('.toast');
+            toasts.forEach(toast => {
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            });
+
+            // Auto open login modal if error message contains "đăng nhập"
+            @if (TempData["Error"] != null && TempData["Error"].ToString().Contains("đăng nhập"))
+            {
+                <text>
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                </text>
+            }
+        });
+
+        // Check if user is logged in
+        function isLoggedIn() {
+            @if (Context.Session.GetString("Username") != null)
+            {
+                <text>return true;</text>
+            }
+            else
+            {
+                <text>return false;</text>
+            }
+        }
+
+        // Show login modal if not logged in
+        function requireLogin(event) {
+            if (!isLoggedIn()) {
+                event.preventDefault();
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                return false;
+            }
+            return true;
+        }
+
+        // Toggle wishlist
+        function toggleWishlist(productId, button) {
+            console.log('toggleWishlist called - productId:', productId, 'type:', typeof productId);
+            
+            if (!isLoggedIn()) {
+                console.log('User not logged in');
+                const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                loginModal.show();
+                return;
+            }
+
+            console.log('Sending request to /Wishlist/Toggle with productId:', productId);
+            fetch('/Wishlist/Toggle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId: parseInt(productId) })
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                if (data.success) {
+                    // Toggle icon
+                    const icon = button.querySelector('i');
+                    if (data.action === 'added') {
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                        button.classList.add('text-danger');
+                    } else {
+                        icon.classList.remove('bi-heart-fill');
+                        icon.classList.add('bi-heart');
+                        button.classList.remove('text-danger');
+                    }
+                    
+                    // Show toast
+                    showWishlistToast(data.message);
+                    
+                    // Reload page to update count
+                    setTimeout(() => location.reload(), 1000);
+                } else if (data.requireLogin) {
+                    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                    loginModal.show();
+                } else {
+                    console.error('Error from server:', data.message);
+                    alert(data.message + (data.errorNumber ? ' (Error: ' + data.errorNumber + ')' : ''));
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Có lỗi xảy ra. Vui lòng thử lại!');
+            });
+        }
+
+        function showWishlistToast(message) {
+            const toastHtml = `
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div class="toast show" role="alert">
+                        <div class="toast-header bg-success text-white">
+                            <i class="bi bi-heart-fill me-2"></i>
+                            <strong class="me-auto">Yêu thích</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">${message}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', toastHtml);
+            
+            setTimeout(() => {
+                const toasts = document.querySelectorAll('.toast');
+                if (toasts.length > 0) {
+                    toasts[toasts.length - 1].remove();
+                }
+            }, 3000);
+        }
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
@@ -580,6 +879,131 @@
                 line-height: 1;
             }
 
+        /* Modal Styles */
+        .modal-content {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @@keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.75) !important;
+        }
+        
+        .modal-backdrop.show {
+            opacity: 1 !important;
+        }
+
+        .modal .form-control-lg {
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+
+        .modal .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+        }
+
+        .modal .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .modal .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .modal .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 53, 69, 0.3);
+        }
+
+        .modal .btn-outline-danger,
+        .modal .btn-outline-primary {
+            border-radius: 10px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .modal .btn-outline-danger:hover,
+        .modal .btn-outline-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal .divider {
+            position: relative;
+            text-align: center;
+        }
+
+        .modal .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #dee2e6;
+        }
+
+        .modal .divider-text {
+            position: relative;
+            background: white;
+            padding: 0 1rem;
+            display: inline-block;
+        }
+
+        .modal .input-group .form-control {
+            border-right: none;
+        }
+
+        .modal .input-group .btn-outline-secondary {
+            border-left: none;
+            background: white;
+        }
+
+        .modal .input-group .btn-outline-secondary:hover {
+            background: #f8f9fa;
+        }
+
     </style>
+
+    <script>
+        // Toggle password visibility in login modal
+        document.getElementById('toggleLoginPassword')?.addEventListener('click', function() {
+            const passwordInput = document.getElementById('loginPassword');
+            const toggleIcon = document.getElementById('loginToggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('bi-eye');
+                toggleIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('bi-eye-slash');
+                toggleIcon.classList.add('bi-eye');
+            }
+        });
+    </script>
 </body>
 </html>

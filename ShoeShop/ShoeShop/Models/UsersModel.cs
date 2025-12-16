@@ -11,11 +11,7 @@ namespace _125CNX_ECommerce.Models
 		public string DiaChi { get; set; }
 		public string SDT { get; set; }
 		public string Email { get; set; }
-
-		public int RoleID { get; set; } = 3; // Mặc định là khách hàng
-		[ForeignKey("RoleID")]
-		public RolesModel Role { get; set; }
-
+		public int RoleID { get; set; }
 		public string TenDangNhap { get; set; }
 		public string MatKhau { get; set; }
 		public string? ChucVu { get; set; }

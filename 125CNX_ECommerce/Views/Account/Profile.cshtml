@@ -1,0 +1,208 @@
+@model _125CNX_ECommerce.Models.UsersModel
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-3">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Tài khoản</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Profile Section -->
+<section class="profile-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="avatar-circle mb-3">
+                            <i class="bi bi-person-circle display-1 text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1">@Model.HoTen</h5>
+                        <p class="text-muted small mb-3">@@@Model.TenDangNhap</p>
+                        <span class="badge bg-primary">Khách hàng</span>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="/Account/Profile" class="list-group-item list-group-item-action active">
+                            <i class="bi bi-person me-2"></i>Thông tin tài khoản
+                        </a>
+                        <a href="/Order" class="list-group-item list-group-item-action">
+                            <i class="bi bi-bag-check me-2"></i>Đơn hàng của tôi
+                        </a>
+                        <a href="/Home/Wishlist" class="list-group-item list-group-item-action">
+                            <i class="bi bi-heart me-2"></i>Sản phẩm yêu thích
+                        </a>
+                        <a href="/Account/ChangePassword" class="list-group-item list-group-item-action">
+                            <i class="bi bi-key me-2"></i>Đổi mật khẩu
+                        </a>
+                        <a href="/Account/Logout" class="list-group-item list-group-item-action text-danger">
+                            <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h4 class="fw-bold mb-0">Thông tin tài khoản</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        @if (TempData["Success"] != null)
+                        {
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        }
+
+                        <form asp-action="UpdateProfile" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" asp-for="U_ID" />
+                            <input type="hidden" asp-for="TenDangNhap" />
+                            <input type="hidden" asp-for="RoleID" />
+
+                            <div class="row g-4">
+                                <!-- Thông tin cơ bản -->
+                                <div class="col-12">
+                                    <h5 class="fw-bold mb-3">Thông tin cơ bản</h5>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Tên đăng nhập</label>
+                                    <input type="text" class="form-control form-control-lg" value="@Model.TenDangNhap" disabled />
+                                    <small class="text-muted">Không thể thay đổi tên đăng nhập</small>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label asp-for="HoTen" class="form-label fw-semibold">Họ và tên <span class="text-danger">*</span></label>
+                                    <input asp-for="HoTen" class="form-control form-control-lg" placeholder="Nhập họ tên" required />
+                                    <span asp-validation-for="HoTen" class="text-danger small"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label asp-for="Email" class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                                    <input asp-for="Email" type="email" class="form-control form-control-lg" placeholder="example@email.com" required />
+                                    <span asp-validation-for="Email" class="text-danger small"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label asp-for="SDT" class="form-label fw-semibold">Số điện thoại</label>
+                                    <input asp-for="SDT" class="form-control form-control-lg" placeholder="0901234567" />
+                                    <span asp-validation-for="SDT" class="text-danger small"></span>
+                                </div>
+
+                                <div class="col-12">
+                                    <label asp-for="DiaChi" class="form-label fw-semibold">Địa chỉ</label>
+                                    <textarea asp-for="DiaChi" class="form-control" rows="3" placeholder="Nhập địa chỉ đầy đủ"></textarea>
+                                    <span asp-validation-for="DiaChi" class="text-danger small"></span>
+                                </div>
+
+                                <!-- Đổi mật khẩu -->
+                                <div class="col-12 mt-4">
+                                    <h5 class="fw-bold mb-3">Đổi mật khẩu (tùy chọn)</h5>
+                                    <p class="text-muted small">Để trống nếu không muốn đổi mật khẩu</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label asp-for="MatKhau" class="form-label fw-semibold">Mật khẩu mới</label>
+                                    <input asp-for="MatKhau" type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu mới" />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Xác nhận mật khẩu</label>
+                                    <input type="password" class="form-control form-control-lg" placeholder="Nhập lại mật khẩu mới" />
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5">
+                                        <i class="bi bi-check-circle me-2"></i>Cập nhật thông tin
+                                    </button>
+                                    <a href="/" class="btn btn-outline-secondary btn-lg px-5 ms-2">
+                                        <i class="bi bi-x-circle me-2"></i>Hủy
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Account Stats -->
+                <div class="row g-4 mt-2">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm text-center p-4">
+                            <i class="bi bi-bag-check display-4 text-primary mb-2"></i>
+                            <h3 class="fw-bold mb-1">0</h3>
+                            <p class="text-muted mb-0">Đơn hàng</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm text-center p-4">
+                            <i class="bi bi-heart display-4 text-danger mb-2"></i>
+                            <h3 class="fw-bold mb-1">0</h3>
+                            <p class="text-muted mb-0">Yêu thích</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm text-center p-4">
+                            <i class="bi bi-star display-4 text-warning mb-2"></i>
+                            <h3 class="fw-bold mb-1">0</h3>
+                            <p class="text-muted mb-0">Đánh giá</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: #667eea;
+    }
+
+    .breadcrumb-item a:hover {
+        text-decoration: underline;
+    }
+
+    .list-group-item-action.active {
+        background-color: #667eea;
+        border-color: #667eea;
+    }
+
+    .list-group-item-action:hover {
+        background-color: #f8f9fa;
+    }
+
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>

@@ -1,0 +1,99 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Users>
+    <U_ID>1</U_ID>
+    <HoTen>Nguyễn Văn An</HoTen>
+    <DiaChi>12 Lê Lợi, Hà Nội</DiaChi>
+    <SDT>0901234567</SDT>
+    <Email>an@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>an123</TenDangNhap>
+    <MatKhau>123456</MatKhau>
+  </Users>
+  <Users>
+    <U_ID>2</U_ID>
+    <HoTen>Lê Thị B</HoTen>
+    <DiaChi>22 Nguyễn Huệ, Huế</DiaChi>
+    <SDT>0911987687</SDT>
+    <Email>btle@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>letb</TenDangNhap>
+    <MatKhau>654321</MatKhau>
+  </Users>
+  <Users>
+    <U_ID>3</U_ID>
+    <HoTen>Nguyễn Hồng Quân</HoTen>
+    <DiaChi>15 Pasteur, TP.HCM</DiaChi>
+    <SDT>0978661234</SDT>
+    <Email>quanhnv@gmail.com</Email>
+    <RoleID>2</RoleID>
+    <TenDangNhap>quanhnv</TenDangNhap>
+    <MatKhau>nv9876</MatKhau>
+    <ChucVu>Bán hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>4</U_ID>
+    <HoTen>Phạm Thị Hoa</HoTen>
+    <DiaChi>Kho hàng</DiaChi>
+    <SDT>0988008877</SDT>
+    <Email>hoapt@gmail.com</Email>
+    <RoleID>2</RoleID>
+    <TenDangNhap>hoapt</TenDangNhap>
+    <MatKhau>nv2345</MatKhau>
+    <ChucVu>Kho</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>5</U_ID>
+    <HoTen>Hoàng Minh</HoTen>
+    <DiaChi>KT, Hà Nội</DiaChi>
+    <SDT>0933445566</SDT>
+    <Email>minhhm@gmail.com</Email>
+    <RoleID>4</RoleID>
+    <TenDangNhap>minhhm</TenDangNhap>
+    <MatKhau>123123</MatKhau>
+    <ChucVu>Quản lý</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>6</U_ID>
+    <HoTen>Trần Mai</HoTen>
+    <DiaChi>24 Hai Bà Trưng, Hà Nội</DiaChi>
+    <SDT>0966112211</SDT>
+    <Email>maitr@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>traimai</TenDangNhap>
+    <MatKhau>123abc</MatKhau>
+  </Users>
+  <Users>
+    <U_ID>7</U_ID>
+    <HoTen>Quản trị viên</HoTen>
+    <DiaChi>Hệ thống</DiaChi>
+    <SDT />
+    <Email />
+    <RoleID>1</RoleID>
+    <TenDangNhap>admin</TenDangNhap>
+    <MatKhau>admin123</MatKhau>
+    <ChucVu>Admin</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>8</U_ID>
+    <HoTen>fevfce</HoTen>
+    <DiaChi>xdưed</DiaChi>
+    <SDT>132436586</SDT>
+    <Email>fdfw@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>fregf</TenDangNhap>
+    <MatKhau>123</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+  <Users>
+    <U_ID>9</U_ID>
+    <HoTen>rẻdưe</HoTen>
+    <DiaChi>fede</DiaChi>
+    <SDT>0128341</SDT>
+    <Email>csvc@gmail.com</Email>
+    <RoleID>3</RoleID>
+    <TenDangNhap>ềcwv</TenDangNhap>
+    <MatKhau>123</MatKhau>
+    <ChucVu>Khách hàng</ChucVu>
+  </Users>
+</NewDataSet>
