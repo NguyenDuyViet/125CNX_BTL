@@ -416,7 +416,7 @@
             dgvSanPham.RowHeadersWidth = 50;
             dgvSanPham.RowTemplate.Height = 35;
             dgvSanPham.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSanPham.Size = new Size(1843, 324);
+            dgvSanPham.Size = new Size(1843, 261);
             dgvSanPham.TabIndex = 4;
             dgvSanPham.CellClick += dgvSanPham_CellClick;
             // 
@@ -486,7 +486,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(236, 240, 241);
-            ClientSize = new Size(1886, 1170);
+            ClientSize = new Size(1886, 1033);
             Controls.Add(dgvSanPham);
             Controls.Add(panelButtons);
             Controls.Add(panelInput);

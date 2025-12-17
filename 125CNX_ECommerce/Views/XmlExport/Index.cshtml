@@ -1,0 +1,204 @@
+@model Dictionary<string, int>
+@{
+    ViewData["Title"] = "Export XML";
+}
+
+<!-- Page Header -->
+<section class="page-header py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="text-white fw-bold mb-2">
+                    <i class="bi bi-file-earmark-code me-2"></i>Export Database to XML
+                </h1>
+                <p class="text-white-50 mb-0">Xuất dữ liệu từ SQL Server sang định dạng XML</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="text-white">
+                    <h3 class="fw-bold mb-0">@Model.Values.Sum()</h3>
+                    <small>Tổng số bản ghi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Export Section -->
+<section class="export-section py-5">
+    <div class="container">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-circle me-2"></i>@TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <div class="row">
+            <!-- Quick Actions -->
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-lightning-fill me-2"></i>Thao tác nhanh
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-3">
+                            <form asp-action="ExportAll" method="post">
+                                <button type="submit" class="btn btn-success btn-lg w-100">
+                                    <i class="bi bi-download me-2"></i>Export tất cả (ZIP)
+                                </button>
+                            </form>
+                            
+                            <a href="/" class="btn btn-outline-secondary w-100">
+                                <i class="bi bi-house me-2"></i>Về trang chủ
+                            </a>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="stats-summary">
+                            <h6 class="fw-bold mb-3">Thống kê tổng quan:</h6>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="stat-item text-center p-2 bg-light rounded">
+                                        <div class="fw-bold text-primary">@(Model.ContainsKey("Products") ? Model["Products"] : 0)</div>
+                                        <small>Sản phẩm</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stat-item text-center p-2 bg-light rounded">
+                                        <div class="fw-bold text-success">@(Model.ContainsKey("Users") ? Model["Users"] : 0)</div>
+                                        <small>Người dùng</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stat-item text-center p-2 bg-light rounded">
+                                        <div class="fw-bold text-warning">@(Model.ContainsKey("DonHang") ? Model["DonHang"] : 0)</div>
+                                        <small>Đơn hàng</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="stat-item text-center p-2 bg-light rounded">
+                                        <div class="fw-bold text-info">@(Model.ContainsKey("Categories") ? Model["Categories"] : 0)</div>
+                                        <small>Danh mục</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tables List -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="fw-bold mb-0">
+                            <i class="bi bi-table me-2"></i>Danh sách bảng dữ liệu
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tên bảng</th>
+                                        <th class="text-center">Số bản ghi</th>
+                                        <th class="text-center">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var table in Model.OrderBy(x => x.Key))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <i class="bi bi-table text-primary me-2"></i>
+                                                    <strong>@table.Key</strong>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-light text-dark border">@table.Value.ToString("N0")</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <a href="/XmlExport/Preview/@table.Key" class="btn btn-outline-info" title="Xem trước">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                    <form asp-action="ExportTable" method="post" style="display: inline;">
+                                                        <input type="hidden" name="tableName" value="@table.Key" />
+                                                        <button type="submit" class="btn btn-outline-success" title="Tải xuống XML">
+                                                            <i class="bi bi-download"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="card border-0 shadow-sm mt-4" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="card-body text-white">
+                        <h6 class="fw-bold mb-3">
+                            <i class="bi bi-info-circle me-2"></i>Hướng dẫn sử dụng
+                        </h6>
+                        <ul class="mb-0 small">
+                            <li class="mb-1"><strong>Export tất cả:</strong> Tải về file ZIP chứa tất cả bảng dữ liệu dạng XML</li>
+                            <li class="mb-1"><strong>Xem trước:</strong> Xem nội dung XML của bảng trước khi tải</li>
+                            <li class="mb-1"><strong>Tải từng bảng:</strong> Tải file XML của từng bảng riêng lẻ</li>
+                            <li><strong>Định dạng:</strong> Dữ liệu được xuất theo chuẩn XML với encoding UTF-8</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .export-section .card {
+        transition: all 0.3s ease;
+    }
+
+    .export-section .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+
+    .stat-item {
+        transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+        transform: scale(1.05);
+    }
+
+    .table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn-group .btn {
+        border-radius: 0;
+    }
+
+    .btn-group .btn:first-child {
+        border-top-left-radius: 0.375rem;
+        border-bottom-left-radius: 0.375rem;
+    }
+
+    .btn-group .btn:last-child {
+        border-top-right-radius: 0.375rem;
+        border-bottom-right-radius: 0.375rem;
+    }
+</style>

@@ -19,7 +19,6 @@ namespace _125CNX_ECommerce.Controllers
                                 FROM Products p 
                                 INNER JOIN Categories c ON p.C_ID = c.C_ID 
                                 WHERE 1=1";
-
                 // Lọc theo danh mục
                 if (!string.IsNullOrEmpty(category))
                 {
@@ -240,7 +239,6 @@ namespace _125CNX_ECommerce.Controllers
                     });
                 }
             }
-
             ViewBag.Keyword = keyword;
             ViewBag.ResultCount = products.Count;
 

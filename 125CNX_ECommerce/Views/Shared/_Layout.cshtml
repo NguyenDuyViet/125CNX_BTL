@@ -116,15 +116,22 @@
                             <small>Flash Sale</small>
                         </a>
                     </li>
+
+                    <li class="nav-item mx-3">
+                        <a class="nav-link d-flex flex-column align-items-center text-info" href="/XmlExport">
+                            <i class="bi bi-file-earmark-code fs-4 mb-1"></i>
+                            <small>Export XML</small>
+                        </a>
+                    </li>
                 </ul>
                 <!-- Right Icons -->
                 <div class="d-flex align-items-center gap-3">
                     <!-- Search -->
                     <div class="search-box d-none d-lg-block">
                         <form class="d-flex" action="/Product/Search" method="get">
-                            <div class="input-group">
-                                <input type="text" name="keyword" class="form-control form-control-sm" placeholder="Tìm kiếm sản phẩm..." style="min-width: 200px;">
-                                <button class="btn btn-outline-secondary btn-sm" type="submit">
+                            <div class="input-group" style="width: 250px;">
+                                <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm..." style="height: 38px;">
+                                <button class="btn btn-outline-secondary" type="submit" style="height: 38px; display: flex; align-items: center; justify-content: center;">
                                     <i class="bi bi-search"></i>
                                 </button>
                             </div>
@@ -184,6 +191,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a class="dropdown-item" href="/XmlExport">
+                                        <i class="bi bi-file-earmark-code me-2"></i>Export XML
+                                    </a>
+                                </li>
+                                <li>
                                     <a class="dropdown-item" href="/Account/Logout">
                                         <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
                                     </a>
@@ -201,26 +213,9 @@
     <div class="mobile-search d-lg-none bg-light py-2">
         <div class="container">
             <form action="/Product/Search" method="get">
-                <div class="input-group input-group-sm">
-                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Mobile Search Bar -->
-    <div class="mobile-search d-lg-none bg-light py-2">
-        <div class="container">
-            <form action="/Product/Search" method="get">
-                <div class="input-group input-group-sm">
-                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
-                    <button class="btn btn-primary" type="submit">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm..." style="height: 38px;">
+                    <button class="btn btn-primary" type="submit" style="height: 38px; display: flex; align-items: center; justify-content: center;">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>

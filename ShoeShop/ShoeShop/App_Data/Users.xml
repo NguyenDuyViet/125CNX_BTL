@@ -74,26 +74,4 @@
     <MatKhau>admin123</MatKhau>
     <ChucVu>Admin</ChucVu>
   </Users>
-  <Users>
-    <U_ID>8</U_ID>
-    <HoTen>fevfce</HoTen>
-    <DiaChi>xdưed</DiaChi>
-    <SDT>132436586</SDT>
-    <Email>fdfw@gmail.com</Email>
-    <RoleID>3</RoleID>
-    <TenDangNhap>fregf</TenDangNhap>
-    <MatKhau>123</MatKhau>
-    <ChucVu>Khách hàng</ChucVu>
-  </Users>
-  <Users>
-    <U_ID>9</U_ID>
-    <HoTen>rẻdưe</HoTen>
-    <DiaChi>fede</DiaChi>
-    <SDT>0128341</SDT>
-    <Email>csvc@gmail.com</Email>
-    <RoleID>3</RoleID>
-    <TenDangNhap>ềcwv</TenDangNhap>
-    <MatKhau>123</MatKhau>
-    <ChucVu>Khách hàng</ChucVu>
-  </Users>
 </NewDataSet>

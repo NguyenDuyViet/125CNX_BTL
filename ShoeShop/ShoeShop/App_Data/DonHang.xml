@@ -84,4 +84,11 @@
     <TongTien>1100000.00</TongTien>
     <TrangThai>Chờ xác nhận</TrangThai>
   </DonHang>
+  <DonHang>
+    <MaDH>13</MaDH>
+    <MaKH>1</MaKH>
+    <NgayDat>2025-12-17T00:00:00+07:00</NgayDat>
+    <TongTien>1500000.00</TongTien>
+    <TrangThai>Chờ xác nhận</TrangThai>
+  </DonHang>
 </NewDataSet>

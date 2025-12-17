@@ -1,0 +1,123 @@
+@{
+    ViewData["Title"] = "Preview XML - " + ViewBag.TableName;
+}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-3">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/XmlExport">Export XML</a></li>
+            <li class="breadcrumb-item active">Preview @ViewBag.TableName</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Preview Section -->
+<section class="preview-section py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">
+                <i class="bi bi-eye me-2"></i>Preview: @ViewBag.TableName.xml
+            </h2>
+            <div>
+                <a href="/XmlExport" class="btn btn-outline-secondary me-2">
+                    <i class="bi bi-arrow-left me-1"></i>Quay lại
+                </a>
+                <form asp-action="ExportTable" method="post" style="display: inline;">
+                    <input type="hidden" name="tableName" value="@ViewBag.TableName" />
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-download me-1"></i>Tải xuống
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">
+                    <i class="bi bi-file-earmark-code me-2"></i>Nội dung XML
+                </h6>
+                <button class="btn btn-sm btn-outline-light" onclick="copyToClipboard()">
+                    <i class="bi bi-clipboard me-1"></i>Copy
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <pre id="xmlContent" class="mb-0" style="max-height: 600px; overflow-y: auto; background: #f8f9fa; padding: 1rem; margin: 0; font-size: 0.85rem; line-height: 1.4;"><code class="language-xml">@ViewBag.XmlContent</code></pre>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="alert alert-info mt-4">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>Thông tin:</strong> Đây là bản xem trước nội dung file XML. 
+            Click "Tải xuống" để tải file về máy tính của bạn.
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function copyToClipboard() {
+            const xmlContent = document.getElementById('xmlContent').textContent;
+            navigator.clipboard.writeText(xmlContent).then(function() {
+                // Show success message
+                const btn = event.target.closest('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="bi bi-check me-1"></i>Copied!';
+                btn.classList.remove('btn-outline-light');
+                btn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-outline-light');
+                }, 2000);
+            }).catch(function(err) {
+                alert('Không thể copy: ' + err);
+            });
+        }
+
+        // Syntax highlighting (simple)
+        document.addEventListener('DOMContentLoaded', function() {
+            const code = document.querySelector('code.language-xml');
+            if (code) {
+                let html = code.innerHTML;
+                
+                // Highlight XML tags
+                html = html.replace(/(&lt;\/?)([^&\s]+)([^&]*?)(&gt;)/g, 
+                    '$1<span style="color: #0066cc; font-weight: bold;">$2</span>$3$4');
+                
+                // Highlight attributes
+                html = html.replace(/(\w+)(=)(&quot;[^&]*?&quot;)/g, 
+                    '<span style="color: #cc6600;">$1</span>$2<span style="color: #009900;">$3</span>');
+                
+                code.innerHTML = html;
+            }
+        });
+    </script>
+}
+
+<style>
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: #667eea;
+    }
+
+    .breadcrumb-item a:hover {
+        text-decoration: underline;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .card {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+</style>

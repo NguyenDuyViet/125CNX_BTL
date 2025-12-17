@@ -19,6 +19,8 @@ namespace ShoeShop.Service
 
         public async Task<List<HoaDonModel>> GetAllHoaDon()
         {
+            // Validate và fix data consistency trước khi load
+            await hoadon.ValidateAndFixDataConsistency();
             return await hoadon.GetAllHoaDon();
         }
 

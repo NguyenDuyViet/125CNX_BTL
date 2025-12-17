@@ -1,0 +1,293 @@
+@model IEnumerable<_125CNX_ECommerce.Models.DonHangModel>
+@{
+    ViewData["Title"] = "Đơn hàng của tôi";
+}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="bg-light py-3">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Đơn hàng của tôi</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Orders Section -->
+<section class="orders-section py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0">
+                <i class="bi bi-bag-check me-2"></i>Đơn hàng của tôi
+            </h2>
+            <span class="text-muted">(@Model.Count() đơn hàng)</span>
+        </div>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-circle me-2"></i>@TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (!Model.Any())
+        {
+            <!-- Empty Orders -->
+            <div class="text-center py-5">
+                <i class="bi bi-bag-x display-1 text-muted mb-4"></i>
+                <h4 class="mb-3">Chưa có đơn hàng nào</h4>
+                <p class="text-muted mb-4">Bạn chưa đặt đơn hàng nào. Hãy khám phá các sản phẩm của chúng tôi!</p>
+                <a href="/Product" class="btn btn-primary btn-lg">
+                    <i class="bi bi-bag me-2"></i>Mua sắm ngay
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var order in Model)
+                {
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-white border-0 py-3">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <h6 class="fw-bold mb-1">
+                                            <i class="bi bi-receipt me-2"></i>Đơn hàng #DH@order.MaDH.ToString("D6")
+                                        </h6>
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar me-1"></i>@order.NgayDat.ToString("dd/MM/yyyy HH:mm")
+                                        </small>
+                                    </div>
+                                    <div class="col-md-6 text-md-end">
+                                        <div class="d-flex flex-column align-items-md-end">
+                                            <h5 class="text-danger fw-bold mb-1">@order.TongTien.ToString("N0")đ</h5>
+                                            @{
+                                                string badgeClass = order.TrangThai switch
+                                                {
+                                                    "Chờ xác nhận" => "bg-warning text-dark",
+                                                    "Đã giao" => "bg-success",
+                                                    "Đã hủy" => "bg-danger",
+                                                    _ => "bg-secondary"
+                                                };
+                                                string icon = order.TrangThai switch
+                                                {
+                                                    "Chờ xác nhận" => "bi-clock",
+                                                    "Đã giao" => "bi-check-circle",
+                                                    "Đã hủy" => "bi-x-circle",
+                                                    _ => "bi-info-circle"
+                                                };
+                                            }
+                                            <span class="badge @badgeClass px-3 py-2">
+                                                <i class="@icon me-1"></i>@order.TrangThai
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <!-- Order Info -->
+                                    <div class="col-md-8">
+                                        <div class="order-timeline">
+                                            @if (order.TrangThai == "Chờ xác nhận")
+                                            {
+                                                <div class="timeline-item active">
+                                                    <div class="timeline-icon bg-warning">
+                                                        <i class="bi bi-clock text-white"></i>
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <h6 class="mb-1">Đang chờ xác nhận</h6>
+                                                        <small class="text-muted">Admin sẽ xác nhận đơn hàng trong vòng 24 giờ</small>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (order.TrangThai == "Đã giao")
+                                            {
+                                                <div class="timeline-item completed">
+                                                    <div class="timeline-icon bg-success">
+                                                        <i class="bi bi-check-circle text-white"></i>
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <h6 class="mb-1">Đã giao thành công</h6>
+                                                        <small class="text-muted">Đơn hàng đã được giao đến bạn</small>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (order.TrangThai == "Đã hủy")
+                                            {
+                                                <div class="timeline-item cancelled">
+                                                    <div class="timeline-icon bg-danger">
+                                                        <i class="bi bi-x-circle text-white"></i>
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <h6 class="mb-1">Đơn hàng đã bị hủy</h6>
+                                                        <small class="text-muted">Đơn hàng không thể hoàn thành</small>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div class="col-md-4 text-md-end">
+                                        <div class="d-flex flex-column gap-2">
+                                            @if (order.TrangThai == "Chờ xác nhận")
+                                            {
+                                                <button class="btn btn-outline-danger btn-sm" onclick="cancelOrder(@order.MaDH)">
+                                                    <i class="bi bi-x-circle me-1"></i>Hủy đơn
+                                                </button>
+                                            }
+                                            <a href="/Cart/OrderSuccess/@order.MaDH" class="btn btn-outline-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>Xem chi tiết
+                                            </a>
+                                            @if (order.TrangThai == "Đã giao")
+                                            {
+                                                <button class="btn btn-outline-success btn-sm">
+                                                    <i class="bi bi-arrow-repeat me-1"></i>Mua lại
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Pagination (if needed) -->
+            @if (Model.Count() > 10)
+            {
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <span class="page-link">Trước</span>
+                        </li>
+                        <li class="page-item active">
+                            <span class="page-link">1</span>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Sau</a>
+                        </li>
+                    </ul>
+                </nav>
+            }
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function cancelOrder(orderId) {
+            if (!confirm('Bạn có chắc muốn hủy đơn hàng này?')) {
+                return;
+            }
+
+            // TODO: Implement cancel order functionality
+            alert('Chức năng hủy đơn hàng sẽ được triển khai sau');
+        }
+    </script>
+}
+
+<style>
+    .breadcrumb-item a {
+        text-decoration: none;
+        color: #667eea;
+    }
+
+    .breadcrumb-item a:hover {
+        text-decoration: underline;
+    }
+
+    .orders-section .card {
+        transition: all 0.3s ease;
+    }
+
+    .orders-section .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+
+    .order-timeline {
+        position: relative;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .timeline-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .timeline-content h6 {
+        color: #333;
+        margin-bottom: 4px;
+    }
+
+    .timeline-item.active .timeline-icon {
+        animation: pulse 2s infinite;
+    }
+
+    @@keyframes pulse {
+        0%, 100% {
+            box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+        }
+    }
+
+    .timeline-item.completed .timeline-content h6 {
+        color: #198754;
+    }
+
+    .timeline-item.cancelled .timeline-content h6 {
+        color: #dc3545;
+    }
+
+    .btn-group .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn-group .btn:hover {
+        transform: translateY(-1px);
+    }
+
+    @@media (max-width: 768px) {
+        .card-header .row {
+            text-align: center;
+        }
+        
+        .timeline-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+        
+        .col-md-4 {
+            text-align: center !important;
+        }
+    }
+</style>
