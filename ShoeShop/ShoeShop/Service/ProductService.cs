@@ -45,5 +45,11 @@ namespace ShoeShop.Service
         {
             return await product.GetAllCategories();
         }
+
+        //Import XML to SQL
+        public async Task<bool> ImportXmlToSql()
+        {
+            return await product.SyncXmlToSql();
+        }
     }
 }

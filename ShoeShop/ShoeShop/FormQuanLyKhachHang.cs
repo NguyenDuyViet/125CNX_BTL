@@ -352,5 +352,81 @@ namespace ShoeShop
 				}
 			}
 		}
+
+		private async void btnImportXML_Click(object sender, EventArgs e)
+		{
+			// Hiển thị dialog xác nhận
+			DialogResult result = MessageBox.Show(
+				"Bạn có chắc chắn muốn import dữ liệu từ XML vào SQL Server?\n\n" +
+				"Lưu ý: Dữ liệu trùng lặp sẽ được cập nhật,\n" +
+				"dữ liệu mới sẽ được thêm vào.",
+				"⚠️ Xác nhận Import",
+				MessageBoxButtons.YesNo,
+				MessageBoxIcon.Question
+			);
+
+			if (result == DialogResult.Yes)
+			{
+				await ImportXmlToSqlAsync();
+			}
+		}
+
+		private async Task ImportXmlToSqlAsync()
+		{
+			try
+			{
+				// Thay đổi trạng thái button và cursor
+				btnImportXML.Text = "📥 Đang import...";
+				btnImportXML.Enabled = false;
+				this.Cursor = Cursors.WaitCursor;
+
+				// Thực hiện import
+				usv = new UserService();
+				bool success = await usv.ImportXmlToSql();
+
+				if (success)
+				{
+					MessageBox.Show(
+						"✅ Import XML vào SQL Server thành công!\n\n" +
+						"Dữ liệu đã được đồng bộ từ file XML sang cơ sở dữ liệu SQL.",
+						"Import thành công",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Information
+					);
+
+					// Reload dữ liệu để hiển thị thay đổi
+					await LoadData();
+				}
+				else
+				{
+					MessageBox.Show(
+						"❌ Import thất bại!\n\n" +
+						"Vui lòng kiểm tra:\n" +
+						"- File XML có tồn tại không\n" +
+						"- Kết nối SQL Server\n" +
+						"- Cấu trúc dữ liệu",
+						"Import thất bại",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(
+					$"❌ Lỗi trong quá trình import!\n\n{ex.Message}",
+					"Lỗi",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error
+				);
+			}
+			finally
+			{
+				// Khôi phục trạng thái button và cursor
+				btnImportXML.Text = "📥 XML → SQL";
+				btnImportXML.Enabled = true;
+				this.Cursor = Cursors.Default;
+			}
+		}
 	}
 }

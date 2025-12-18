@@ -42,4 +42,11 @@
     <SoLuong>1</SoLuong>
     <DonGia>1500000.00</DonGia>
   </ChiTietDonHang>
+  <ChiTietDonHang>
+    <MaCTDH>7</MaCTDH>
+    <MaDH>14</MaDH>
+    <MaSP>1</MaSP>
+    <SoLuong>1</SoLuong>
+    <DonGia>1500000.00</DonGia>
+  </ChiTietDonHang>
 </NewDataSet>

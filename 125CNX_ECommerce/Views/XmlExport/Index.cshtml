@@ -124,10 +124,10 @@
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group btn-group-sm" role="group">
-                                                    <a href="/XmlExport/Preview/@table.Key" class="btn btn-outline-info" title="Xem trước">
+                                                    <a asp-action="Preview" asp-route-tableName="@table.Key" class="btn btn-outline-info" title="Xem trước">
                                                         <i class="bi bi-eye"></i>
                                                     </a>
-                                                    <form asp-action="ExportTable" method="post" style="display: inline;">
+                                                    <form asp-action="ExportTable" method="post" class="d-inline">
                                                         <input type="hidden" name="tableName" value="@table.Key" />
                                                         <button type="submit" class="btn btn-outline-success" title="Tải xuống XML">
                                                             <i class="bi bi-download"></i>

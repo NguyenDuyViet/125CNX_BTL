@@ -45,5 +45,10 @@ namespace ShoeShop.Service
         public async Task XmlExporter(string tableName) {
             await user.XmlExporter(tableName);
         }
+
+        public async Task<bool> ImportXmlToSql()
+        {
+            return await user.SyncXmlToSql();
+        }
 	}
 }

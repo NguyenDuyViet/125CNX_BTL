@@ -15,7 +15,6 @@ namespace ShoeShop.DAO
 			String connectionString = ConfigurationManager.ConnectionStrings["ShopBanGiay"].ConnectionString;
 			return new SqlConnection(connectionString);
         }
-
 		public void Dispose()
 		{
 			

@@ -172,5 +172,77 @@ namespace ShoeShop.DAO
 			};
 		}
 
+		public async Task<bool> SyncXmlToSql()
+		{
+			string xmlPath = GetXmlPath("DonHang.xml");
+			if (!File.Exists(xmlPath)) return false;
+
+			DataSet ds = new DataSet();
+			ds.ReadXml(xmlPath);
+			DataTable tb = ds.Tables[0];
+
+			using (SqlConnection conn = new CSDBConnection().Connection())
+			{
+				await conn.OpenAsync();
+
+				foreach (DataRow row in tb.Rows)
+				{
+					int maDH = row.Table.Columns.Contains("MaDH") &&
+							   row["MaDH"] != DBNull.Value
+							   ? Convert.ToInt32(row["MaDH"])
+							   : 0;
+
+					if (maDH <= 0)
+					{
+						// ===== INSERT =====
+						string insertSql = @"
+                INSERT INTO DonHang (MaKH, NgayDat, TongTien, TrangThai)
+                VALUES (@MaKH, @NgayDat, @TongTien, @TrangThai);
+                SELECT SCOPE_IDENTITY();";
+
+						SqlCommand cmd = new SqlCommand(insertSql, conn);
+
+						cmd.Parameters.AddWithValue("@MaKH", row["MaKH"] ?? 0);
+						cmd.Parameters.AddWithValue("@NgayDat", row["NgayDat"] ?? DateTime.Now);
+						cmd.Parameters.AddWithValue("@TongTien", row["TongTien"] ?? 0);
+						cmd.Parameters.AddWithValue("@TrangThai", row["TrangThai"] ?? "Chờ xác nhận");
+
+						int newId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+
+						// 🔥 GHI NGƯỢC ID VỀ XML
+						if (!tb.Columns.Contains("MaDH"))
+							tb.Columns.Add("MaDH", typeof(int));
+
+						row["MaDH"] = newId;
+					}
+					else
+					{
+						// ===== UPDATE =====
+						string updateSql = @"
+                UPDATE DonHang SET
+                    MaKH=@MaKH,
+                    NgayDat=@NgayDat,
+                    TongTien=@TongTien,
+                    TrangThai=@TrangThai
+                WHERE MaDH=@MaDH";
+
+						SqlCommand cmd = new SqlCommand(updateSql, conn);
+
+						cmd.Parameters.AddWithValue("@MaDH", maDH);
+						cmd.Parameters.AddWithValue("@MaKH", row["MaKH"] ?? 0);
+						cmd.Parameters.AddWithValue("@NgayDat", row["NgayDat"] ?? DateTime.Now);
+						cmd.Parameters.AddWithValue("@TongTien", row["TongTien"] ?? 0);
+						cmd.Parameters.AddWithValue("@TrangThai", row["TrangThai"] ?? "Chờ xác nhận");
+
+						await cmd.ExecuteNonQueryAsync();
+					}
+				}
+
+				// GHI XML SAU KHI ĐỒNG BỘ
+				ds.WriteXml(xmlPath);
+				return true;
+			}
+		}
+
 	}
 }

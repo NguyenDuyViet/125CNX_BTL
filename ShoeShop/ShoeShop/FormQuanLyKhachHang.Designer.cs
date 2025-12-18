@@ -19,6 +19,7 @@
             lblTitle = new Label();
             panelSearch = new Panel();
             btnExportXML = new Button();
+            btnImportXML = new Button();
             btnLamMoi = new Button();
             btnTimKiem = new Button();
             txtTimKiem = new TextBox();
@@ -78,6 +79,7 @@
             panelSearch.BackColor = Color.White;
             panelSearch.BorderStyle = BorderStyle.FixedSingle;
             panelSearch.Controls.Add(btnExportXML);
+            panelSearch.Controls.Add(btnImportXML);
             panelSearch.Controls.Add(btnLamMoi);
             panelSearch.Controls.Add(btnTimKiem);
             panelSearch.Controls.Add(txtTimKiem);
@@ -95,14 +97,30 @@
             btnExportXML.FlatStyle = FlatStyle.Flat;
             btnExportXML.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
             btnExportXML.ForeColor = Color.White;
-            btnExportXML.Location = new Point(1257, 25);
+            btnExportXML.Location = new Point(1485, 25);
             btnExportXML.Margin = new Padding(4, 5, 4, 5);
             btnExportXML.Name = "btnExportXML";
             btnExportXML.Size = new Size(200, 58);
-            btnExportXML.TabIndex = 4;
+            btnExportXML.TabIndex = 5;
             btnExportXML.Text = "📄 Export XML";
             btnExportXML.UseVisualStyleBackColor = false;
             btnExportXML.Click += btnExportXML_Click;
+            // 
+            // btnImportXML
+            // 
+            btnImportXML.BackColor = Color.FromArgb(155, 89, 182);
+            btnImportXML.Cursor = Cursors.Hand;
+            btnImportXML.FlatStyle = FlatStyle.Flat;
+            btnImportXML.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            btnImportXML.ForeColor = Color.White;
+            btnImportXML.Location = new Point(1257, 25);
+            btnImportXML.Margin = new Padding(4, 5, 4, 5);
+            btnImportXML.Name = "btnImportXML";
+            btnImportXML.Size = new Size(200, 58);
+            btnImportXML.TabIndex = 4;
+            btnImportXML.Text = "📥 XML → SQL";
+            btnImportXML.UseVisualStyleBackColor = false;
+            btnImportXML.Click += btnImportXML_Click;
             // 
             // btnLamMoi
             // 
@@ -436,6 +454,7 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.Button btnExportXML;
+        private System.Windows.Forms.Button btnImportXML;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.TextBox txtTimKiem;

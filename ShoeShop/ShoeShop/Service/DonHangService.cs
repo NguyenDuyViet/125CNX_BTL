@@ -26,5 +26,10 @@ namespace ShoeShop.Service
             ChiTietDonHangModel chitiet = donhang.GetChiTietByMaDH(MaDH);
             return chitiet;
         }
+
+        public async Task<bool> ImportXmlToSql()
+        {
+            return await donhang.SyncXmlToSql();
+        }
 	}
 }

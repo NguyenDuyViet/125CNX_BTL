@@ -587,5 +587,84 @@ namespace ShoeShop
 		}
 		#endregion
 
+		#region Import XML to SQL
+		private async void btnImportXML_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// Hiển thị dialog xác nhận
+				DialogResult result = MessageBox.Show(
+					"Bạn có chắc chắn muốn import dữ liệu từ XML vào SQL Server?\n\n" +
+					"Lưu ý: Dữ liệu trùng lặp sẽ được cập nhật, dữ liệu mới sẽ được thêm vào.",
+					"Xác nhận Import",
+					MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question);
+
+				if (result != DialogResult.Yes)
+					return;
+
+				// Hiển thị progress
+				this.Cursor = Cursors.WaitCursor;
+				
+				// Disable button để tránh click nhiều lần
+				var button = sender as Button;
+				if (button != null)
+				{
+					button.Enabled = false;
+					button.Text = "Đang import...";
+				}
+
+				// Thực hiện import
+				pds = new ProductService();
+				bool success = await pds.ImportXmlToSql();
+
+				if (success)
+				{
+					MessageBox.Show(
+						"Import XML vào SQL Server thành công!\n\n" +
+						"Dữ liệu đã được đồng bộ từ file XML sang cơ sở dữ liệu SQL.",
+						"Import thành công",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Information);
+
+					// Reload data để hiển thị kết quả
+					await LoadData();
+				}
+				else
+				{
+					MessageBox.Show(
+						"Import thất bại!\n\n" +
+						"Vui lòng kiểm tra:\n" +
+						"- File XML có tồn tại không\n" +
+						"- Kết nối SQL Server\n" +
+						"- Cấu trúc dữ liệu",
+						"Import thất bại",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error);
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(
+					$"Lỗi khi import XML vào SQL:\n\n{ex.Message}",
+					"Lỗi",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error);
+			}
+			finally
+			{
+				// Restore UI
+				this.Cursor = Cursors.Default;
+				
+				var button = sender as Button;
+				if (button != null)
+				{
+					button.Enabled = true;
+					button.Text = "Import XML → SQL";
+				}
+			}
+		}
+		#endregion
+
 	}
 }

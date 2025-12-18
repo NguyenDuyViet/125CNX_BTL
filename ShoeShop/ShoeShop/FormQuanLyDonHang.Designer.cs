@@ -17,6 +17,7 @@
             lblTitle = new Label();
             panelInfo = new Panel();
             btnExport = new Button();
+            btnImportXML = new Button();
             btnRefresh = new Button();
             label1 = new Label();
             txtMaDH = new TextBox();
@@ -65,6 +66,7 @@
             panelInfo.BackColor = Color.White;
             panelInfo.BorderStyle = BorderStyle.FixedSingle;
             panelInfo.Controls.Add(btnExport);
+            panelInfo.Controls.Add(btnImportXML);
             panelInfo.Controls.Add(btnRefresh);
             panelInfo.Controls.Add(label1);
             panelInfo.Controls.Add(txtMaDH);
@@ -89,13 +91,27 @@
             btnExport.FlatStyle = FlatStyle.Flat;
             btnExport.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExport.ForeColor = Color.White;
-            btnExport.Location = new Point(20, 198);
+            btnExport.Location = new Point(250, 198);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(201, 40);
-            btnExport.TabIndex = 13;
+            btnExport.TabIndex = 14;
             btnExport.Text = "📄 Export XML";
             btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
+            // 
+            // btnImportXML
+            // 
+            btnImportXML.BackColor = Color.FromArgb(155, 89, 182);
+            btnImportXML.FlatStyle = FlatStyle.Flat;
+            btnImportXML.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnImportXML.ForeColor = Color.White;
+            btnImportXML.Location = new Point(20, 198);
+            btnImportXML.Name = "btnImportXML";
+            btnImportXML.Size = new Size(201, 40);
+            btnImportXML.TabIndex = 13;
+            btnImportXML.Text = "📥 XML → SQL";
+            btnImportXML.UseVisualStyleBackColor = false;
+            btnImportXML.Click += btnImportXML_Click;
             // 
             // btnRefresh
             // 
@@ -336,5 +352,6 @@
         private Label label1, label2, label3, label4, label5, label6;
         private Button btnRefresh;
         private Button btnExport;
+        private Button btnImportXML;
     }
 }

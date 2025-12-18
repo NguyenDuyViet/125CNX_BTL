@@ -194,38 +194,6 @@ namespace _125CNX_ECommerce.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: /Cart/Debug - For testing
-        public IActionResult Debug()
-        {
-            var userId = HttpContext.Session.GetInt32("U_ID");
-            var debugInfo = new
-            {
-                SessionUserId = userId,
-                HasSession = userId != null,
-                CartCount = 0
-            };
-
-            if (userId != null)
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    string query = "SELECT COUNT(*) FROM GioHang WHERE U_ID = @U_ID";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@U_ID", userId);
-
-                    conn.Open();
-                    debugInfo = new
-                    {
-                        SessionUserId = userId,
-                        HasSession = true,
-                        CartCount = Convert.ToInt32(cmd.ExecuteScalar())
-                    };
-                }
-            }
-
-            return Json(debugInfo);
-        }
-
         // POST: /Cart/Checkout
         [HttpPost]
         [ValidateAntiForgeryToken]
